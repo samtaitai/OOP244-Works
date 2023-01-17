@@ -15,11 +15,16 @@
 #ifndef SDDS_GPA_H
 #define SDDS_GPA_H
 
-struct GPA {
-   char name[116];
-   double gpa;
-   int stno;
-};
+namespace sdds {
+
+	struct GPA {
+		char name[116];
+		double gpa;
+		int stno;
+	};
+}
+
+
 
 #endif // !SDDS_GPA_H
 

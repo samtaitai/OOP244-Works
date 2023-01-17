@@ -42,6 +42,12 @@ namespace sdds {
         }
         return found;
     }
+	
+	/*
+	strstr(const char*, const char*)
+	return a pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, 
+	or a null pointer if the sequence is not present in str1.
+	*/
 
     // displays the movie info
     void displayMovie(const Movie* mvp) {
