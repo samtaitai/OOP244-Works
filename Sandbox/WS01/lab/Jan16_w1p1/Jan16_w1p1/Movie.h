@@ -1,8 +1,8 @@
 #pragma once
 #ifndef STD_MOVIE_H
 #define STD_MOVIE_H
-#ifndef SDDS_MOVIE_H
-#define SDDS_MOVIE_H
+//#ifndef SDDS_MOVIE_H
+//#define SDDS_MOVIE_H
 
 struct Movie {
 	char m_title[128];
@@ -19,4 +19,4 @@ void displayMovie(const Movie* mvp);
 void displayMoviesWithGenre(const char genre[]);
 
 #endif
-#endif
+//#endif

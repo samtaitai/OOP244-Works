@@ -5,14 +5,10 @@
 #include "Movie.h"
 #include "File.h"
 using namespace std;
-using namespace sdds;
+//using namespace sdds;
 
 Movie movies[50];
 
-bool loadMovies();
-bool hasGenre(const Movie* mvp, const char genre[]);
-void displayMovie(const Movie* mvp);
-void displayMoviesWithGenre(const char genre[]);
 
 // loads all the moves into the global array of structures.
 bool loadMovies() {
@@ -71,3 +67,9 @@ void displayMoviesWithGenre(const char genre[]) {
         cout << "No match found for: " << genre << endl;
     }
 }
+
+
+
+
+
+
