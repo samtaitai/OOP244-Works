@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\OneDrive\문서\Winter2023\OOP244\OOP244-Works\Sandbox\WS01\lab\w1p1.cpp" />
     <ClCompile Include="50Best.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Movie.cpp" />

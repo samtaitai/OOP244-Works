@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\OneDrive\문서\Winter2023\OOP244\OOP244-Works\Sandbox\WS01\lab\w1p1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="50Best.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
