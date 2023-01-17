@@ -5,7 +5,7 @@
 #include "Movie.h"
 #include "File.h"
 using namespace std;
-//using namespace sdds;
+using namespace sdds;
 
 FILE* fptr;
 
@@ -77,3 +77,4 @@ bool readGenres(char genre[][11]) {
 bool readConsumerRating(float* rating) {
     return fscanf(fptr, "%f\n", rating) == 1;
 }
+

@@ -1,28 +1,12 @@
 #include <iostream>
 #include "Movie.h"
 using namespace std;
-//using namespace sdds;	
+using namespace sdds;	
 
 void flushkeys();
 bool yes();
 
-//namespace sdds {
-//
-//    // flushes the keyboard
-//    void flushkeys() {
-//        while (cin.get() != '\n');
-//    }
-//
-//    // returns true if user enter y or Y
-//    bool yes() {
-//        char ch = cin.get();
-//        sdds::flushkeys();
-//        return ch == 'y' || ch == 'Y';
-//    }
-//
-//}
-
- // flushes the keyboard
+// flushes the keyboard
 void flushkeys() {
     while (cin.get() != '\n');
 }

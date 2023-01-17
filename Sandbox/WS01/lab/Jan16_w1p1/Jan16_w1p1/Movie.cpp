@@ -5,7 +5,7 @@
 #include "Movie.h"
 #include "File.h"
 using namespace std;
-//using namespace sdds;
+using namespace sdds;
 
 Movie movies[50];
 
@@ -58,15 +58,17 @@ void displayMovie(const Movie* mvp) {
 void displayMoviesWithGenre(const char genre[]) {
     int i, j;
     for (i = 0, j = 1; i < 50; i++) {
-        if (hasGenre(&movies[i], genre)) {
+        if (sdds::hasGenre(&movies[i], genre)) {
             cout << j++ << "- ";
-            displayMovie(&movies[i]);
+            sdds::displayMovie(&movies[i]);
         }
     }
     if (j == 1) {
         cout << "No match found for: " << genre << endl;
     }
 }
+
+
 
 
 
