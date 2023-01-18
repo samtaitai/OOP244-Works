@@ -9,6 +9,7 @@ Jan 17 2023
 #include "UI.h"
 #include "GPAlist.h"
 using namespace std;
+using namespace sdds;
 
 namespace sdds {
 
@@ -16,51 +17,35 @@ namespace sdds {
 		
 		char operation; 
 		double GPAvalue; 
+		bool done = false;
 
-		cout << "Enter GPA query..." << endl;
-		cout << "?";
-		cin >> operation >> GPAvalue; 
+		while (!done) {
+			cout << "?";
+			cin >> operation >> GPAvalue;
 
-		if (operation == '>') {
-			displayBigger(GPAvalue);
-			
+			if (operation == '>') {
+				displayBigger(GPAvalue);
+			}
+			else if (operation == '<') {
+				displaySmaller(GPAvalue);
+			}
+			else if (operation == '~') {
+				displayEqual(GPAvalue);
+			}
+			else if (operation == '!') {
+				char ch = cin.get();
+				cout << "Exit the program? (Y)es/(N)o: ";
+				if (ch == 'Y' || ch == 'y')
+				{
+					done = true;
+				}
+			}
+			else {
+				cout << "Syntax error: ? [Op][value]<Enter>" << endl;
+				cout << "Op: [>,<,~,!]" << endl;
+				cout << "value: GPA value" << endl;
+			}
 		}
-		else if (operation == '<') {
-			displaySmaller(GPAvalue);
-		}
-		else if (operation == '~') {
-			displayEqual(GPAvalue);
-		}
-		else if (operation == '!') {
-			exitProgram();
-		}
-		else {
-			cout << "Syntax error: ? [Op][value]<Enter>" << endl;
-			cout << "Op: [>,<,~,!]" << endl;
-			cout << "value: GPA value" << endl;
-		}
-
-	}
-
-	//if Op value == '!', invoke this 
-	void exitProgram() {
-
-		char choice;
-
-		cout << "Exit the program? (Y)es/(N)o: ";
-		cin >> choice;
-
-		if (choice != 'y') {
-			//stay with the program
-		}
-		else if (choice == 'y') {
-			cout << "Goodbye!" << endl;
-			exit(0);
-		}
-		else {
-			cout << "Invalid command" << endl;
-		}
-		
 	}
 
 }

@@ -26,6 +26,21 @@ namespace sdds {
         return fscanf(fptr, "%[^(](", title) == 1;
     }
 
+    /*
+    fscanf(file pointer, "formatting", save pointer)
+    return number of items succesfully filled 
+
+    csv file parsing example
+    int read_products(product_t *product) {
+        scanf("%[^,],%[^,],%[^,],%lf,%d", product->productType, 
+        product->productID, 
+        product->productDescription, 
+        &product->productPrice, 
+        &product->quantityInStock);
+    }
+
+    */
+
     // reads the year of the movie from the global fptr File pointer
     // returns true if successful
     bool readYear(int* year) {
@@ -46,7 +61,7 @@ namespace sdds {
 
     // reads the genras of the movie from the global fptr File pointer
     // returns true if successful
-    bool readGenres(char genre[][11]) {
+    bool readGenres(char genre[][11]) { //array([11]) of string(genre[])
         char genres[256];
         int gi = 0; //genres index;
         int i = 0;// genre[i] index
@@ -55,20 +70,20 @@ namespace sdds {
         if (res) { //spreading csv to array of strings
             res = false;
             while (genres[gi]) {
-                if (genres[gi] != ',') {
-                    genre[i][j++] = genres[gi++];
+                if (genres[gi] != ',') { //Comedy, Drama, Romance
+                    genre[i][j++] = genres[gi++]; //read C o m e d y
                     res = true;
                 }
                 else {
-                    genre[i][j] = '\0';
+                    genre[i][j] = '\0'; //when encounter ',' and then read D r a m a ...go on 
                     i++;
                     gi++;
                     j = 0;
                 }
             }
         }
-        genre[i++][j] = '\0';
-        genre[i][0] = '\0'; // NULL terminating the array of strings
+        genre[i++][j] = '\0'; //fail to read any single word; element = \0
+        genre[i][0] = '\0'; // NULL terminating the array of strings; string itself = \0
         return res;
     }
 

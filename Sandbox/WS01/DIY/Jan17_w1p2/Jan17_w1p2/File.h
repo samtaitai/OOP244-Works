@@ -9,9 +9,6 @@ namespace sdds {
 	bool readStudentNumber(int* snumber);
 	bool readGPA(double* GPA);
 
-
-
-
 }
 
 #endif

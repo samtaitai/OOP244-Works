@@ -3,7 +3,6 @@
 
 namespace sdds {
 
-	void exitProgram();
 	void queryEntry();
 
 }

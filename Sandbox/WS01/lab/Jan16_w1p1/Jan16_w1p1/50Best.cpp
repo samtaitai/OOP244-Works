@@ -28,10 +28,10 @@ int main() {
         cout << "Enter the movie genre to start the search: ";
         cin >> genre;
         flushkeys();
-        displayMoviesWithGenre(genre);
-        cout << "Do another search? (Y)es: ";
-        done = !yes();
-        cout << endl;
+        displayMoviesWithGenre(genre);          //search result provided
+        cout << "Do another search? (Y)es: ";   //keep going? 
+        done = !yes();                          //if keep going(enter 'y'), done remains false
+        cout << endl;                           //otherwise, exit the loop 
     }
     cout << "Goodbye!" << endl;
     return 0;

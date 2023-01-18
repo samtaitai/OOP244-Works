@@ -23,7 +23,7 @@ namespace sdds {
                     readDuration(&mv.m_duration) &&
                     readGenres(mv.m_genres) &&
                     readConsumerRating(&mv.m_consumerRating);
-                if (ok) movies[mnum++] = mv;
+                if (ok) movies[mnum++] = mv; //only if everything is read successfully, store single 'mv' to movies[50]
             }
             closeFile();
         }
@@ -31,16 +31,16 @@ namespace sdds {
     }
 
     // returns true is the genre arg is substring of any of the
-    // genres of the target of the mvp (Movie*) arg.
-    bool hasGenre(const Movie* mvp, const char genre[]) {
+    // genres of the target of the mvp (Movie*) arg. = if matches 1 or more
+    bool hasGenre(const Movie* mvp, const char genre[]) { //genre[] was filled by readGenre function
         int i = 0;
         bool found = false;
         while (!found && mvp->m_genres[i][0]) {
-            if (strstr(mvp->m_genres[i++], genre)) {
+            if (strstr(mvp->m_genres[i++], genre)) { //if mvp->m_genres[i++] is in genre, 
                 found = true;
             }
         }
-        return found;
+        return found; //if found at least one, probably true
     }
 	
 	/*
@@ -53,19 +53,20 @@ namespace sdds {
     void displayMovie(const Movie* mvp) {
         int i = 1;
         cout << mvp->m_title << " [" << mvp->m_year << "], "
-            << mvp->m_rating << ", duration: " << mvp->m_duration << " minutes, Rating: " << mvp->m_consumerRating << "/10" << endl << "    (" << mvp->m_genres[0];
-        while (mvp->m_genres[i][0]) {
+            << mvp->m_rating << ", duration: " << mvp->m_duration << " minutes, Rating: " << mvp->m_consumerRating 
+            << "/10" << endl << "    (" << mvp->m_genres[0];
+        while (mvp->m_genres[i][0]) { //while each string inside the array exists
             cout << ", " << mvp->m_genres[i++];
         }
         cout << ")" << endl;
     }
 
-    // displays all the movies containing the genre arg
+    // displays all the movies containing the genre arg = search result
     void displayMoviesWithGenre(const char genre[]) {
         int i, j;
         for (i = 0, j = 1; i < 50; i++) {
-            if (hasGenre(&movies[i], genre)) {
-                cout << j++ << "- ";
+            if (hasGenre(&movies[i], genre)) { //if true(at least one matching genre) 
+                cout << j++ << "- ";           //1- displayMovie()
                 displayMovie(&movies[i]);
             }
         }

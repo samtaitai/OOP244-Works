@@ -8,15 +8,32 @@ Jan 17 2023
 #include "GPAlist.h"
 #include "GPA.h"
 #include "File.h"
-using namespace sdds;
+#include "UI.h"
+
 using namespace std;
+using namespace sdds;
 
 namespace sdds {
 
-	GPA gpas[86];
+	GPA gpaData[86];
 
 	bool gpaQuery(const char* filename) {
-		//body
+		/*
+        load data function{
+            //open file
+            //fill data
+            //close file
+        }         
+        */
+        loadGPAs();
+
+        //enter query
+        queryEntry();
+
+        //compare query
+        /*if matching,
+            display query
+        */
 	}
 
     bool loadGPAs() {
@@ -28,7 +45,7 @@ namespace sdds {
                 ok = readName(gpa.name) &&
                     readStudentNumber(&gpa.stno) &&
                     readGPA(&gpa.gpa);
-                if (ok) gpas[mnum++] = gpa;
+                if (ok) gpaData[mnum++] = gpa;
             }
             closeFile();
         }
@@ -46,9 +63,9 @@ namespace sdds {
     void displayBigger(const double mark) {
         int i, j;
         for (i = 0, j = 1; i < 86; i++) {
-            if (gpas[i].gpa > mark) {
+            if (gpaData[i].gpa > mark) {
                 cout << "[" << j++ << "] ";
-                displayRecord(&gpas[i]);
+                displayRecord(&gpaData[i]);
             }
         }
         if (j == 1) {
@@ -59,9 +76,9 @@ namespace sdds {
     void displaySmaller(const double mark) {
         int i, j;
         for (i = 0, j = 1; i < 86; i++) {
-            if (gpas[i].gpa < mark) {
+            if (gpaData[i].gpa < mark) {
                 cout << "[" << j++ << "] ";
-                displayRecord(&gpas[i]);
+                displayRecord(&gpaData[i]);
             }
         }
         if (j == 1) {
@@ -72,9 +89,9 @@ namespace sdds {
     void displayEqual(const double mark) {
         int i, j;
         for (i = 0, j = 1; i < 86; i++) {
-            if (gpas[i].gpa == mark) {
+            if (gpaData[i].gpa == mark) {
                 cout << "[" << j++ << "] ";
-                displayRecord(&gpas[i]);
+                displayRecord(&gpaData[i]);
             }
         }
         if (j == 1) {
