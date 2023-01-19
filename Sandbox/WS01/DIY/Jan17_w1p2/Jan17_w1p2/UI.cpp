@@ -26,7 +26,32 @@ namespace sdds {
 		while (keepgo) {
 			cout << "? ";
 			cin >> operation;
-			if (operation == '!') {
+			if (operation != '!') { //if not want to exit
+				cin >> value;
+
+				if (operation != '<' && operation != '>' && operation != '~') {
+					cout << "Syntax error: ? [Op][value]<Enter>\n";
+					cout << "Op: [>,<,~,!]\n";
+					cout << "value: GPA value\n";
+					cout << endl;
+				}
+				else {
+					
+					//cout << "let's go working" << endl;
+					if (operation == '<') {
+						cin >> value;
+						displaySmaller(value);
+					}
+					else if (operation == '>') {
+						cin >> value;
+						displayBigger(value);
+					}
+					else if (operation == '~') {
+						cin >> value;
+						displayEqual(value);
+					}
+				}
+			} else { //want to exit 
 				char ch;
 				cout << "Exit the program? (Y)es/(N)o: ";
 				cin >> ch;
@@ -35,68 +60,7 @@ namespace sdds {
 					keepgo = false;
 				}
 			}
-			else if (operation == '<') {
-				cin >> value;
-				displaySmaller(value);
-			}
-			else if (operation == '>') {
-				cin >> value;
-				displayBigger(value);
-			}
-			else if (operation == '~') {
-				cin >> value;
-				displayEqual(value);
-			}
-			else {
-				cout << "Syntax error: ? [Op][value]<Enter>\n";
-				cout << "Op: [>,<,~,!]\n";
-				cout << "value: GPA value\n";
-				cout << endl;
-			}
 		}
 		
 	}
-
-	//bool queryEntry() {
-	//	
-	//	char operation; 
-	//	double GPAvalue; 
-	//	bool done = false;
-
-	//	cout << "Enter GPA Query..." << endl;
-
-	//	while (!done) {
-	//		cout << "? ";
-	//		cin >> operation;
-	//		if (operation == '!') {
-	//			//char ch = cin.get();
-	//			char ch;
-	//			cout << "Exit the program? (Y)es/(N)o: ";
-	//			cin >> ch;
-	//			if (ch == 'Y' || ch == 'y')
-	//			{
-	//				done = true;
-	//			}
-	//		}
-	//		else {
-	//			cin >> GPAvalue;
-	//			if (operation == '>') {
-	//				displayBigger(GPAvalue);
-	//			}
-	//			else if (operation == '<') {
-	//				displaySmaller(GPAvalue);
-	//			}
-	//			else if (operation == '~') {
-	//				displayEqual(GPAvalue);
-	//			}
-	//			else {
-	//				cout << "Syntax error: ? [Op][value]<Enter>" << endl;
-	//				cout << "Op: [>,<,~,!]" << endl;
-	//				cout << "value: GPA value" << endl;
-	//			}
-	//		}
-	//	}
-	//	return done; //upon '!' it's true
-	//}
-
 }
