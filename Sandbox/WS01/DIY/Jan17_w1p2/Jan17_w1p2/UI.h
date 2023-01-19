@@ -3,7 +3,8 @@
 
 namespace sdds {
 
-	void queryEntry();
+	//bool queryEntry();
+	void menu();
 
 }
 

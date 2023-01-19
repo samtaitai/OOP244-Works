@@ -25,11 +25,12 @@ int main() {
 	} else {
 		std::cout << "failed!, this is the correct exectution" << std::endl;
 	}
-	if(!gpaQuery("students.csv")) {
+
+	if(gpaQuery("students.csv")) {
 		//std::cout << "This should have worked, fix the problem!" << std::endl;
-		cout << "Enter GPA query..." << endl;
-		queryEntry();
+		menu();
 	}
+
 	std::cout << "Goodbye!" << std::endl;
 	return 0;
 }
