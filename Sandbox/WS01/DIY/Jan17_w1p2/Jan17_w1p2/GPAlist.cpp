@@ -5,10 +5,11 @@ slee550@myseneca.ca
 Jan 17 2023
 */
 #include <iostream>
-#include "GPAlist.h"
-#include "GPA.h"
+#include <cstdio>
 #include "File.h"
 #include "UI.h"
+#include "GPA.h"
+#include "GPAlist.h"
 
 using namespace std;
 using namespace sdds;
@@ -16,6 +17,24 @@ using namespace sdds;
 namespace sdds {
 
 	GPA gpaData[86];
+
+    //open file, if success, fill gpaData, then close file
+    //only if all filled successful, returns true
+    bool loadGPAs(const char* filename) {
+        GPA gpa;
+        int mnum = 0; // number of movies read
+        bool ok = true;
+        if (openFile(filename)) {
+            while (ok && mnum < 86) {
+                ok = readName(gpa.name) &&
+                    readStudentNumber(&gpa.stno) &&
+                    readGPA(&gpa.gpa);
+                if (ok) gpaData[mnum++] = gpa;
+            }
+            closeFile();
+        }
+        return mnum == 86;
+    }
 
     //call loadGPAs(open file, fill data, close file)
     //if loadGPAs success, receive input 
@@ -42,24 +61,6 @@ namespace sdds {
 
         
 	}
-
-    //open file, if success, fill gpaData, then close file
-    //only if all filled successful, returns true
-    bool loadGPAs(const char filename[]) {
-        GPA gpa;
-        int mnum = 0; // number of movies read
-        bool ok = true;
-        if (openFile(filename)) {
-            while (ok && mnum < 86) {
-                ok = readName(gpa.name) &&
-                    readStudentNumber(&gpa.stno) &&
-                    readGPA(&gpa.gpa);
-                if (ok) gpaData[mnum++] = gpa;
-            }
-            closeFile();
-        }
-        return mnum == 86;
-    }
 
     //displays single record; nested inside of others 
     //output 362030: 3.7 (Chazz Busby)

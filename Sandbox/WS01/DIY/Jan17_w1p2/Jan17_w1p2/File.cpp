@@ -4,6 +4,7 @@ slee550@myseneca.ca
 179142211
 Jan 17 2023
 */
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstdio>
 #include "File.h"
