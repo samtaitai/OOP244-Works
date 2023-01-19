@@ -8,7 +8,6 @@ namespace sdds {
 	bool readName(char sname[]);
 	bool readStudentNumber(int* snumber);
 	bool readGPA(double* GPA);
-
 }
 
 #endif

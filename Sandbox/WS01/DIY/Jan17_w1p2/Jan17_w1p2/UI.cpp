@@ -6,8 +6,9 @@ Jan 17 2023
 */
 #include <iostream>
 #include <stdlib.h>
-#include "UI.h"
 #include "GPAlist.h"
+#include "UI.h"
+
 using namespace std;
 using namespace sdds;
 

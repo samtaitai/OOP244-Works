@@ -8,8 +8,9 @@ Jan 17 2023
 #include <cstdio>
 #include "File.h"
 #include "UI.h"
-#include "GPA.h"
 #include "GPAlist.h"
+#include "GPA.h"
+
 
 using namespace std;
 using namespace sdds;
@@ -35,6 +36,7 @@ namespace sdds {
         }
         return mnum == 86;
     }
+    
 
     //call loadGPAs(open file, fill data, close file)
     //if loadGPAs success, receive input 
@@ -58,7 +60,7 @@ namespace sdds {
         else {
             cout << "Fail loading data" << endl;
         }
-
+        return true; 
         
 	}
 

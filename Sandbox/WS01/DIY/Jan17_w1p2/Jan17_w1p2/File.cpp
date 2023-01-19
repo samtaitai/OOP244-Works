@@ -39,4 +39,6 @@ namespace sdds {
         return fscanf(fptr, "%lf)", GPA) == 1;
     }
 
+    
+
 }
