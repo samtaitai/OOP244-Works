@@ -3,7 +3,7 @@
 
 namespace sdds {
 	
-	bool openFile(const char filename[]);
+	bool openFile(const char* filename);
 	void closeFile();
 	bool readName(char sname[]);
 	bool readStudentNumber(int* snumber);

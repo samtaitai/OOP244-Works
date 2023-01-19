@@ -13,7 +13,7 @@ namespace sdds {
 	FILE* fptr;           
 
     // opens the data file and returns true is successful
-    bool openFile(const char filename[]) {
+    bool openFile(const char* filename) {
         fptr = fopen(filename, "r");
         return fptr != NULL;
     }

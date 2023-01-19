@@ -1,10 +1,11 @@
 #ifndef SDDS_FILE_H
 #define SDDS_FILE_H
+#include "GPA.h"
 
 namespace sdds {
 
 	bool gpaQuery(const char* filename);
-	bool loadGPAs();
+	bool loadGPAs(const char filename[]);
 	void displayRecord(const GPA* gpa);
 	void displayBigger(const double mark);
 	void displaySmaller(const double mark);

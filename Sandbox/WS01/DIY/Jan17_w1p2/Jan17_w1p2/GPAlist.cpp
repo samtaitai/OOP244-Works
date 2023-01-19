@@ -17,6 +17,8 @@ namespace sdds {
 
 	GPA gpaData[86];
 
+    //call loadGPAs(open file, fill data, close file)
+    //if loadGPAs success, receive input 
 	bool gpaQuery(const char* filename) {
 		/*
         load data function{
@@ -25,22 +27,29 @@ namespace sdds {
             //close file
         }         
         */
-        loadGPAs();
+        if (loadGPAs(filename)) {
+            //enter query
+            queryEntry();
 
-        //enter query
-        queryEntry();
+            //compare query
+            /*if matching,
+                display query
+            */
+        }
+        else {
+            cout << "Fail loading data" << endl;
+        }
 
-        //compare query
-        /*if matching,
-            display query
-        */
+        
 	}
 
-    bool loadGPAs() {
+    //open file, if success, fill gpaData, then close file
+    //only if all filled successful, returns true
+    bool loadGPAs(const char filename[]) {
         GPA gpa;
         int mnum = 0; // number of movies read
         bool ok = true;
-        if (openFile("students.csv")) {
+        if (openFile(filename)) {
             while (ok && mnum < 86) {
                 ok = readName(gpa.name) &&
                     readStudentNumber(&gpa.stno) &&
@@ -52,7 +61,7 @@ namespace sdds {
         return mnum == 86;
     }
 
-    //displays single record 
+    //displays single record; nested inside of others 
     //output 362030: 3.7 (Chazz Busby)
     void displayRecord(const GPA* gpa) {
         int i = 1;

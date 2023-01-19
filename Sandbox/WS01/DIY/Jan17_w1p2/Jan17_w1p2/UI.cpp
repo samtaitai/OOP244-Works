@@ -13,11 +13,15 @@ using namespace sdds;
 
 namespace sdds {
 
+	//welcome messeage
+	//based on operation, invoke different function
 	void queryEntry() {
 		
 		char operation; 
 		double GPAvalue; 
 		bool done = false;
+
+		cout << "Enter GPA Query..." << endl;
 
 		while (!done) {
 			cout << "?";
