@@ -26,12 +26,12 @@ namespace sdds {
 
     //read student name(string)
     bool readName(char sname[]) {
-    return fscanf(fptr, "%[^,],", sname) == 1;
+    return fscanf(fptr, "%115[^,],", sname) == 1;
     }
 
     //read student number(int)
     bool readStudentNumber(int* snumber) {
-        return fscanf(fptr, "%d)", snumber) == 1;
+        return fscanf(fptr, "%d,)", snumber) == 1;
     }
 
     //read student GPA(double)
