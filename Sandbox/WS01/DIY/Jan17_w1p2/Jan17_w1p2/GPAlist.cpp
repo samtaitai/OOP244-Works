@@ -10,6 +10,7 @@ Jan 17 2023
 #include "UI.h"
 #include "GPAlist.h"
 #include "GPA.h"
+#define AMPLESIZE 512
 
 
 using namespace std;
@@ -17,7 +18,7 @@ using namespace sdds;
 
 namespace sdds {
 
-	GPA gpaData[512];
+	GPA gpaData[AMPLESIZE];
 
     //open file, if success, fill gpaData, then close file
     //only if all filled successful, returns true
@@ -42,6 +43,37 @@ namespace sdds {
         return mnum <= 86; //if something goes wrong, it won't be 86; hence false 
     }
 
+    void sort(struct GPA data[], int list[], int count) {
+
+        int i, j, minIdx = 0;
+        int temp = 0;
+        struct GPA tempGPA;
+
+        for (i = 0; i < count; i++)
+        {
+            minIdx = i;
+
+            for (j = i + 1; j < count; j++)
+            {
+                if (list[j] < list[minIdx])
+                {
+                    minIdx = j;
+                }
+            }
+
+            if (minIdx != i)
+            {
+                temp = list[i];
+                list[i] = list[minIdx];
+                list[minIdx] = temp;
+
+                tempGPA = data[i];
+                data[i] = data[minIdx];
+                data[minIdx] = tempGPA;
+            }
+        }
+    }
+
     //call loadGPAs(open file, fill data, close file)
     //if loadGPAs success, receive input 
 	bool gpaQuery(const char* filename) {
@@ -52,13 +84,17 @@ namespace sdds {
         //call queryEntry        
         if (loadGPAs(filename)) {
             //cout << "loadGPAs returns true" << endl;
-
-            //enter query
-            //based on operation, invoke 
-                //each function compares 'mark' and data 
-                //display what met condition
-            /*menu();
-            result = false;*/
+            //gpaData is filled and accessible
+            //generate int array for sorting 
+            int stNumbers[AMPLESIZE]; 
+            int dataCount = 0;
+            for (int i = 0; i < AMPLESIZE; i++) {
+                if (gpaData[i].stno != 0) {
+                    stNumbers[i] = gpaData[i].stno;
+                    dataCount++;
+                }
+            }
+            sort(gpaData, stNumbers, dataCount);
         }
         else {
             result = false;
@@ -116,4 +152,5 @@ namespace sdds {
         }
     }
 
+    
 }

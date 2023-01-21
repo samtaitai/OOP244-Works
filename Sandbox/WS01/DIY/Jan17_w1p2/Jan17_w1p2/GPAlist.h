@@ -11,6 +11,7 @@ namespace sdds {
 	void displayBigger(const double mark);
 	void displaySmaller(const double mark);
 	void displayEqual(const double mark);
+	void sort(struct GPA data[], int list[], int count);
 
 }
 
