@@ -43,9 +43,9 @@ namespace sdds {
 						}
 					}
 				}
-				else {
+				else {															//right operation
 					//cout << "let's go working" << endl;
-					cin >> value;
+					//cin >> value;
 					if (operation == '<') {
 						displaySmaller(value);
 					}

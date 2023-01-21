@@ -26,7 +26,7 @@ namespace sdds {
         int mnum = 0; // number of movies read
         bool ok = true;
         if (openFile(filename)) {
-            cout << "openFile works well" << endl;
+            //cout << "openFile works well" << endl;
             while (ok && mnum < 86) {
                 ok = readName(gpa.name) &&
                     readStudentNumber(&gpa.stno) &&
@@ -38,7 +38,7 @@ namespace sdds {
         else {
             cout << "Opening a file failed" << endl;
         }
-        cout << "read data number: " << mnum << endl;
+        //cout << "read data number: " << mnum << endl;
         return mnum <= 86; //if something goes wrong, it won't be 86; hence false 
     }
 
@@ -51,7 +51,7 @@ namespace sdds {
         //open file, fill data, close file successful for all 86 cases, 
         //call queryEntry        
         if (loadGPAs(filename)) {
-            cout << "loadGPAs returns true" << endl;
+            //cout << "loadGPAs returns true" << endl;
 
             //enter query
             //based on operation, invoke 
@@ -72,7 +72,7 @@ namespace sdds {
     //displays single record; nested inside of others 
     //output 362030: 3.7 (Chazz Busby)
     void displayRecord(const GPA* gpa) {
-        int i = 1;
+        //int i = 1;
         cout << gpa->stno << ": " << gpa->gpa << " (" << gpa->name << ")" << endl;
     }
 
