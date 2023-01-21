@@ -6,6 +6,7 @@ Jan 17 2023
 */
 #include <iostream>
 #include <cstdio>
+#include <iomanip>
 #include "File.h"
 #include "UI.h"
 #include "GPAlist.h"
@@ -19,6 +20,10 @@ using namespace sdds;
 namespace sdds {
 
 	GPA gpaData[AMPLESIZE];
+
+    /*void flushkeys() {
+        while (cin.get() != '\n');
+    }*/
 
     //open file, if success, fill gpaData, then close file
     //only if all filled successful, returns true
@@ -109,7 +114,11 @@ namespace sdds {
     //output 362030: 3.7 (Chazz Busby)
     void displayRecord(const GPA* gpa) {
         //int i = 1;
-        cout << gpa->stno << ": " << gpa->gpa << " (" << gpa->name << ")" << endl;
+        //cout << gpa->stno << ": " << gpa->gpa << " (" << gpa->name << ")" << endl;
+        printf("%d, %.1lf", gpa->stno, gpa->gpa);
+        printf(" (");
+        printf("%s", gpa->name);
+        printf(")\n");
     }
 
     //display records which gpa bigger than mark? 

@@ -5,6 +5,7 @@ namespace sdds {
 
 	struct GPA;
 
+	/*void flushkeys();*/
 	bool loadGPAs(const char* filename);
 	bool gpaQuery(const char* filename);
 	void displayRecord(const GPA* gpa);
