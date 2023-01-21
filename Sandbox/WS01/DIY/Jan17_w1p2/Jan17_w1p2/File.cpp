@@ -36,7 +36,7 @@ namespace sdds {
 
     //read student GPA(double)
     bool readGPA(double* GPA) {
-        return fscanf(fptr, "%lf)", GPA) == 1;
+        return fscanf(fptr, "%lf\n)", GPA) == 1;
     }
 
     
