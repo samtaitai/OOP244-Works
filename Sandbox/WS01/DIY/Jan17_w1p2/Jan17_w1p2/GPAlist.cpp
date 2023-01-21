@@ -115,7 +115,7 @@ namespace sdds {
     void displayRecord(const GPA* gpa) {
         //int i = 1;
         //cout << gpa->stno << ": " << gpa->gpa << " (" << gpa->name << ")" << endl;
-        printf("%d, %.1lf", gpa->stno, gpa->gpa);
+        printf("%d: %.1lf", gpa->stno, gpa->gpa);
         printf(" (");
         printf("%s", gpa->name);
         printf(")\n");

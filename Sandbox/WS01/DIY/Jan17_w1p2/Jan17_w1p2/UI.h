@@ -3,7 +3,7 @@
 
 namespace sdds {
 
-	//bool queryEntry();
+	void flushkeys();
 	void menu();
 
 }
