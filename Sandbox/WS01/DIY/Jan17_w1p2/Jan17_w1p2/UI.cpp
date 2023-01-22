@@ -28,14 +28,14 @@ namespace sdds {
 		char operation;
 		double value;
 		bool keepgo = true;
-		cout << "Enter GPA Query..." << endl;
+		cout << "Enter GPA query..." << endl;
 		while (keepgo) {	//while for 'syntax error'
 			
 			cout << "? ";
 			cin >> operation;
 
 			if (operation != '!' && operation != '<' && operation != '>' && operation != '~') {
-				cout << "Syntax error: ? [Op][value]<Enter>\n";
+				cout << "Syntax error: ? [Op][value]<ENTER>\n";
 				cout << "Op: [>,<,~,!]\n";
 				cout << "value: GPA value\n";
 				cout << endl;
