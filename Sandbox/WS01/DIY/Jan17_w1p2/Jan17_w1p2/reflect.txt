@@ -1,3 +1,12 @@
+/*
+Soyon Lee
+slee550@myseneca.ca
+179142211
+Jan 21 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops 
+and assignments.
+*/
+
 1.fscanf
 This was a good opportunity to review the usage of fscanf, which I had a chance to utilize one time last semester. I suppose I get a good grip on opening a file and extracting data then saving them into a struct no matter what delimeter is used. I'd like to emphasize that fscanf should read \n when it reads data in the last order for the future me.   
 
