@@ -32,7 +32,6 @@ namespace sdds {
         int mnum = 0; // number of movies read
         bool ok = true;
         if (openFile(filename)) {
-            //cout << "openFile works well" << endl;
             while (ok && mnum < 86) {
                 ok = readName(gpa.name) &&
                     readStudentNumber(&gpa.stno) &&
@@ -41,11 +40,10 @@ namespace sdds {
             }
             closeFile();
         }
-        else {
+        /*else {
             cout << "Opening a file failed" << endl;
-        }
-        //cout << "read data number: " << mnum << endl;
-        return mnum <= 86; //if something goes wrong, it won't be 86; hence false 
+        }*/
+        return mnum == 86; //if something goes wrong, it won't be 86; hence false 
     }
 
     void sort(struct GPA data[], int list[], int count) {
@@ -88,7 +86,6 @@ namespace sdds {
         //open file, fill data, close file successful for all 86 cases, 
         //call queryEntry        
         if (loadGPAs(filename)) {
-            //cout << "loadGPAs returns true" << endl;
             //gpaData is filled and accessible
             //generate int array for sorting 
             int stNumbers[AMPLESIZE]; 
@@ -103,7 +100,6 @@ namespace sdds {
         }
         else {
             result = false;
-            cout << "Loading data failed" << endl;
         }
         return result; 
 	}

@@ -20,11 +20,11 @@ using namespace sdds;
 
 int main() {
 
-	/*if(gpaQuery("std.csv")) {
+	if(gpaQuery("std.csv")) {
 		std::cout << "This should have failed!" << std::endl;
 	} else {
 		std::cout << "failed!, this is the correct exectution" << std::endl;
-	}*/
+	}
 
 	if(gpaQuery("students.csv")) {
 		//std::cout << "This should have worked, fix the problem!" << std::endl;
