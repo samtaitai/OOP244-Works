@@ -28,7 +28,7 @@ int main() {
 
 	if(!gpaQuery("students.csv")) {
 		std::cout << "This should have worked, fix the problem!" << std::endl;
-		menu();
+		//menu();
 	}
 
 	std::cout << "Goodbye!" << std::endl;
