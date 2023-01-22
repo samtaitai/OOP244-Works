@@ -26,10 +26,7 @@ namespace sdds {
 		char operation;
 		double value;
 		bool keepgo = true;
-		bool flag = true;
 		cout << "Enter GPA Query..." << endl;
-		/*cout << "? ";
-		cin >> operation;*/
 		while (keepgo) {	//while for 'syntax error'
 			
 			cout << "? ";
@@ -43,9 +40,6 @@ namespace sdds {
 				flushkeys(); //need 
 			}
 			else {
-				//flushkeys();
-					/*cout << "? ";
-					cin >> operation;*/
 				if (operation != '!') {
 					cin >> value;
 					if (operation == '<') {
@@ -69,50 +63,6 @@ namespace sdds {
 				}
 				
 			}
-			//if (operation != '!') { //if not want to exit
-			//	cin >> value; //2.2 out of @2.2 falls into here
-			//	if (operation != '<' && operation != '>' && operation != '~') { //not right operation
-			//		while (flag) { //ask again
-			//			cout << "Syntax error: ? [Op][value]<Enter>\n";
-			//			cout << "Op: [>,<,~,!]\n";
-			//			cout << "value: GPA value\n";
-			//			cout << endl;
-			//			cout << "? ";
-			//			cin >> operation;
-			//			if (operation == '<' || operation == '>' || operation == '~') { //right, exit loop
-			//				
-			//				flushkeys(); //works
-			//				flag = false;
-			//			}
-			//		}
-			//		flushkeys();
-			//	}
-			//	else {															//right operation
-			//		//cout << "let's go working" << endl;
-			//		//cin >> value;
-			//		if (operation == '<') {
-			//			displaySmaller(value);
-			//		}
-			//		else if (operation == '>') {
-			//			displayBigger(value);
-			//		}
-			//		else if (operation == '~') {
-			//			displayEqual(value);
-			//		}
-			//	}
-			//}
-			//else { //want to exit 
-			//	char ch;
-			//	cout << "Exit the program? (Y)es/(N)o: ";
-			//	cin >> ch;
-			//	if (ch == 'Y' || ch == 'y')
-			//	{
-			//		keepgo = false;
-			//	}
-			//}
 		}
-
-		
-		
 	}
 }
