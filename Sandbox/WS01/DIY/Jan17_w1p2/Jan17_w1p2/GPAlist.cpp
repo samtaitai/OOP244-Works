@@ -81,7 +81,7 @@ namespace sdds {
     //if loadGPAs success, receive input 
 	bool gpaQuery(const char* filename) {
 		
-        bool result = true;
+        bool result = false;
 
         //open file, fill data, close file successful for all 86 cases, 
         //call queryEntry        
@@ -99,7 +99,7 @@ namespace sdds {
             sort(gpaData, stNumbers, dataCount);
         }
         else {
-            result = false;
+            result = true;
         }
         return result; 
 	}

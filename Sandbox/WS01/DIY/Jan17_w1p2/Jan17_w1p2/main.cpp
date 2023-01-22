@@ -26,8 +26,8 @@ int main() {
 		std::cout << "failed!, this is the correct exectution" << std::endl;
 	}
 
-	if(gpaQuery("students.csv")) {
-		//std::cout << "This should have worked, fix the problem!" << std::endl;
+	if(!gpaQuery("students.csv")) {
+		std::cout << "This should have worked, fix the problem!" << std::endl;
 		menu();
 	}
 
