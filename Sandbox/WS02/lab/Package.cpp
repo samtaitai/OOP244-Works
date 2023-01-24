@@ -14,47 +14,42 @@ I have done all the coding by myself and only copied the code that my professor 
 
 using namespace std;
 namespace sdds {
-    int no_of_traces{};
-    Customers* users{};
-    bool ok = true;
+    int no_of_traces;
+    Customers* users;
     
     // Add: Complete the implementation of the no argument [int loadTraces()] function
     int loadTraces() {       // Do: complete the missing parts as guided (6 parts)
         bool check = true;
-        int i{};
+        int i = 0;
         if (openFile_r(filename_r)) {
 
             // Add [1]: Set the noOfTraces to the number of records found in the file.
             no_of_traces = noOfTraces();
 
             // Add [2]: Dynamically allocate an array of Customers into the global Customers' pointer (users) with the size of no_of_traces.
-            users = new Customers[no_of_traces];
+            users = new Customers[no_of_traces]{};
 
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
-            if (users == nullptr) {
-                cout << "Not enough memory" << endl;
+            while (i < no_of_traces) {
+                //cout << loadTraces(users[i++]) << endl; everything is 0
+                //cause read is not working 
+                loadTraces(users[i++]);
+            }
+
+            cout << "i is: " << i << endl; //200 ok 
+
+            // Add [4]: If th number of the records does not match the number of read ones, print an error message
+            if (i != no_of_traces) {
+                cout << "Error reading the records, Check the data file " << endl;
+                check = false;
             }
             else {
-                while (i < no_of_traces) {
-                    Customers& r = users[i++];
-                    loadTraces(r); //???????
-                }
-
-                cout << "i is: " << i << endl; //200 ok 
-
-                // Add [4]: If th number of the records does not match the number of read ones, print an error message
-                if (i != no_of_traces) {
-                    cout << "Error reading the records, Check the data file " << endl;
-                    check = false;
-                }
-                else {
-                    // Add [5]: set  check to true 
-                    check = true;
-                }
-
-                // Add [6]: close the file; call closefile() function
-                closefile();
+                // Add [5]: set  check to true 
+                check = true;
             }
+
+            // Add [6]: close the file; call closefile() function
+            closefile();
         } 
         else {
             cout << "Could not open the"<< filename_r <<" data file"<< endl;
@@ -68,12 +63,14 @@ namespace sdds {
    
     int loadTraces(Customers& user_info) {    // Do: complete the missing parts as guided (3 parts)
         bool check = false;
-        char read_Package_name[50]{};
+        char read_Package_name[50];
 
         if (read(user_info.dayofweek)&& read(user_info.user_id) && read(user_info.timeinhours) && read(user_info.dayofyear) && read(user_info.Fwifitime)  
             && read(user_info.Fctime) && read(read_Package_name)) { // if reading of data
 
-           // Add [1]: allocate memory to the size of the Package_name + 1, keep its address in the name of the customers reference (user_info.Package_Name)
+            //cout << "i'm here" << endl; it doesn't come here
+           
+            // Add [1]: allocate memory to the size of the Package_name + 1, keep its address in the name of the customers reference (user_info.Package_Name)
             
             user_info.Package_Name = new char[strLen(read_Package_name) + 1];
             if (user_info.Package_Name != nullptr) { 
@@ -110,8 +107,11 @@ namespace sdds {
     // ADD [1]: implement the display function based on the following condition: (timeinhours > 1.0 and dayofweek == 'F') 
     void display() {
         int i{};
-        while (i < no_of_traces) {
+        while (i < 5) { //no_of_traces
+            cout << users[i].timeinhours << endl;
+            i++;
             if (users[i].timeinhours > 1.0 && users[i].dayofweek == 'F') {
+                
                 cout << users[i].user_id << ',' << users[i].timeinhours << ',' << users[i].Fctime
                     << ',' << users[i].Fwifitime << ',' << users[i].Package_Name << endl;
             }

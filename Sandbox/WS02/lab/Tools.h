@@ -16,7 +16,7 @@ namespace sdds {
 	int noOfTraces(); // Provided
 
 	// ADD: Declare read prototypes (4 prototypes)
-	int read(char pkgName[]);
+	int read(char* pkgName);
 	int read(int intType);
 	int read(double timeInHours);
 	int read(char dayOfWeek);

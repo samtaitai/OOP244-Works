@@ -35,10 +35,10 @@ int main() {
     cout<< "User id, timeinhours, Fctime, Fwifitime, Package Name" << endl
         << "....................................................." << endl;
 
-    display();
+    display(); //weirdly working
     cout << "\nData was successfully printed" << endl;
     
-    deallocateMemory();
+    deallocateMemory(); //not working
     cout << "Dynamically allocated memory was successfully deallocated"<<endl;
     return 0;
 }

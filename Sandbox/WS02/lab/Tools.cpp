@@ -12,7 +12,7 @@ I have done all the coding by myself and only copied the code that my professor 
 #include "Package.h"
 //#define filename_r "Filtered_Dataset.csv"
 
-FILE* fp{};
+FILE* fp;
 
 namespace sdds {
     int openFile_r(const char filename[]) { // Fully provided
@@ -29,13 +29,14 @@ namespace sdds {
         return noOfTraces;
     }
 
+    //"%[ ^\t\n\r\v\f,]%*c,%d,%lf,%d,%d,%d,%60[^\n]\n" ??
     // To Do: read functions (4 overloaded read functions)
-    int read(char pkgName[]) {
-        return fscanf(fp, "%60[^\n]\n", pkgName); 
+    int read(char* pkgName) {
+        return fscanf(fp, "%60[^\n]\n", pkgName); //60???? read %s upto \n skip the \n (this is the last col)
     }
 
     int read(int intType) {
-        return fscanf(fp, "%d", &intType);
+        return fscanf(fp, "%d", &intType); 
     }
 
     int read(double timeInHours) {
@@ -43,7 +44,7 @@ namespace sdds {
     }
 
     int read(char dayOfWeek) {
-        return fscanf(fp, "%[ ^\t\n\r\v\f,]%*c", &dayOfWeek); 
+        return fscanf(fp, "%[^\t\n\r\v\f,]%*c,", &dayOfWeek); 
     }
 
     
