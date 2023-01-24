@@ -119,9 +119,16 @@ namespace sdds {
 
 
     // ADD [1]: implement the display function based on the following condition: (timeinhours > 1.0 and dayofweek == 'F') 
+    void display(Customers* users) {
+        int i{};
+        while (i < no_of_traces) {
+            if (users[i].timeinhours > 1.0 && users[i].dayofweek == 'F') {
+                cout << users[i].user_id << ',' << users[i].timeinhours << ',' << users[i].Fctime
+                    << ',' << users[i].Fwifitime << ',' << users[i].Package_Name << endl;
+            }
+        }
+    }
 
-
-         
     
     // ADD [2]: implement the deallocateMemory function  
 
