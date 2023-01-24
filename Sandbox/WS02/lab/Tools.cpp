@@ -10,8 +10,9 @@ I have done all the coding by myself and only copied the code that my professor 
 #include <cstdio>
 #include "Tools.h"
 #include "Package.h"
+//#define filename_r "Filtered_Dataset.csv"
 
-FILE* fp;
+FILE* fp{};
 
 namespace sdds {
     int openFile_r(const char filename[]) { // Fully provided
@@ -27,10 +28,9 @@ namespace sdds {
         rewind(fp);
         return noOfTraces;
     }
-    
 
     // To Do: read functions (4 overloaded read functions)
-    int read(char* pkgName) {
+    int read(char pkgName[]) {
         return fscanf(fp, "%60[^\n]\n", pkgName); 
     }
 
