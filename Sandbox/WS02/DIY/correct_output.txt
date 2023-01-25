@@ -39,7 +39,7 @@ Enter customer information (to exit, press Enter):
  Enter User name: 
 ---------------------------------------------------------
                 Users' tweets report                     
- user name, re-tweets, likes, replies, share videos (y/n)
+ user name, likes, re-tweets, replies, share videos (y/n)
 ---------------------------------------------------------
 1. zebaism, 595, 234, 27, n
 
