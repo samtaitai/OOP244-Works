@@ -46,23 +46,24 @@ namespace sdds {
     */
     // complete
     bool read(Customers& rec) {
-        char name[21];
-        int retweet{};
-        int likes{};
-        int replies{};
-        char shareV{};
-        bool done = true;
+        char name[21]{};
+        bool check = true;
 
         cout << "Enter User name: ";
         read(name, 21);
         cout << "Enter likes_count: ";
-        cin >> retweet;
+        cin >> rec.likes_count;
         cout << "Enter retweets_count: ";
-        cin >> likes;
+        cin >> rec.retweets_count;
         cout << "Enter User replies_count: ";
-        cin >> replies;
+        cin >> rec.replies_count;
         cout << "Enter User share videos (y/n): ";
-        cin >> shareV;
+        cin >> rec.share_videos;
+
+        if (name[0] == 0) {
+            check = false;
+        }
+        return check;
 
     }
     void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) {
