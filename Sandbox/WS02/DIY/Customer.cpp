@@ -38,8 +38,10 @@ namespace sdds {
 
         cout << "Enter User name: ";
         read(name, 21);     //not 20
+        strCpy(rec.user_name, name); //copy
+        //cout << "Let's see.." << rec.user_name << endl; ok 
 
-        if (name[0] != 0) { //if receiving name successful, 
+        if (rec.user_name[0] != 0) { //if receiving name successful, 
             cout << "Enter likes_count: ";
             cin >> rec.likes_count;
             cout << "Enter retweets_count: ";
@@ -55,10 +57,12 @@ namespace sdds {
         return check;
     }
     void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) {
-        cout << "arrived!" << endl;
-        *t_rec.ptr_rec = c_rec; //t_rec.ptr_rec = &c_rec (x) something's wrong here
-        t_rec.noOfRecords++;
-        cout << "arrived! 2" << endl;
+        //cout << "arrived!" << endl;
+        t_rec.noOfRecords++; //0 to 1
+        t_rec.ptr_rec = new Customers[t_rec.noOfRecords]; //size 1
+        t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //t_rec.ptr_rec = &c_rec (x) something's wrong here
+        
+        //cout << "arrived! 2" << endl;
          
     }
     void display(const Customers& c_rec) {
