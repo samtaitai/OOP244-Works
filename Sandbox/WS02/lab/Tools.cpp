@@ -46,6 +46,7 @@ namespace sdds {
     int read(char& dayOfWeek) {
         return fscanf(fp, "%[^ \t\n\r\v\f,]%*c,", &dayOfWeek); //space!!!!!
     }
+    // \t tab \n newline \r carrage return \v vertical tab \f newline+space
 
     
 
