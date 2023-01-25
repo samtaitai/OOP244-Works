@@ -54,26 +54,26 @@ namespace sdds {
         else {              //if name inputting goes wrong OR user enter to quit
             check = false;
         }
+        
         return check;
     }
-    void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) {
-        //cout << "arrived!" << endl;
-        t_rec.noOfRecords++; //0 to 1
-        t_rec.ptr_rec = new Customers[t_rec.noOfRecords]; //size 1
-        t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //t_rec.ptr_rec = &c_rec (x) something's wrong here
+    void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) { //something's wrong here
         
-        //cout << "arrived! 2" << endl;
-         
+        Customers* tempPtr = nullptr;
+
+        t_rec.ptr_rec = new Customers[++t_rec.noOfRecords]; //don't keep making it! 
+        t_rec.ptr_rec[t_rec.noOfRecords-1] = c_rec;
+        
     }
     void display(const Customers& c_rec) {
-        cout << c_rec.user_name << " ," << c_rec.likes_count << " ," << c_rec.retweets_count << " ," << c_rec.replies_count
-            << " ," << c_rec.share_videos << endl;
+        cout << c_rec.user_name << ", " << c_rec.likes_count << ", " << c_rec.retweets_count << ", " << c_rec.replies_count
+            << ", " << c_rec.share_videos << endl;
     }
-    void display(const CustomersRecord& t_rec) {
+    void display(const CustomersRecord& t_rec) { //I suppose it's working 
         int i{};
         for (i = 0; i < t_rec.noOfRecords; i++) {
-            cout << i << ". ";
-            display(*t_rec.ptr_rec);
+            cout << i+1 << ". ";
+            display(t_rec.ptr_rec[i]);
             cout << endl;
         }
     }
