@@ -36,6 +36,7 @@ int main() {
         << "....................................................." << endl;
 
     display(); //weirdly working
+
     cout << "\nData was successfully printed" << endl;
     
     deallocateMemory(); //not working

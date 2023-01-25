@@ -17,9 +17,9 @@ namespace sdds {
 
 	// ADD: Declare read prototypes (4 prototypes)
 	int read(char* pkgName);
-	int read(int intType);
-	int read(double timeInHours);
-	int read(char dayOfWeek);
+	int read(int& intType);
+	int read(double& timeInHours);
+	int read(char& dayOfWeek);
 
 	void strCpy(char* des, const char* src); // Provided
 	int strLen(const char* s); // Provided

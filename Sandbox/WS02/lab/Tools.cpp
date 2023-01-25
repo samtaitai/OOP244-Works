@@ -35,16 +35,16 @@ namespace sdds {
         return fscanf(fp, "%60[^\n]\n", pkgName); //60???? read %s upto \n skip the \n (this is the last col)
     }
 
-    int read(int intType) {
-        return fscanf(fp, "%d", &intType); 
+    int read(int& intType) {
+        return fscanf(fp, "%d,", &intType); 
     }
 
-    int read(double timeInHours) {
-        return fscanf(fp, "%lf", &timeInHours);
+    int read(double& timeInHours) {
+        return fscanf(fp, "%lf,", &timeInHours);
     }
 
-    int read(char dayOfWeek) {
-        return fscanf(fp, "%[^\t\n\r\v\f,]%*c,", &dayOfWeek); 
+    int read(char& dayOfWeek) {
+        return fscanf(fp, "%[^ \t\n\r\v\f,]%*c,", &dayOfWeek); //space!!!!!
     }
 
     

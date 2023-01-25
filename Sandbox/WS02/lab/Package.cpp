@@ -21,6 +21,7 @@ namespace sdds {
     int loadTraces() {       // Do: complete the missing parts as guided (6 parts)
         bool check = true;
         int i = 0;
+        int count{};
         if (openFile_r(filename_r)) {
 
             // Add [1]: Set the noOfTraces to the number of records found in the file.
@@ -30,10 +31,17 @@ namespace sdds {
             users = new Customers[no_of_traces]{};
 
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
-            while (i < no_of_traces) {
+            while ( check && i < no_of_traces) {
                 //cout << loadTraces(users[i++]) << endl; everything is 0
                 //cause read is not working 
-                loadTraces(users[i++]);
+                if (loadTraces(users[i++])) {
+                    count++;
+                }
+
+                
+            }
+            if (count != no_of_traces) {
+                check = false;
             }
 
             cout << "i is: " << i << endl; //200 ok 
@@ -68,11 +76,11 @@ namespace sdds {
         if (read(user_info.dayofweek)&& read(user_info.user_id) && read(user_info.timeinhours) && read(user_info.dayofyear) && read(user_info.Fwifitime)  
             && read(user_info.Fctime) && read(read_Package_name)) { // if reading of data
 
-            //cout << "i'm here" << endl; it doesn't come here
            
             // Add [1]: allocate memory to the size of the Package_name + 1, keep its address in the name of the customers reference (user_info.Package_Name)
             
             user_info.Package_Name = new char[strLen(read_Package_name) + 1];
+            
             if (user_info.Package_Name != nullptr) { 
                 // Add [2]:  copy the name into the newly allocated memory, use provided strCpy function
                 strCpy(user_info.Package_Name, read_Package_name);
@@ -107,15 +115,17 @@ namespace sdds {
     // ADD [1]: implement the display function based on the following condition: (timeinhours > 1.0 and dayofweek == 'F') 
     void display() {
         int i{};
-        while (i < 5) { //no_of_traces
-            cout << users[i].timeinhours << endl;
-            i++;
+        while (i < no_of_traces) { //no_of_traces
+            //cout << users[i].timeinhours << endl;
             if (users[i].timeinhours > 1.0 && users[i].dayofweek == 'F') {
                 
                 cout << users[i].user_id << ',' << users[i].timeinhours << ',' << users[i].Fctime
                     << ',' << users[i].Fwifitime << ',' << users[i].Package_Name << endl;
             }
+            i++;
         }
+        cout << "....................................................." << endl;
+
     }
 
     
@@ -125,6 +135,7 @@ namespace sdds {
 
         while (i < no_of_traces) {
             delete[] users[i].Package_Name;
+            i++;
         }
         
         delete[] users;
