@@ -42,7 +42,7 @@ namespace sdds {
                 check = false;
             }
 
-            cout << "i is: " << i << endl; //200 ok 
+            //cout << "i is: " << i << endl; //200 ok 
 
             // Add [4]: If th number of the records does not match the number of read ones, print an error message
             if (i != no_of_traces) {
@@ -122,7 +122,7 @@ namespace sdds {
             }
             i++;
         }
-        cout << "....................................................." << endl;
+        //cout << "....................................................." << endl;
 
     }
 
