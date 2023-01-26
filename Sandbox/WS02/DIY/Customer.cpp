@@ -19,7 +19,7 @@ namespace sdds {
 
     
     void EmptyRecord(Customers& c_rec) {
-        c_rec.user_name; //???
+        strCpy(c_rec.user_name, "\0"); //because it was static memory cstring! 
         c_rec.retweets_count = 0;
         c_rec.likes_count = 0;
         c_rec.replies_count = 0;
