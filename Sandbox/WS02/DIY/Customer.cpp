@@ -59,11 +59,27 @@ namespace sdds {
     }
     void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) { //something's wrong here
         
-        Customers* tempPtr = nullptr;
+        int i{};
 
-        t_rec.ptr_rec = new Customers[++t_rec.noOfRecords]; //don't keep making it! 
-        t_rec.ptr_rec[t_rec.noOfRecords-1] = c_rec;
-        
+        if (t_rec.noOfRecords == 0) { //first round
+            t_rec.ptr_rec = new Customers[t_rec.noOfRecords + 1]; //size 1
+            t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //save on [0]
+        }
+        else //since second round 
+        {
+            Customers* tempPtr = nullptr;
+            tempPtr = new Customers[t_rec.noOfRecords]; //1
+            tempPtr = t_rec.ptr_rec; //copy previous 1 record
+
+            t_rec.ptr_rec = new Customers[t_rec.noOfRecords + 1]; //size 2
+
+            for (i = 0; i < t_rec.noOfRecords; i++) { //i<1
+                t_rec.ptr_rec[i] = tempPtr[i]; //[0] will be copied
+            }
+
+            t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //save on [1]
+        }
+        t_rec.noOfRecords++;
     }
     void display(const Customers& c_rec) {
         cout << c_rec.user_name << ", " << c_rec.likes_count << ", " << c_rec.retweets_count << ", " << c_rec.replies_count
