@@ -43,19 +43,19 @@ namespace sdds {
         char name[21]{};
         bool check = true;
 
-        cout << "Enter User name: ";
+        cout << " Enter User name: ";
         read(name, 21);     //not 20
         strCpy(rec.user_name, name); //copy
         //cout << "Let's see.." << rec.user_name << endl; ok 
 
         if (rec.user_name[0] != 0) { //if receiving name successful, 
-            cout << "Enter likes_count: ";
+            cout << " Enter likes_count: ";
             cin >> rec.likes_count;
-            cout << "Enter retweets_count: ";
+            cout << " Enter retweets_count: ";
             cin >> rec.retweets_count;
-            cout << "Enter User replies_count: ";
+            cout << " Enter replies_count: ";
             cin >> rec.replies_count;
-            cout << "Enter User share videos (y/n): ";
+            cout << " Enter share videos (y/n): ";
             cin >> rec.share_videos;
         }
         else {              //if name inputting goes wrong OR user enter to quit
@@ -67,26 +67,22 @@ namespace sdds {
     void addCustomer(CustomersRecord& t_rec, const Customers& c_rec) { //something's wrong here
         
         int i{};
+        Customers* tempPtr = nullptr;
+        tempPtr = new Customers[t_rec.noOfRecords + 1]; //+1 size
 
-        if (t_rec.noOfRecords == 0) { //first round
-            t_rec.ptr_rec = new Customers[t_rec.noOfRecords + 1]; //size 1
-            t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //save on [0]
+        for (i = 0; i < t_rec.noOfRecords; i++) {
+            tempPtr[i] = t_rec.ptr_rec[i]; //copy previous records into temp 
         }
-        else //since second round 
-        {
-            Customers* tempPtr = nullptr;
-            tempPtr = new Customers[t_rec.noOfRecords]; //1
-            tempPtr = t_rec.ptr_rec; //copy previous 1 record
 
-            t_rec.ptr_rec = new Customers[t_rec.noOfRecords + 1]; //size 2
+        tempPtr[i] = c_rec; //new c_rec into the last pos 
 
-            for (i = 0; i < t_rec.noOfRecords; i++) { //i<1
-                t_rec.ptr_rec[i] = tempPtr[i]; //[0] will be copied
-            }
+        delete[] t_rec.ptr_rec; 
 
-            t_rec.ptr_rec[t_rec.noOfRecords] = c_rec; //save on [1]
-        }
         t_rec.noOfRecords++;
+
+        t_rec.ptr_rec = tempPtr;
+
+        //delete[] tempPtr;
     }
     void display(const Customers& c_rec) {
         cout << c_rec.user_name << ", " << c_rec.likes_count << ", " << c_rec.retweets_count << ", " << c_rec.replies_count
