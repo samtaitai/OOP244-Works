@@ -2,3 +2,12 @@ Before conducting DMA, there needs to be a pointer. DMA mostly is done for creat
 In this DIY, t_rec.ptr_rec is a Customers pointer type, which will be a container(array) for multiple Customers instances(c_rec). 
 The most challenging part in this DIY was build the function 'addCustomer'. It took some time for me to come up with the idea that there should be a temporal pointer for temporarily saving previous records before creating a new t_rec.ptr_rec having memory size of one-record-size greater than before.  
 In the first round, I just need t_rec.ptr_rec with one-'c_rec'-size. Since the second and later round, I create tempPtr, which has the exactly the same size of accumulated records so far, copy previous records to it. Then, I allocate +1 memory for t_rec.ptr_rec. Via for loop, fill the new array with previous records first; fill the fresh new c_rec in the last index. 
+
+IT WAS BEFORE I ENCOUNTER MEMORY LEAK... 
+
+Previously, I made a temporal pointer; transferred previous records there; then created a new(bigger) t_rec.ptr_rec, re-transferred records from the temp pointer and added a new c_rec; then deleted the temp pointer. 
+What I didn't think of is my temp pointer's life cycle is within the function; it isn't necessarily to be removed. What I need to monitor is t_rec.ptr_rec, because it has global scope. In the function, I kept allocating memory but I deallocate it just once at the end of main.cpp. I suppose this is the problem. 
+Hence I fixed my logic: 
+I make a bigger temporal pointer and copy previous records there. Plus, I add a fresh c_rec in its last position. Then I deallocate the memory of t_rec.ptr_rec. Now it becomes nullptr, not pointing anywhere, but I copy the temp pointer there. 
+When I quit the app, t_rec.ptr_rec memory deallocation will be taken care of in main.cpp. 
+
