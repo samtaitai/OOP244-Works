@@ -1,0 +1,4 @@
+Before conducting DMA, there needs to be a pointer. DMA mostly is done for creating a memory space for an array; but it's available for a single value as well. 
+In this DIY, t_rec.ptr_rec is a Customers pointer type, which will be a container(array) for multiple Customers instances(c_rec). 
+The most challenging part in this DIY was build the function 'addCustomer'. It took some time for me to come up with the idea that there should be a temporal pointer for temporarily saving previous records before creating a new t_rec.ptr_rec having memory size of one-record-size greater than before.  
+In the first round, I just need t_rec.ptr_rec with one-'c_rec'-size. Since the second and later round, I create tempPtr, which has the exactly the same size of accumulated records so far, copy previous records to it. Then, I allocate +1 memory for t_rec.ptr_rec. Via for loop, fill the new array with previous records first; fill the fresh new c_rec in the last index. 
