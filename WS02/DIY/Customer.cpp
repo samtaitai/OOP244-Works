@@ -77,12 +77,11 @@ namespace sdds {
         tempPtr[i] = c_rec; //new c_rec into the last pos 
 
         delete[] t_rec.ptr_rec; 
-
         t_rec.noOfRecords++;
-
         t_rec.ptr_rec = tempPtr;
 
-        //delete[] tempPtr;
+        //delete[] tempPtr; created error
+
     }
     void display(const Customers& c_rec) {
         cout << c_rec.user_name << ", " << c_rec.likes_count << ", " << c_rec.retweets_count << ", " << c_rec.replies_count
@@ -96,8 +95,5 @@ namespace sdds {
             cout << endl;
         }
     }
-    
-   
-
   }
 
