@@ -12,7 +12,7 @@ namespace sdds {
 	//class Department does here
 	class Department {
 		char* name; //dma
-		Project* projects; //dma
+		Project* projects; //dma array of Project 
 		int noOfprojects;
 		double budget;
 
