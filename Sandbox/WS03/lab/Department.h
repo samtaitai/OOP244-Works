@@ -14,7 +14,7 @@ namespace sdds {
 		char* m_name{}; //dma
 		Project* m_projects{}; //dma array of Project 
 		int m_noOfprojects{};
-		double m_budget = 15345.99;
+		double m_budget{ 15345.99 };
 
 	public:
 		void updateName(const char* newname);

@@ -30,16 +30,20 @@ namespace sdds {
     void Department::updateName(const char* newname) {
 
         if (newname) {
-            if (m_name != nullptr) {
+            if (m_name) {
                 //delete[] m_name; //error fixed by not delete[]?? 
                 m_name = nullptr;
-                delete[] m_name; //nullptr first then delete to prevent memory leak?
+                //delete[] m_name; //because it will be handled at the last? 
                 m_name = new char(strlen(newname) + 1);
-                strcpy(m_name, newname);
+                if (m_name != nullptr) { //if dma success,
+                    strcpy(m_name, newname); }  
+                
             }
             else {
                 m_name = new char(strlen(newname) + 1);
-                strcpy(m_name, newname);
+                if (m_name != nullptr) { //if dma success,
+                    strcpy(m_name, newname);
+                }
             }
         }
         
@@ -60,24 +64,31 @@ namespace sdds {
             if (m_budget - totalCost > 0) { //if 15345.99 - (budget + this cost) > 0
                 Project* temp{};
                 temp = new Project[m_noOfprojects + 1]; //allocate temp array = old size + 1
-                temp = m_projects; //copy old projects to temp
-                temp[m_noOfprojects] = newproject; //temp[last] = new project
-                //delete[] m_projects; //delete old array error again? 
-                m_projects = nullptr; //make it nullptr
-                delete[] m_projects; //then free memory? 
-                m_noOfprojects++; //# of project + 1
-                m_projects = new Project[m_noOfprojects]; //allocate new array
-                m_projects = temp; //copy temp to new array
-                temp = nullptr;
-                delete[] temp; //delete temp & returns true //error!
-                added = true;
+                if (temp != nullptr) {
+                    temp = m_projects; //copy old projects to temp
+                    temp[m_noOfprojects] = newproject; //temp[last] = new project
+                    //delete[] m_projects; //delete old array error again? 
+                    m_projects = nullptr; //make it nullptr
+                    //delete[] m_projects; //then free memory? 
+                    m_noOfprojects++; //# of project + 1
+                    m_projects = new Project[m_noOfprojects]; //allocate new array
+                    
+                    if (m_projects != nullptr) {
+                        m_projects = temp; //copy temp to new array
+                        temp = nullptr;
+                        delete[] temp; //delete temp & returns true //error!
+                        added = true;
+                    }
+                }
             }
         }
         else { //else there's nothing, create a project & returns true
             m_noOfprojects++;
             m_projects = new Project[m_noOfprojects];
-            m_projects[0] = newproject;
-            added = true;
+            if (m_projects != nullptr) {
+                m_projects[0] = newproject;
+                added = true;
+            }
         }
         return added; 
     }
@@ -101,7 +112,7 @@ namespace sdds {
     }
     double Department::totalexpenses() {
         double totalExp{};
-        if (m_projects != nullptr) {
+        if (m_projects) {
             for (int i = 0; i < m_noOfprojects; i++) {
                 totalExp += m_projects[i].m_cost;
             }
