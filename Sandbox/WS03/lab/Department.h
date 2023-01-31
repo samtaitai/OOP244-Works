@@ -14,7 +14,7 @@ namespace sdds {
 		char* name; //dma
 		Project* projects; //dma array of Project 
 		int noOfprojects;
-		double budget;
+		double budget = 15345.99;
 
 	public:
 		void updateName(const char* newname);

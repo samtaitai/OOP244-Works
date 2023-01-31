@@ -28,20 +28,19 @@ namespace sdds {
     }
 
     void Department::updateName(const char* newname) {
-        //see if dept name is already set, 
-        if (name != nullptr) { //if set, deallocate
-            delete[] name;
-            if (strlen(newname) != 0) { //then if provided name exitst(not empty), override
+
+        if (newname[0] != 0) {
+            if (name != nullptr) {
+                delete[] name; //why???
                 name = new char(strlen(newname) + 1);
                 strcpy(name, newname);
-            } //else, previous name stays
-        }
-        else {
-            if (strlen(newname) != 0) { //provided name exitst(not empty), set
+            }
+            else {
                 name = new char(strlen(newname) + 1);
                 strcpy(name, newname);
-            } //else, it remains 0
+            }
         }
+        
     }
     void Department::updateBudget(double change) {
         //update budget by +change(extra budget?) 
@@ -105,9 +104,7 @@ namespace sdds {
         return totalExp;
     }
     double Department::remainingBudget() {
-        if (projects == nullptr) { //initially, budget is: 
-            budget = 15345.99;
-        }
+
         return budget - totalexpenses(); //initially, totalexpenses() = 0;
     }
     void Department::clearDepartment() {
