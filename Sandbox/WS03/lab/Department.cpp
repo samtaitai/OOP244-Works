@@ -75,7 +75,7 @@ namespace sdds {
                     
                     if (m_projects != nullptr) {
                         m_projects = temp; //copy temp to new array
-                        temp = nullptr;
+                        temp = nullptr; //why nullptr before delete? why not the other way around? 
                         delete[] temp; //delete temp & returns true //error!
                         added = true;
                     }
@@ -124,8 +124,11 @@ namespace sdds {
         return m_budget - totalexpenses(); //initially, totalexpenses() = 0;
     }
     void Department::clearDepartment() {
+        m_name = nullptr; //???
         delete[] m_name;
+        m_projects = nullptr;
         delete[] m_projects;
+
     }
 
 }

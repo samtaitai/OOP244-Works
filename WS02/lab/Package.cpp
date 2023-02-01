@@ -31,28 +31,33 @@ namespace sdds {
             users = new Customers[no_of_traces]{};
 
             // Add [3]: Load the Customers' records from the file into the dynamically created array (use a loop).
-            while ( check && i < no_of_traces) {
+            while ( /*check &&*/ i < no_of_traces) { //doesn't need 'check' 
                 //cout << loadTraces(users[i++]) << endl; everything is 0
                 //cause read is not working 
                 if (loadTraces(users[i++])) {
                     count++;
                 }
             }
-            if (count != no_of_traces) {
+            if (count != no_of_traces) { // Add [4]: If th number of the records does not match the number of read ones, print an error message
+                cout << "Error reading the records, Check the data file " << endl;
                 check = false;
+            }
+            else { // Add [5]: set  check to true
+                check = true;
             }
 
             //cout << "i is: " << i << endl; //200 ok 
 
-            // Add [4]: If th number of the records does not match the number of read ones, print an error message
-            if (i != no_of_traces) {
+            //alreday check by 'count' duplicate
+            /*if (i != no_of_traces) {
                 cout << "Error reading the records, Check the data file " << endl;
                 check = false;
             }
             else {
-                // Add [5]: set  check to true 
+                 
                 check = true;
-            }
+            }*/
+            
 
             // Add [6]: close the file; call closefile() function
             closefile();
