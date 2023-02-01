@@ -1,3 +1,11 @@
+/*
+Name: So Yon Lee
+Email: slee550@myseneca.ca
+Student ID: 179142211
+Date: 1 Feb 2023
+I was advised by the professor for the function 'updateName' 'addProjects' 'clearDeparment'.
+Detailed takeouts will be noted in the reflect when I submit DIY.
+*/
 #ifndef SDDS_DEPARTMENT_H_
 #define SDDS_DEPARTMENT_H_
 namespace sdds {
