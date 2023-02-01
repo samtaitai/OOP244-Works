@@ -1,0 +1,10 @@
+WS03 lab
+Key takeouts from the meeting with the professor:
+1. pointer = new type[size] not (), should be [] because it's for size
+2. if(m_name != nullptr) means if(m_name) 
+3. if resizing follows immediately, pointer doesn't need to be nullptr. 
+4. when copying old projects stored in m_projects to temp, and their sizes differ, use for loop. Do not 1:1 assign them. 
+4-1. after m_projects became nullptr, it can be assigned by temp 1:1. 
+4-2. because 'temp' was declared local scope, it will be freed automatically when the scope ends. 
+5. delete[] pointer first, makes it nullptr next.  
+
