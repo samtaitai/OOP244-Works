@@ -30,20 +30,10 @@ namespace sdds {
     void Department::updateName(const char* newname) {
 
         if (newname) {
-            if (m_name) {
-                //delete[] m_name; //error fixed by not delete[]?? 
-                m_name = nullptr;
-                //delete[] m_name; //because it will be handled at the last? 
-                m_name = new char(strlen(newname) + 1);
-                if (m_name != nullptr) { //if dma success,
-                    strcpy(m_name, newname); }  
-                
-            }
-            else {
-                m_name = new char(strlen(newname) + 1);
-                if (m_name != nullptr) { //if dma success,
-                    strcpy(m_name, newname);
-                }
+            delete[] m_name; //error fixed by not delete[]?? 
+            m_name = new char[strlen(newname) + 1];
+            if (m_name) { //if dma success,
+               strcpy(m_name, newname);
             }
         }
         
@@ -56,29 +46,23 @@ namespace sdds {
 
         bool added = false;
         double totalCost{}; 
-
+        int i;
         if (m_projects != nullptr) { //see if existing project be
 
             totalCost = totalexpenses() + newproject.m_cost; //existing expenses + this new one
 
-            if (m_budget - totalCost > 0) { //if 15345.99 - (budget + this cost) > 0
+            if (m_budget - totalCost > 0) {                //if 15345.99 - (budget + this cost) > 0
                 Project* temp{};
-                temp = new Project[m_noOfprojects + 1]; //allocate temp array = old size + 1
+                temp = new Project[m_noOfprojects + 1];    //allocate temp array = old size + 1
                 if (temp != nullptr) {
-                    temp = m_projects; //copy old projects to temp
-                    temp[m_noOfprojects] = newproject; //temp[last] = new project
-                    //delete[] m_projects; //delete old array error again? 
-                    m_projects = nullptr; //make it nullptr
-                    //delete[] m_projects; //then free memory? 
-                    m_noOfprojects++; //# of project + 1
-                    m_projects = new Project[m_noOfprojects]; //allocate new array
-                    
-                    if (m_projects != nullptr) {
-                        m_projects = temp; //copy temp to new array
-                        temp = nullptr; //why nullptr before delete? why not the other way around? 
-                        delete[] temp; //delete temp & returns true //error!
-                        added = true;
-                    }
+                   for(i = 0; i < m_noOfprojects; i++) {
+                      temp[i] = m_projects[i];
+                   }
+                    temp[m_noOfprojects] = newproject;     //temp[last] = new project
+                    delete[] m_projects; //delete old array error again? 
+                    m_projects = temp;
+                    m_noOfprojects++;
+                    added = true;
                 }
             }
         }
@@ -124,10 +108,10 @@ namespace sdds {
         return m_budget - totalexpenses(); //initially, totalexpenses() = 0;
     }
     void Department::clearDepartment() {
-        m_name = nullptr; //???
         delete[] m_name;
-        m_projects = nullptr;
+        m_name = nullptr; //???
         delete[] m_projects;
+        m_projects = nullptr;
 
     }
 
