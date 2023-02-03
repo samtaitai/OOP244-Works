@@ -28,23 +28,29 @@ namespace sdds {
 	void Store::setToys(const char* tname, int sku, double price, int age) {
 		Toys toy;
 
-		while (m_addToys < m_noOfToys) {			//m_noOfToys is constant. 
+		if (m_addToys < m_noOfToys) {			//m_noOfToys is constant. 
 			toy.addToys(tname, sku, price, age);
-			m_addToys++;
+			
+			if (toy.fetchSKU() != 0) {			//if invalid->stay zero->not added to the array
+				m_toy[m_addToys] = toy;
+				m_addToys++;
+			}
 		}
 
 	}
 	void Store::display() const{
 		
 		if (this) {							//If a Store object is valid???
-			cout.fill('*');
-			cout.width(60);
-			//left
-			cout << m_sName << endl;
-			cout.width(60);
-			//left
-			cout << "list of toys" << endl;
+			cout.fill('*');					//fill first
+			cout.setf(ios::left);			//align
+			cout.width(60);					//set width
+			cout << "*" << endl;			//fill space between * and endl; with +
+			cout << m_sName << endl;		
+			cout.width(60);					//set width
+			cout << "*" << endl;
 			cout.fill(' ');
+			cout << "list of toys" << endl;
+			cout.unsetf(ios::left);
 			cout.width(30);
 			//right
 			cout << "SKU";
@@ -56,6 +62,8 @@ namespace sdds {
 			cout << "Sale" << endl;
 
 			for (int i = 0; i < m_noOfToys; i++) {
+				
+				cout << "Toy[" << i + 1 << "] :";
 				
 				m_toy[i].display();
 			}

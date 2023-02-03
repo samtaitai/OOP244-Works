@@ -19,11 +19,15 @@ namespace sdds {
 	//After checking the validity, this method will set the received values to the appropriate data members. 
 	//Otherwise will be set to an empty state.
 	void Toys::addToys(const char* tname, int sku, double price, int age) {
-		if (tname && sku && price && age) {
-			strcpy(m_tname, tname);
-			m_sku = sku;
-			m_price = price;
-			m_age = age;
+		if (tname && price && age) {
+			
+			if (sku >= 10000000) {			//at least 8 digit
+				strcpy(m_tname, tname);
+				m_sku = sku;
+				m_price = price;
+				m_age = age;
+			}
+			
 		}
 		
 	}
@@ -42,8 +46,8 @@ namespace sdds {
 	}
 	void Toys::display() const {
 		
-		if (this) {					//If a Toy object is valid??? 
-			cout.setf(ios::left);
+		if (m_sku != 0) {					//If a Toy object is valid??? 
+			//cout.setf(ios::left);
 			cout.width(15);
 			cout << m_tname;
 			cout.width(10);
