@@ -26,7 +26,7 @@ namespace sdds {
 	//This will add the toys one at a time to the m_toy array and will keep track of the number of toys added. 
 	//Toys will be added until num of added toys is less than m_noOfToys
 	void Store::setToys(const char* tname, int sku, double price, int age) {
-		Toys toy;
+		Toys toy;								//option1: pointer of Toys option2: Toys + constructor + Toys.h included
 
 		if (m_addToys < m_noOfToys) {			//m_noOfToys is constant. 
 			toy.addToys(tname, sku, price, age);
