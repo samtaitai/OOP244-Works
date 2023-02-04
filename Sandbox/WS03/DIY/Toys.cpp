@@ -71,7 +71,7 @@ namespace sdds {
 
 
 			if (m_onSale == true) {
-				cout.width(10);
+				cout.width(11);
 				cout << "On Sale";
 			}
 			else {

@@ -70,14 +70,9 @@ namespace sdds {
 			cout << "Sale";
 
 			for (int i = 0; i < m_noOfToys; i++) {
-				
 				cout << endl;
 				cout << "Toy[" << i + 1 << "] :";
-				
 				m_toy[i].display();	
-				//cout << endl;				
-
-				//cout << "*";
 			}
 			cout << endl;
 		}
