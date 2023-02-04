@@ -1,0 +1,19 @@
+WS03 lab
+Key takeouts from the meeting with the professor:
+1. pointer = new type[size] not (), should be [] because it's for size
+2. if(m_name != nullptr) means if(m_name) 
+3. if resizing follows immediately, pointer doesn't need to be nullptr. 
+4. when copying old projects stored in m_projects to temp, and their sizes differ, use for loop. Do not 1:1 assign them. 
+4-1. after m_projects became nullptr, it can be assigned by temp 1:1. 
+4-2. because 'temp' was declared local scope, it will be freed automatically when the scope ends. 
+5. delete[] pointer first, makes it nullptr next.  
+
+WS03 DIY
+header file: 
+In the most of cases, header file doesn't include other's header file unless it's necesary. In this DIY, Store.h includes Toys.h. Store.cpp inquires Store.h about custom type(struct, class) information. In which case, Store.cpp inquires about Store class. The Store class has Toys class as a part of its being. Hence, Store.h also needs information about Toys class which belongs to Toys.h. That's why Store.h includes Toys.h.  
+
+constructor: 
+Every class creates the default constructor by nature. Which constructor accepts no arguments and has a empty body. Instances created by this automatically generated constructor will be filled with garbage values. In order to make instances clean slate, we need to let the constructor body doing so, so that it will be properly initialized. 
+
+fetchSKU function: 
+I can't help to create one function that is out of the instruction in order to check if the given Toys instance is a clean slate(which has 0 for data member value) or written one. Otherwise, there's no permitted way to access for Store class to data members of Toys class. 
