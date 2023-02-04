@@ -72,12 +72,11 @@ namespace sdds {
 
 			if (m_onSale == true) {
 				cout.width(10);
-				cout << "On Sale" << endl;
+				cout << "On Sale";
 			}
 			else {
 				cout.width(8);
-				//cout << '\t' << endl;		//breakthrough
-				cout << ' ' << endl;		//breakthrough
+				cout << ' ';		//breakthrough
 
 			}
 		}

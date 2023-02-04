@@ -73,7 +73,8 @@ namespace sdds {
 				
 				cout << "Toy[" << i + 1 << "] :";
 				
-				m_toy[i].display();					//since 2nd round, ****Toy[2]
+				m_toy[i].display();	
+				cout << endl;				
 
 				//cout << "*";
 			}
