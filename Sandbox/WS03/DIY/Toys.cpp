@@ -22,6 +22,7 @@ namespace sdds {
 		m_sku = 0;
 		m_price = 0.0;
 		m_age = 0;
+		m_onSale = false;
 	}
 
 	//After checking the validity, this method will set the received values to the appropriate data members. 
