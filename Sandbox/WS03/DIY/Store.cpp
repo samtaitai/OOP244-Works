@@ -48,7 +48,7 @@ namespace sdds {
 	}
 	void Store::display() const{
 		
-		if (this) {							//If a Store object is valid???
+		if (this != nullptr) {				//If a Store object is valid???
 			cout.fill('*');					//fill first
 			cout.setf(ios::left);			//align
 			cout.width(60);					//set width
