@@ -81,7 +81,7 @@ namespace sdds {
 			}
 		}
 		else {
-			cout << "Invalid Toy" << endl;
+			cout << "Invalid Toy";
 		}
 	}
 }
