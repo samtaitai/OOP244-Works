@@ -1,3 +1,11 @@
+/*
+Name: So Yon Lee
+Email: slee550@myseneca.ca
+Student ID: 179142211
+Date: 3 Feb 2023
+I have done all the coding by myself
+and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
@@ -47,9 +55,10 @@ namespace sdds {
 	void Toys::display() const {
 		
 		if (m_sku != 0) {					//If a Toy object is valid??? 
-			//cout.setf(ios::left);
+			cout.setf(ios::left);
 			cout.width(15);
 			cout << m_tname;
+			cout.unsetf(ios::left);
 			cout.width(10);
 			cout << m_sku;
 			cout.width(6);
@@ -59,13 +68,14 @@ namespace sdds {
 			cout.precision(2);
 			cout << m_price;
 
+
 			if (m_onSale == true) {
 				cout.width(10);
-				cout << "On Sale" << endl;;
+				cout << "On Sale" << endl;
 			}
 			else {
 				cout.width(8);
-				cout << endl;
+				cout << '\t' << endl;		//breakthrough
 			}
 		}
 		else {

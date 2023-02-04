@@ -1,3 +1,11 @@
+/*
+Name: So Yon Lee
+Email: slee550@myseneca.ca
+Student ID: 179142211
+Date: 3 Feb 2023
+I have done all the coding by myself
+and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include <iostream>
@@ -65,7 +73,9 @@ namespace sdds {
 				
 				cout << "Toy[" << i + 1 << "] :";
 				
-				m_toy[i].display();
+				m_toy[i].display();					//since 2nd round, ****Toy[2]
+
+				//cout << "*";
 			}
 		}
 		else {
