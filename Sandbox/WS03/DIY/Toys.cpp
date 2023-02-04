@@ -77,7 +77,6 @@ namespace sdds {
 			else {
 				cout.width(8);
 				cout << ' ';		//breakthrough
-
 			}
 		}
 		else {
