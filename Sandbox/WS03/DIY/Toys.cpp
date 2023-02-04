@@ -71,16 +71,16 @@ namespace sdds {
 
 
 			if (m_onSale == true) {
-				cout.width(11);
-				cout << "On Sale";
+				cout.width(10);
+				cout << "On Sale" << " " << endl;
 			}
 			else {
 				cout.width(8);
-				cout << ' ';		//breakthrough
+				cout << " " << endl;		
 			}
 		}
 		else {
-			cout << "Invalid Toy";
+			cout << "Invalid Toy" << endl;
 		}
 	}
 }

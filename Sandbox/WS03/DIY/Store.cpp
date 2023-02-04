@@ -67,14 +67,14 @@ namespace sdds {
 			cout.width(11);
 			cout << "Price";
 			cout.width(10);
-			cout << "Sale";
+			cout << "Sale" << endl;
 
 			for (int i = 0; i < m_noOfToys; i++) {
-				cout << endl;
+				
 				cout << "Toy[" << i + 1 << "] :";
 				m_toy[i].display();	
 			}
-			cout << endl;
+			
 		}
 		else {
 			cout << "Invalid Store" << endl;
