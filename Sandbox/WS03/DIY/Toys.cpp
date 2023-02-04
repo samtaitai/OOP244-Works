@@ -76,7 +76,9 @@ namespace sdds {
 			}
 			else {
 				cout.width(8);
-				cout << '\t' << endl;		//breakthrough
+				//cout << '\t' << endl;		//breakthrough
+				cout << ' ' << endl;		//breakthrough
+
 			}
 		}
 		else {
