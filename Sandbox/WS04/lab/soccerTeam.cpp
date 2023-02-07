@@ -50,7 +50,7 @@ namespace sdds {
 	//Fine and foul should be grater than and equal to zero. 
 	//Otherwise, it will set the soccerTeam object to an empty state.
 	void SoccerTeam::setFine(double fines, int foul) {
-		if (fines >= 0.0 && foul >= 0 && foul <= MAX_FOUL) {
+		if (fines >= 0.0 && foul >= 0) {
 			m_noFouls = foul;
 			m_fines = fines;
 		}
@@ -68,7 +68,7 @@ namespace sdds {
 	//Returns true if m_teamName is not null, m_fines and m_noFouls is grater than 0.
 	bool SoccerTeam::isEmpty() const {
 		bool isEmpty = false;
-		if (m_teamName && m_fines > 0.0 && m_noFouls > 0 && m_noFouls <= MAX_FOUL) {
+		if (m_teamName && m_fines > 0.0 && m_noFouls > 0) {
 			isEmpty = true;
 		}
 		return isEmpty;
