@@ -38,16 +38,16 @@ void printHeader(const char* title)
 int main() {
 	
 	SoccerTeam st1[] = {
-		SoccerTeam(), //default constructor
-		SoccerTeam("",100.0,0), //3 argumnet constructor
-		SoccerTeam("Bad1",200,-1) 
+		SoccerTeam(),				//default constructor
+		SoccerTeam("",100.0,0),		//3 argumnet constructor
+		SoccerTeam("Bad1",200,-1)	
 	};
 
 	
 	printHeader("T1: Checking Constructors of Soccer Team");
 	for (int i = 0; i < 3; i++) {
 		cout << i + 1 << ". ";
-		st1[i].display() <<endl;
+		st1[i].display() <<endl;	//three of them should be invalid
 	}
 	
 	Tournament t[] = {
@@ -59,7 +59,7 @@ int main() {
 	printHeader("T2: Checking Constructors of Tournament");
 	for (int i = 0; i < 3; i++) {
 		cout << i + 1 << ". ";
-		t[i].display() <<endl;
+		t[i].display() <<endl;		//three of them should be invalid
 	}
 	
 	SoccerTeam st2[] = {

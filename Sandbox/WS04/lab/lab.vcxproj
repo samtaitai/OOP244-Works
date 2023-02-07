@@ -128,11 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Soccer.cpp" />
+    <ClCompile Include="soccerTeam.cpp" />
     <ClCompile Include="Tournament.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Soccer.h" />
+    <ClInclude Include="soccerTeam.h" />
     <ClInclude Include="Tournament.h" />
   </ItemGroup>
   <ItemGroup>

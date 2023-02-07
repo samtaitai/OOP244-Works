@@ -83,17 +83,41 @@ namespace sdds {
 	*/
 	Tournament& Tournament::match(const SoccerTeam* ls) {
 
-		for (int i = 0; i < m_num; i++) {
+		/*for (int i = 0; i < m_num; i++) {
 			
 
 
-		}
+		}*/
 		return *this;
 	}
 	//If Tournament object is valid
 	//otherwise prints, "Invalid Tournament".
 	//At the end return the reference of the ostream object.
 	ostream& Tournament::display() const {
+
+		if (this->m_name != nullptr && this->m_num > 0 && this->m_soccer != nullptr) {
+			cout << "Tournament name: " << this->m_name << endl;
+			cout << "list of the teams" << endl;
+			cout << endl;
+			cout.setf(ios::left);
+			cout.width(30);
+			cout << ' ';
+			cout.width(6);
+			cout << "Fines";
+			cout.width(6);
+			cout << "Fouls";
+			cout.width(10);
+			cout << "Goals" << endl;
+			for (int i = 0; i < this->m_num; i++) {
+				cout << "Team[" << i + 1 << "] :";
+				this->m_soccer[i].display() << endl;
+			}
+		}
+		else {
+			cout << "Invalid Tournament";
+		}
+
+		return cout;
 	}
 
 }

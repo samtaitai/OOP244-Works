@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soccer.cpp">
+    <ClCompile Include="Tournament.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tournament.cpp">
+    <ClCompile Include="soccerTeam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,6 +30,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tournament.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="soccerTeam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

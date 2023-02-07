@@ -7,6 +7,7 @@ Date:
 #ifndef SDDS_TOURNAMENT_H_
 #define SDDS_TOURNAMENT_H_
 #include <iostream>
+#include "soccerTeam.h"
 using namespace std;
 
 namespace sdds {

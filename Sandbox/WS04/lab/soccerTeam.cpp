@@ -12,20 +12,16 @@ using namespace std;
 
 namespace sdds {
 
-	/*
-	char m_teamName[41];// a statically allocated Cstring with size 41. Remember, name could be 
-                       //maximum 40 characters long and 1 byte is for the null byte.
-    int m_noFouls;//number of fouls, it can be zero or more but cannot be a negative number
-    double m_fines;//it can be equal to and more than zero.
-    int m_golas;//can be zero or more
-	*/
-
-	//By default a soccerTeam is set to the empty state (as in setEmpty())
 	SoccerTeam::SoccerTeam() {
 		setEmpty();
 	}
-	//After checking the validity it will set the team`s name,fine and no of fouls to the appropriate data members 
-	//or else it will set the team to the empty state. (reuse your setter fucntions)
+
+	/*
+	SoccerTeam(),				//default constructor
+	SoccerTeam("",100.0,0),		//3 argumnet constructor
+	SoccerTeam("Bad1",200,-1)	
+	*/
+	
 	SoccerTeam::SoccerTeam(const char* tname, double fines, int foul) {
 		setName(tname);
 		setFine(fines, foul);
@@ -60,7 +56,7 @@ namespace sdds {
 	//Do this by setting the m_teamName to an empty Cstring, m_noFoul and m_fines to a negative number 
 	//and m_goals to 0.
 	void SoccerTeam::setEmpty() {
-		strcpy(m_teamName, '\0');
+		strcpy(m_teamName, "\0");
 		m_noFouls = -1;
 		m_fines = -1.0;
 		m_goals = 0;
@@ -96,14 +92,17 @@ namespace sdds {
 		e) prints m_golas with width 10. If number of goals are greater than zero then it will print "w" besides the number.
 		*/
 
-		if (m_noFouls >= 0) {
+		if (m_teamName[0] != '\0' && m_noFouls > -1) {
 			cout.setf(ios::left);
 			cout.width(30);
 			cout << m_teamName;
 			cout.width(6);
-			cout << m_noFouls;
-			cout.width(6);
+			cout.setf(ios::fixed);
+			cout.precision(2);
 			cout << m_fines;
+			cout.unsetf(ios::fixed);
+			cout.width(6);
+			cout << m_noFouls;
 			cout.width(10);
 			if (m_goals > 0) {
 				cout << m_goals << "w";
