@@ -13,35 +13,19 @@ using namespace std;
 
 namespace sdds {
 
-	//By default a Tournament is initiated by setting all the member variable values to default values. 
-	//You can do this by setting m_name, m_soccer to nullptr and m_num to a value like 0.
 	Tournament::Tournament() {
 		setEmpty();
 	}
-	//It works exactly like the setTournamnet()
+
 	Tournament::Tournament(const char* name, int noOfteam, const SoccerTeam* soccer) {
 		setTournament(name, noOfteam, soccer);
 	}
-	//Deallocate the memory allocated by m_name and m_soccer.
+
 	Tournament::~Tournament() {
 		delete[] m_name;
 		delete[] m_soccer;
 	}
 
-	/*
-	First, it will check the validity of all the received arguments. Tournament name should be valid and non-empty Cstring. 
-	Number of teams should be greater than zero.
-
-	It will set m_num to the corresponding argument value.
-	
-	Then it will dynamically allocate memory for tournament name in the tournament name pointer attribute 
-	and then copies the content of the tournament name argument into the newly allocated memory.
-	
-	It will dynamically allocate an array of soccer team pointed by m_soccer member variable. The length of this array will be m_num.
-	Lastly, add all the teams to the dynamically allocated array of m_soccer.
-
-	If any of the arguments are not valid it will set the Tournament to an empty state.
-	*/
 	void Tournament::setTournament(const char* name, int noOfteam, const SoccerTeam* soccer) {
 		if (name && noOfteam > 0 && soccer != nullptr) {
 			m_name = new char[strlen(name) + 1];
@@ -54,13 +38,13 @@ namespace sdds {
 		}
 		//otherwise, do nothing
 	}
-	//Sets the Tournamnet object to an Empty State. Do this by setting the m_name and m_soccer to null and m_num to 0.
+
 	void Tournament::setEmpty() {
 		m_name = nullptr;
 		m_num = 0;
 		m_soccer = nullptr;
 	}
-	//Returns true if m_name and m_soccer is not null and m_num is grater than 0.
+
 	bool Tournament::isEmpty() const {
 		bool isEmpty = false;
 		if (m_name != nullptr && m_soccer != nullptr && m_num > 0) {
@@ -81,18 +65,37 @@ namespace sdds {
 
 	At the end it will return the reference of the current object.
 	*/
-	Tournament& Tournament::match(const SoccerTeam* ls) {
+	Tournament& Tournament::match(const SoccerTeam* ls) { //it takes soccerteam's array = two teams 
+														//single match result should change team itself
+		/*
+		char m_teamName[41];	
+		int m_noFouls;			
+		double m_fines;			
+		int m_goals;
+		*/
 
-		/*for (int i = 0; i < m_num; i++) {
-			
+		SoccerTeam temp;
+		int foul = 0;
 
+		for (int i = 0; i < m_num - 1; i++) {
+			if (ls[i].fouls() < ls[i + 1].fouls()) {			//compare [0] and [1] just one cycle 
 
-		}*/
+				foul = this->m_soccer[i + 1].fouls() * 2;		//update foul 
+				//this->m_soccer[i + 1].calFines();				//update fine inside ?? how to *1.2 fine?
+				this->m_soccer[i + 1].setFine(-1, foul);		//only update foul, not fine
+				//this->m_soccer[i + 1].setTeam(ls[i]);
+				//how to +goal?
+				
+			}
+
+			if (this->m_soccer[i + 1].fouls() > MAX_FOUL) {		//if exceed max foul,
+				this->m_soccer[i + 1].setEmpty();				//goes invalid ok 
+			}
+		}
+
 		return *this;
 	}
-	//If Tournament object is valid
-	//otherwise prints, "Invalid Tournament".
-	//At the end return the reference of the ostream object.
+
 	ostream& Tournament::display() const {
 
 		if (this->m_name != nullptr && this->m_num > 0 && this->m_soccer != nullptr) {

@@ -14,11 +14,10 @@ namespace sdds {
 
 	class SoccerTeam
 	{
-		char m_teamName[41];	// a statically allocated Cstring with size 41. Remember, name could be 
-								//maximum 40 characters long and 1 byte is for the null byte.
-		int m_noFouls;			//number of fouls, it can be zero or more but cannot be a negative number
-		double m_fines;			//it can be equal to and more than zero.
-		int m_goals;			//can be zero or more
+		char m_teamName[41];	
+		int m_noFouls;			
+		double m_fines;			
+		int m_goals;			
 
 	public:
 		SoccerTeam();
@@ -29,7 +28,7 @@ namespace sdds {
 		void setFine(double fines, int foul);
 		void setEmpty();
 		bool isEmpty() const;
-		void calFines();
+		void calFines();			
 		int fouls() const;
 		std::ostream& display()const; //??
 	};

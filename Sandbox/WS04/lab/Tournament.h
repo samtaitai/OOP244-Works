@@ -16,7 +16,7 @@ namespace sdds {
 	{
 		char* m_name;					//points to a dynamically allocated Cstring
 		int m_num;						//size of the dynamically allocated array of soccer team. It should be more then zero.
-		SoccerTeam* m_soccer;	//pointer to the dynamically allocated array of soccerTeam
+		SoccerTeam* m_soccer;			//pointer to the dynamically allocated array of soccerTeam
 
 	public:
 		Tournament();
