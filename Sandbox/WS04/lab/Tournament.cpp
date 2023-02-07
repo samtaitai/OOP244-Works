@@ -52,39 +52,21 @@ namespace sdds {
 		}
 		return isEmpty;
 	}
-	//This function will find out the winner between 2 soccer teams by having matches. It will loop through all the teams.
-	/*
-	First it will check which team is having more no of fouls.
-	If first team is having less fouls then second team then, second team`s no of foul will increase by double 
-	and fine will be increased by 20%
 
-	First team`s goal will be increased by 1.
+	Tournament& Tournament::match(const SoccerTeam* ls) { 
 
-	If seconds team`s no of foul exceed the MAX_FOUL then this team will become a invalid team. 
-	You can do this by setting the number to foul to an invalid value.
-
-	At the end it will return the reference of the current object.
-	*/
-	Tournament& Tournament::match(const SoccerTeam* ls) { //it takes soccerteam's array = two teams 
-														//single match result should change team itself
-		/*
-		char m_teamName[41];	
-		int m_noFouls;			
-		double m_fines;			
-		int m_goals;
-		*/
-
-		SoccerTeam temp;
 		int foul = 0;
+		double fine = 0.0;
+		int goal = 0;
 
 		for (int i = 0; i < m_num - 1; i++) {
 			if (ls[i].fouls() < ls[i + 1].fouls()) {			//compare [0] and [1] just one cycle 
 
-				foul = this->m_soccer[i + 1].fouls() * 2;		//update foul 
-				//this->m_soccer[i + 1].calFines();				//update fine inside ?? how to *1.2 fine?
-				this->m_soccer[i + 1].setFine(-1, foul);		//only update foul, not fine
-				//this->m_soccer[i + 1].setTeam(ls[i]);
-				//how to +goal?
+				foul = this->m_soccer[i + 1].fouls() * 2;		
+				fine = this->m_soccer[i + 1].calFines();		
+				goal = this->m_soccer[i].goals() + 1;
+				this->m_soccer[i + 1].setFine(fine, foul);
+				this->m_soccer[i].setGoal(goal);
 				
 			}
 

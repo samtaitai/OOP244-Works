@@ -26,10 +26,12 @@ namespace sdds {
 		void setTeam(const SoccerTeam& team);
 		void setName(const char* tname);
 		void setFine(double fines, int foul);
+		void setGoal(int goal);		//my addition
 		void setEmpty();
 		bool isEmpty() const;
-		void calFines();			
+		double calFines();			//my addition-return type change
 		int fouls() const;
+		int goals() const;			//my addition
 		std::ostream& display()const; //??
 	};
 
