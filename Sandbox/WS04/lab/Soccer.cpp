@@ -21,7 +21,7 @@ namespace sdds {
 	SoccerTeam::SoccerTeam(const char* tname, double fines, int foul) {
 		setName(tname);
 		setFine(fines, foul);
-		//m_goals = 0;
+		m_goals = 0;
 	}
 
 	void SoccerTeam::setTeam(const SoccerTeam& team) {
