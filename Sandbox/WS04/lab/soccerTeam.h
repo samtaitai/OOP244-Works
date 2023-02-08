@@ -25,6 +25,7 @@ namespace sdds {
 		void setTeam(const SoccerTeam& team);
 		void setName(const char* tname);
 		void setFine(double fines, int foul);
+
 		void setEmpty();
 		bool isEmpty() const;
 		void calFines();			

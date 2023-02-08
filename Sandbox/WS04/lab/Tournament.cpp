@@ -77,15 +77,14 @@ namespace sdds {
 			cout << "Tournament name: " << this->m_name << endl;
 			cout << "list of the teams" << endl;
 			cout << endl;
-			cout.setf(ios::left);
-			cout.width(30);
-			cout << ' ';
-			cout.width(6);
+			cout.fill(' ');
+			cout.width(45);
 			cout << "Fines";
-			cout.width(6);
+			cout.width(10);
 			cout << "Fouls";
 			cout.width(10);
 			cout << "Goals" << endl;
+			
 			for (int i = 0; i < this->m_num; i++) {
 				cout << "Team[" << i + 1 << "] :";
 				this->m_soccer[i].display() << endl;

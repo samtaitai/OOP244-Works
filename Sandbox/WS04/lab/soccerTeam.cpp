@@ -70,9 +70,10 @@ namespace sdds {
 	ostream& SoccerTeam::display()const {
 		
 		if (m_teamName[0] != '\0' && m_noFouls > -1) {
-			cout.setf(ios::left);
+			cout.setf(ios::left);		//this one!
 			cout.width(30);
 			cout << m_teamName;
+			cout.unsetf(ios::left);		//alignment fixed!!
 			cout.width(6);
 			cout.setf(ios::fixed);
 			cout.precision(2);
@@ -91,6 +92,6 @@ namespace sdds {
 		else {
 			cout << "Invalid Team";
 		}
-		return cout; //?????
+		return cout; 
 	}
 }
