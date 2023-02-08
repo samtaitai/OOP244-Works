@@ -38,7 +38,7 @@ namespace sdds {
 					if (i < 40) {
 						m_name[i] = name[i];
 					}
-					else {
+					else if(i >= 40 && i<strlen(name)) {
 						m_name[i] = '\0';
 					}
 				}
@@ -47,7 +47,6 @@ namespace sdds {
 				m_name = new char[strlen(name)+1];
 				strcpy(m_name, name);
 			}
-			
 		}
 	}
 	void NameTag::setExt(int ext) {
@@ -74,7 +73,7 @@ namespace sdds {
 		cout << "Please enter the name: ";	//tempName validation
 		do {
 			done = false;
-			cin.getline(tempName, 40, '\n');
+			cin.getline(tempName, 41, '\n');
 			if (cin.fail()) {
 				cin.clear();
 				cin.ignore(9999, '\n');
@@ -93,6 +92,7 @@ namespace sdds {
 		while (!done) {
 			done = false;
 			cin >> choice;
+			cin.ignore(9999, '\n'); //should be here! & same with flushkeys()
 
 			if (choice == 'Y' || choice == 'y') {
 				this->m_ext = getInt(10000, 99999, "Please enter a 5 digit phone extension: "); //validation and assign
@@ -187,6 +187,7 @@ namespace sdds {
 		}
 		else {
 			cout << "EMPTY NAMETAG!";
+			cout << endl;
 		}
 	}
 

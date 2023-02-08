@@ -34,6 +34,7 @@ namespace sdds {
 
 	int getInt();
 	int getInt(int min, int max, const char* prompt);
+
 }
 
 #endif
