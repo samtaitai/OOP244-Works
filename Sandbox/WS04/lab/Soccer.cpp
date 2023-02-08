@@ -90,7 +90,7 @@ namespace sdds {
 				cout << m_goals << "w";
 			}
 			else {
-				cout << m_goals;
+				cout << m_goals << " ";
 			}
 		}
 		else {
