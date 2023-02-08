@@ -26,9 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Soccer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tournament.h">
       <Filter>Header Files</Filter>
     </ClInclude>

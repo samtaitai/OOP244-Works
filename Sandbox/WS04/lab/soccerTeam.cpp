@@ -44,13 +44,6 @@ namespace sdds {
 		//otherwise, do nothing
 	}
 
-	void SoccerTeam::setGoal(int goal) {
-		if (goal >= 0) {
-			m_goals = goal;
-		}
-		//otherwise, do nothing
-	}
-
 	void SoccerTeam::setEmpty() {
 		strcpy(m_teamName, "\0");
 		m_noFouls = -1;
@@ -66,20 +59,12 @@ namespace sdds {
 		return isEmpty;
 	}
 
-	/*void SoccerTeam::calFines() { //original 
+	void SoccerTeam::calFines() { //original 
 		m_fines = m_fines * 1.2; 
-	}*/
-
-	double SoccerTeam::calFines() { //my addition
-		return m_fines * 1.2;
 	}
 
 	int SoccerTeam::fouls() const {
 		return m_noFouls;
-	}
-
-	int SoccerTeam::goals() const { //my addition
-		return m_goals;
 	}
 
 	ostream& SoccerTeam::display()const {

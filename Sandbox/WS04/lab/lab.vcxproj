@@ -132,7 +132,6 @@
     <ClCompile Include="Tournament.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Soccer.h" />
     <ClInclude Include="soccerTeam.h" />
     <ClInclude Include="Tournament.h" />
   </ItemGroup>

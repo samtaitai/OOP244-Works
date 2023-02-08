@@ -55,19 +55,12 @@ namespace sdds {
 
 	Tournament& Tournament::match(const SoccerTeam* ls) { 
 
-		int foul = 0;
-		double fine = 0.0;
-		int goal = 0;
-
 		for (int i = 0; i < m_num - 1; i++) {
 			if (ls[i].fouls() < ls[i + 1].fouls()) {			//compare [0] and [1] just one cycle 
 
-				foul = this->m_soccer[i + 1].fouls() * 2;		
-				fine = this->m_soccer[i + 1].calFines();		
-				goal = this->m_soccer[i].goals() + 1;
-				this->m_soccer[i + 1].setFine(fine, foul);
-				this->m_soccer[i].setGoal(goal);
-				
+				this->m_soccer[i + 1].m_noFouls *= 2;
+				this->m_soccer[i + 1].calFines();
+				this->m_soccer[i].m_goals++;
 			}
 
 			if (this->m_soccer[i + 1].fouls() > MAX_FOUL) {		//if exceed max foul,
