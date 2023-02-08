@@ -30,14 +30,24 @@ namespace sdds {
 	}
 
 	void NameTag::setName(const char* name) {
-
+		setEmpty();
 		if (name) {
-			m_name = new char[strlen(name) + 1] {};
-			//strcpy(m_name, "\0");
-			strncpy(m_name, name, 40);
-		}
-		else {
-			m_name = nullptr;
+			if (strlen(name) > 40) {
+				m_name = new char[strlen(name) + 1];
+				for (int i = 0; i < strlen(name); i++) {
+					if (i < 40) {
+						m_name[i] = name[i];
+					}
+					else {
+						m_name[i] = '\0';
+					}
+				}
+			}
+			else {
+				m_name = new char[strlen(name)+1];
+				strcpy(m_name, name);
+			}
+			
 		}
 	}
 	void NameTag::setExt(int ext) {
@@ -54,13 +64,6 @@ namespace sdds {
 		m_ext = -1;
 	}
 
-	//A function called read that receives the name and then the extension number from console and 
-	//returns the reference of the current object (NameTag&).
-	//should read the name up to the maximum of 40 characters and 
-	//ignore the rest and then set the name of the NameTag to the entered name. 
-	//should give an option to the user to enter the extension number or not.
-	//If the user chooses to enter the extension it should enforce the user to enter a 5 digit integer and 
-	//if user does not comply, it should print one of the following messages based on the type of the error:
 	NameTag& NameTag::read() {
 		char tempName[41];
 		strcpy(tempName, "\0");

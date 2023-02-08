@@ -26,8 +26,6 @@ namespace sdds {
 
 		void setName(const char* name);
 		void setExt(int ext);
-		//char* getName();
-		//int getExt();
 		void setEmpty();
 
 		NameTag& read();
