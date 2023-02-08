@@ -33,7 +33,9 @@ namespace sdds {
 		if (tname) {
 			strcpy(m_teamName, tname);
 		}
-		//otherwise, do nothing
+		else {
+			setEmpty();
+		}
 	}
 
 	void SoccerTeam::setFine(double fines, int foul) {
@@ -43,7 +45,9 @@ namespace sdds {
 		if (fines >= 0.0) {
 			m_fines = fines;
 		}
-		//otherwise, do nothing
+		else {
+			setEmpty();
+		}
 	}
 
 	void SoccerTeam::setEmpty() {

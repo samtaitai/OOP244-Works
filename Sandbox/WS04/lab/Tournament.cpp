@@ -69,7 +69,6 @@ namespace sdds {
 
 			if (this->m_soccer[i + 1].fouls() > MAX_FOUL) {		//if exceed max foul,
 				this->m_soccer[i + 1].setEmpty();				//goes invalid ok 
-				//this->m_soccer[i + 1].m_noFouls = -1;
 			}
 		}
 
@@ -81,7 +80,6 @@ namespace sdds {
 		if (this->m_name != nullptr && this->m_num > 0 && this->m_soccer != nullptr) {
 			cout << "Tournament name: " << this->m_name << endl;
 			cout << "list of the teams" << endl;
-			//cout << endl;
 			cout.fill(' ');
 			cout.width(45);
 			cout << "Fines";
