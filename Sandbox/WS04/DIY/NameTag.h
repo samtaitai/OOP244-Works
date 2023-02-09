@@ -29,7 +29,7 @@ namespace sdds {
 		NameTag& setEmpty();
 
 		NameTag& read();
-		ostream& print();
+		ostream& print() const;
 	};
 
 	int getInt();

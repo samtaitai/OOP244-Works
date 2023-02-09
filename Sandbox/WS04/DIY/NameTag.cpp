@@ -112,7 +112,7 @@ namespace sdds {
 		}
 		return *this;
 	}
-	ostream& NameTag::print() {
+	ostream& NameTag::print() const {
 
 		char case1[] = "Extension: N/A";
 		char case2[] = "Extension: 12345";
