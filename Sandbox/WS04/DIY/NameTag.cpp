@@ -29,7 +29,7 @@ namespace sdds {
 		delete[] m_name;
 	}
 
-	void NameTag::setName(const char* name) {
+	NameTag& NameTag::setName(const char* name) {
 		setEmpty();
 		if (name) {
 			if (strlen(name) > 40) {
@@ -48,19 +48,23 @@ namespace sdds {
 				strcpy(m_name, name);
 			}
 		}
+		return *this;
 	}
-	void NameTag::setExt(int ext) {
+	NameTag& NameTag::setExt(int ext) {
 		if (ext >= 10000 && ext <= 99999) {
 			m_ext = ext;
 		}
 		else {
 			m_ext = -1;
 		}
+		return *this;
 	}
-	void NameTag::setEmpty() {
+	NameTag& NameTag::setEmpty() {
 
 		m_name = nullptr;
 		m_ext = -1;
+
+		return *this;
 	}
 
 	NameTag& NameTag::read() {
@@ -108,7 +112,7 @@ namespace sdds {
 		}
 		return *this;
 	}
-	void NameTag::print() {
+	ostream& NameTag::print() {
 
 		char case1[] = "Extension: N/A";
 		char case2[] = "Extension: 12345";
@@ -189,6 +193,7 @@ namespace sdds {
 			cout << "EMPTY NAMETAG!";
 			cout << endl;
 		}
+		return cout;
 	}
 
 	int getInt() {

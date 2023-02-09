@@ -24,12 +24,12 @@ namespace sdds {
 		NameTag(const char* name, int ext);
 		~NameTag();
 
-		void setName(const char* name);
-		void setExt(int ext);
-		void setEmpty();
+		NameTag& setName(const char* name);
+		NameTag& setExt(int ext);
+		NameTag& setEmpty();
 
 		NameTag& read();
-		void print();
+		ostream& print();
 	};
 
 	int getInt();
