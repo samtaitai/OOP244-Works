@@ -1,0 +1,10 @@
+In this diy, the logic of my default constructor is the function 'setEmpty' which return type is the reference of host object(*this). 
+For the constructor receiving arguments, I made two other functions 'setName' and 'setExt' and let them validate explicit parameter values.  
+Except for the function 'print', which return type is ostream&, rest of function's return type originally was void but I replaced return types with the host object itself. 
+
+One tricky part is to overwrite m_name, which was my class 'NameTag''s name part. At first, I put 'delete[] m_name' statement at the beginning of 'setName' function. But in that case, the error 'Access violation reading location' erupted. 
+
+In main.cpp, the first NameTag object that is supposed to be created invokes the one-argument constructor. The constructor immediately invokes 'setName' function then will run into delete[] statement. 
+
+My guess is the obejct is currently under the construction and its instance variables are uninitialized(which means m_name is not nullptr), hence delete[] will break because m_name is neither nullptr nor has been sized(dma) properly.
+I replaced it with setEmpty(), which put my object in a safe invalid state and the issue is resolved. 
