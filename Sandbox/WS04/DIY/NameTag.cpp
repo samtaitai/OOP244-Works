@@ -109,7 +109,7 @@ namespace sdds {
 				done = true;
 			}
 			else {
-				cout << "Only (Y) or (N) are acceptable, try again: ";
+				cout << "Only (Y) or (N) are acceptable, try agin: "; //obey typo
 			}
 		}
 		return *this;
