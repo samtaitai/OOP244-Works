@@ -228,7 +228,7 @@ namespace sdds {
 		do {
 			value = getInt();
 		} while ((value < min || value > max) &&
-			cout << "Invalid value" << "[" << min << "<=value<=" << max << "]: ");
+			cout << "Invalid value" << " [" << min << "<=value<=" << max << "]: ");
 		return value;
 	}
 }
