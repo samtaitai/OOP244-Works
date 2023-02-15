@@ -103,7 +103,7 @@ namespace sdds {
 	}
 	EggCarton::operator int() const {
 		int res{};
-		if (m_size > 0) {
+		if (bool(*this)) {
 			res = m_noOfEggs;
 		}
 		else {
@@ -113,7 +113,7 @@ namespace sdds {
 	}
 	EggCarton::operator double() const { //return weight in kgs
 		double res{};
-		if (m_size > 0 && m_jumboSize == true) {
+		if (bool(*this) && m_jumboSize == true) {
 			res = double(m_noOfEggs) * double(JumboEggWeight) / 1000;
 		}
 		else if (m_size > 0 && m_jumboSize == false) {
@@ -127,13 +127,13 @@ namespace sdds {
 
 	//unary
 	EggCarton& EggCarton::operator--() {
-		if (m_size > 0 && m_noOfEggs > 0) {
+		if (bool(*this) && m_noOfEggs > 0) {
 			m_noOfEggs--;
 		}
 		return *this;
 	}
 	EggCarton& EggCarton::operator++() {
-		if (m_size > 0 && m_noOfEggs > 0) {
+		if (bool(*this) && m_noOfEggs > 0) {
 			m_noOfEggs++;
 			if (m_noOfEggs > m_size) {
 				setBroken();
@@ -161,7 +161,7 @@ namespace sdds {
 	//If the number of eggs exceeds the size, it will set the Carton to broken. 
 	//Returns a reference to the current object at the end.
 	EggCarton& EggCarton::operator=(int value) {
-		if (m_size > 0) { //if 'this' is not broken
+		if (bool(*this)) { //if 'this' is not broken
 			if (value <= m_size) {
 				m_noOfEggs = value;
 			}
@@ -176,7 +176,7 @@ namespace sdds {
 	// If the number of eggs exceeds the size, it will set the Carton to broken. 
 	//Returns a reference to the current object at the end.
 	EggCarton& EggCarton::operator+=(int value) {
-		if (m_size > 0) {
+		if (bool(*this)) {
 			if (m_noOfEggs + value <= m_size) {
 				m_noOfEggs += value;
 			}
@@ -190,7 +190,7 @@ namespace sdds {
 	//to the empty spots of the current Carton as much as it can. 
 	//If there is not enough space in the current Carton, the rest of the eggs are left in the right one.
 	EggCarton& EggCarton::operator+=(EggCarton& right) {
-		if (m_size > 0) {
+		if (bool(*this)) {
 			do {
 				right.m_noOfEggs--; //from right
 				m_noOfEggs++;		//to left
