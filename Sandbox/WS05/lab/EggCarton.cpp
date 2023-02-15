@@ -157,6 +157,9 @@ namespace sdds {
 	}
 
 	//binary
+	//Sets the number of eggs to the integer value and 
+	//If the number of eggs exceeds the size, it will set the Carton to broken. 
+	//Returns a reference to the current object at the end.
 	EggCarton& EggCarton::operator=(int value) {
 		if (m_size > 0) { //if 'this' is not broken
 			if (value <= m_size) {
@@ -168,6 +171,10 @@ namespace sdds {
 		}
 		return *this;
 	}
+
+	//Add the value to the number of eggs if the Carton is not broken.
+	// If the number of eggs exceeds the size, it will set the Carton to broken. 
+	//Returns a reference to the current object at the end.
 	EggCarton& EggCarton::operator+=(int value) {
 		if (m_size > 0) {
 			if (m_noOfEggs + value <= m_size) {
@@ -185,9 +192,9 @@ namespace sdds {
 	EggCarton& EggCarton::operator+=(EggCarton& right) {
 		if (m_size > 0) {
 			do {
-				right.m_noOfEggs++; //add 1
-				m_noOfEggs--;		//subtract 1
-			} while (right.m_noOfEggs <= right.m_size && m_noOfEggs > 0); //while right is not full or this is not empty 
+				right.m_noOfEggs--; //from right
+				m_noOfEggs++;		//to left
+			} while (m_noOfEggs < m_size && right.m_noOfEggs > 0); //while right is not full or this is not empty 
 		}
 		else {
 			setBroken();

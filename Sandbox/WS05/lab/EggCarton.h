@@ -28,7 +28,6 @@ namespace sdds {
 
 	public:
 		//constructor
-		//EggCarton();
 		EggCarton(int size = 6, int noOfEggs = 0, bool jumboSize = false);
 
 		ostream& display(ostream& ostr = cout) const;
