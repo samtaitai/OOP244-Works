@@ -6,6 +6,7 @@ Date:
 I have done all the coding by myself
 and only copied the code that my professor provided to complete my workshops and assignments.
 */
+
 #ifndef SDDS_SOCCERTEAM_H_
 #define SDDS_SOCCERTEAM_H_
 #include <iostream>
@@ -55,7 +56,7 @@ namespace sdds {
 	//helpers
 	int operator+(int left, const EggCarton& right);
 	ostream& operator<<(ostream& ostr, const EggCarton& right);
-	istream& operator>>(istream& istr, const EggCarton& right);
+	istream& operator>>(istream& istr, EggCarton& right);
 }
 
 #endif

@@ -71,8 +71,6 @@ namespace sdds {
 	istream& EggCarton::read(istream& istr) {
 
 		char ch{};
-		char size[3]{};
-		char noOfEggs[3]{};
 
 		istr >> ch;
 		if (ch == 'j') {
@@ -81,19 +79,16 @@ namespace sdds {
 		else {
 			this->m_jumboSize = false;
 		}
-		istr.ignore(9999, ',');
-		istr.get(size, 3);
-		istr.ignore(9999, ',');
-		istr.get(noOfEggs, 3);
 
-		if (int(size) % 6 == 0 && int(size) >= 6 && int(size) <= 36 && int(noOfEggs) >= 0 && int(noOfEggs) <= int(size)) {
-			m_size = int(size);
-			m_noOfEggs = int(noOfEggs);
-		}
-		else {
+		istr.ignore(9999, ',');
+		istr >> m_size;
+		istr.ignore(9999, ',');
+		istr >> m_noOfEggs;
+
+		if (!(m_size % 6 == 0 && m_size >= 6 && m_size <= 36 && m_noOfEggs >= 0 && m_noOfEggs <= m_size)) {
 			setBroken();
 		}
-
+		
 		return istr;
 	}
 
