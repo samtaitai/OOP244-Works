@@ -30,11 +30,14 @@ namespace sdds {
 	}
 
 	NameTag& NameTag::setName(const char* name) {
+		
+		unsigned int i{};
+		
 		setEmpty();
 		if (name) {
 			if (strlen(name) > 40) {
 				m_name = new char[strlen(name) + 1];
-				for (int i = 0; i < strlen(name); i++) {
+				for (i = 0; i < strlen(name); i++) {
 					if (i < 40) {
 						m_name[i] = name[i];
 					}
@@ -70,7 +73,6 @@ namespace sdds {
 	NameTag& NameTag::read() {
 		char tempName[41];
 		strcpy(tempName, "\0");
-		int tempExt{};
 		char choice{};
 		bool done = false; 
 
@@ -107,7 +109,7 @@ namespace sdds {
 				done = true;
 			}
 			else {
-				cout << "Only (Y) or (N) are acceptable, try again: ";
+				cout << "Only (Y) or (N) are acceptable, try agin: "; //obey typo
 			}
 		}
 		return *this;
@@ -226,7 +228,7 @@ namespace sdds {
 		do {
 			value = getInt();
 		} while ((value < min || value > max) &&
-			cout << "Invalid value" << "[" << min << "<=value<=" << max << "]: ");
+			cout << "Invalid value" << " [" << min << "<=value<=" << max << "]: ");
 		return value;
 	}
 }
