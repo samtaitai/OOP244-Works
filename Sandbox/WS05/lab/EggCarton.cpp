@@ -142,16 +142,16 @@ namespace sdds {
 		return *this;
 	}
 	EggCarton EggCarton::operator--(int) {
-		EggCarton old;
+		EggCarton old = *this; //fake
 
-		old.operator--();
+		this->operator--();
 
 		return old;
 	}
 	EggCarton EggCarton::operator++(int) {
-		EggCarton old;
+		EggCarton old = *this; //fake
 
-		old.operator++();
+		this->operator++();
 
 		return old;
 	}
