@@ -200,7 +200,6 @@ namespace sdds {
 	//Return true if the difference between the weight of the current Carton and the weight of the right Carton is 
 	//between -0.001 and 0.001 kilos otherwise, return false.
 	bool EggCarton::operator==(const EggCarton& right) const {
-		bool res{};
 		double leftWeight{};
 		double rightWeight{};
 
