@@ -203,20 +203,20 @@ namespace sdds {
 		double rightWeight{};
 
 		if (m_jumboSize == true) {
-			leftWeight = m_noOfEggs * RegularEggWeight;
+			leftWeight = double(m_noOfEggs) * double(RegularEggWeight);
 		}
 		else {
-			leftWeight = m_noOfEggs * JumboEggWeight;
+			leftWeight = double(m_noOfEggs) * double(JumboEggWeight);
 		}
 
 		if (right.m_jumboSize == true) {
-			rightWeight = right.m_noOfEggs * RegularEggWeight;
+			rightWeight = double(m_noOfEggs) * double(RegularEggWeight);
 		}
 		else {
-			rightWeight = right.m_noOfEggs * JumboEggWeight;
+			rightWeight = double(m_noOfEggs) * double(JumboEggWeight);
 		}
 
-		return (leftWeight - rightWeight) >= -0.001 && (leftWeight - rightWeight) <= 0.001;
+		return (leftWeight - rightWeight) <= -0.001 && (leftWeight - rightWeight) <= 0.001;
 	}
 	
 
