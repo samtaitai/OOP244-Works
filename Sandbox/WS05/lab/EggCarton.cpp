@@ -111,13 +111,13 @@ namespace sdds {
 		}
 		return res;
 	}
-	EggCarton::operator double() const {
+	EggCarton::operator double() const { //return weight in kgs
 		double res{};
 		if (m_size > 0 && m_jumboSize == true) {
-			res = m_noOfEggs * JumboEggWeight;
+			res = double(m_noOfEggs) * double(JumboEggWeight) / 1000;
 		}
 		else if (m_size > 0 && m_jumboSize == false) {
-			res = m_noOfEggs * RegularEggWeight;
+			res = double(m_noOfEggs) * double(RegularEggWeight) / 1000;
 		}
 		else {
 			res = -1.0;
@@ -203,17 +203,17 @@ namespace sdds {
 		double rightWeight{};
 
 		if (m_jumboSize == true) {
-			leftWeight = m_noOfEggs * 50;
+			leftWeight = m_noOfEggs * RegularEggWeight;
 		}
 		else {
-			leftWeight = m_noOfEggs * 75;
+			leftWeight = m_noOfEggs * JumboEggWeight;
 		}
 
 		if (right.m_jumboSize == true) {
-			rightWeight = right.m_noOfEggs * 50;
+			rightWeight = right.m_noOfEggs * RegularEggWeight;
 		}
 		else {
-			rightWeight = right.m_noOfEggs * 75;
+			rightWeight = right.m_noOfEggs * JumboEggWeight;
 		}
 
 		return (leftWeight - rightWeight) >= -0.001 && (leftWeight - rightWeight) <= 0.001;
