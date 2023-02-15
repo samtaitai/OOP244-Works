@@ -31,6 +31,7 @@ namespace sdds {
 		//EggCarton();
 		EggCarton(int size = 6, int noOfEggs = 0, bool jumboSize = false);
 
+		ostream& display(ostream& ostr = cout) const;
 		istream& read(istream& istr = cin);
 
 		//type conversion

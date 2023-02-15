@@ -18,6 +18,8 @@ namespace sdds {
 	EggCarton& EggCarton::setBroken() {
 		m_size = -1;
 		m_noOfEggs = -1;
+
+		return *this;
 	}
 
 	//The Carton is displayed only if it is not broken (see operator bool() overload), 
@@ -52,6 +54,11 @@ namespace sdds {
 		m_jumboSize = jumboSize;
 	}
 
+	ostream& EggCarton::display(ostream& ostr) const {
+		this->displayCarton(this->m_size, this->m_noOfEggs, this->m_jumboSize, ostr);
+		return ostr;
+	}
+
 	//Reads comma-separated values from istr to set the attributes of the Egg Carton
 	/*
 	read a character from istr, if it is a lower-case J set the jumbo flag to true, otherwise set it to false
@@ -61,19 +68,38 @@ namespace sdds {
 	read another integer into the number of eggs
 	perform the same validation on the attributes as the constructor and if it fails, set the Carton to broken and unusable.
 	*/
-	istream& EggCarton::read(istream& istr = cin) {
+	istream& EggCarton::read(istream& istr) {
+
+		char ch{};
+		char size[3]{};
+		char noOfEggs[3]{};
+
+		istr >> ch;
+		if (ch == 'j') {
+			this->m_jumboSize = true;
+		}
+		else {
+			this->m_jumboSize = false;
+		}
+		istr.ignore(9999, ',');
+		istr.get(size, 3);
+		istr.ignore(9999, ',');
+		istr.get(noOfEggs, 3);
+
+		if (int(size) % 6 == 0 && int(size) >= 6 && int(size) <= 36 && int(noOfEggs) >= 0 && int(noOfEggs) <= int(size)) {
+			m_size = int(size);
+			m_noOfEggs = int(noOfEggs);
+		}
+		else {
+			setBroken();
+		}
+
+		return istr;
 	}
 
 	//type conversion
 	EggCarton::operator bool() const {
-		bool res{};
-		if (m_size > 0) {
-			res = true;
-		}
-		else {
-			res = false;
-		}
-		return res;
+		return m_size > 0;
 	}
 	EggCarton::operator int() const {
 		int res{};
@@ -168,15 +194,52 @@ namespace sdds {
 		}
 		return *this;
 	}
+
+	//Return true if the difference between the weight of the current Carton and the weight of the right Carton is 
+	//between -0.001 and 0.001 kilos otherwise, return false.
 	bool EggCarton::operator==(const EggCarton& right) const {
+		bool res{};
+		double leftWeight{};
+		double rightWeight{};
+
+		if (m_jumboSize == true) {
+			leftWeight = m_noOfEggs * 50;
+		}
+		else {
+			leftWeight = m_noOfEggs * 75;
+		}
+
+		if (right.m_jumboSize == true) {
+			rightWeight = right.m_noOfEggs * 50;
+		}
+		else {
+			rightWeight = right.m_noOfEggs * 75;
+		}
+
+		return (leftWeight - rightWeight) >= -0.001 && (leftWeight - rightWeight) <= 0.001;
 	}
+	
 
 	//helpers
+	//If the right operand is not broken it will return the sum of "left" and the number of eggs in the "right". 
+	//Otherwise, it will return the value of the left only.
 	int operator+(int left, const EggCarton& right) {
+		int res = left;
+
+		if (bool(right)) {
+			res = left + int(right);
+		}
+
+		return res;
+
 	}
+
 	ostream& operator<<(ostream& ostr, const EggCarton& right) {
+		return right.display(ostr);
 	}
-	istream& operator>>(istream& istr, const EggCarton& right) {
+
+	istream& operator>>(istream& istr, EggCarton& right) {
+		return right.read(istr);
 	}
 
 }
