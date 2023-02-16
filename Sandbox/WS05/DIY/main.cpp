@@ -87,14 +87,14 @@ void unaryOperatorTest() {
    cout << "b1--; b2--; b2--;" << endl;
    cout << (b1-- ? "Passenger removed!" : "Bus empty!") << endl;
    cout << (b2-- ? "Passenger removed!" : "Bus empty!") << endl;
-   cout << (b2-- ? "Passenger removed!" : "Bus empty!") << endl;
+   cout << (b2-- ? "Passenger removed!" : "Bus empty!") << endl; //here should be false
    cout << "b1: " << int(b1) << endl;
    cout << "b2: " << int(b2) << endl;
    cout << "--------------------------------" << endl;
    cout << "b1++; b1++; b2++" << endl;
    cout << (b1++ ? "Passenger added!" : "Bus full!") << endl;
-   cout << (b1++ ? "Passenger added!" : "Bus full!") << endl;
-   cout << (b2++ ? "Passenger added!" : "Bus full!") << endl;
+   cout << (b1++ ? "Passenger added!" : "Bus full!") << endl; //here should be false
+   cout << (b2++ ? "Passenger added!" : "Bus full!") << endl; 
    cout << "b1: " << int(b1) << endl;
    cout << "b2: " << int(b2) << endl;
    cout << "--------------------------------" << endl;
