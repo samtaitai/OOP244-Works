@@ -33,7 +33,10 @@ namespace sdds {
 			ostr.fill('-');
 			ostr.width((seats / 2) * 3 - 5);
 			ostr << "-" << "O---'" << endl;
-			ostr << "Total Fare Price: " << m_noOfPassengers * TicketPrice << endl;
+			ostr << "Total Fare Price: ";
+			ostr.setf(ios::fixed);
+			ostr.precision(2);
+			ostr << m_noOfPassengers * TicketPrice << endl;
 		}
 		else {
 			ostr << "Out of service!" << endl;
