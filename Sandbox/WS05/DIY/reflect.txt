@@ -1,0 +1,7 @@
+The concept of overloding is adding a new meanings to the existed stuff. When it comes to operators, it means that we modify the logic of operators so that they can work with the customer types(class). 
+
+Operators has two categories; binary and unary. Each category has sub categories; one with side effect, which function is not const(modifier) and one without side effect, which function is const(query). Side effect means that it involves changing the value one of operands.
+
+Binary and unary operator have return values. Type conversions don't. 
+
+Operator overloading could happen with member functions and non-member functions, which is called helper functions. As long as it's available, try to make things with member operator. Only if necessary, make them helper; when the left operand is not able to have member functions because it's built-in type or when the left operand is a class but out of our reach like iostream.   
