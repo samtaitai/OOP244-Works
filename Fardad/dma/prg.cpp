@@ -35,9 +35,9 @@ int main() {
    Foo f(10);
    int num;
    f.display() << endl;
-   f = 200;
+   f = 200; //same with f = (Foo)200; single argument constructor 
 
-   num = f;
+   num = f; //num = (int)f; type conversion 
    cout << num << " is the cast operator result!" << endl;
    cout << "End of code!" << endl;
    return 0;
