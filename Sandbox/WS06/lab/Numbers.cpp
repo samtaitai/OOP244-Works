@@ -32,6 +32,7 @@ namespace sdds {
        bool success = false;
        int numOfLines{};
        int i{};
+       int read = 1;
 
        delete[] m_collection;
        m_collection = nullptr;
@@ -43,8 +44,9 @@ namespace sdds {
            if (fin.is_open()) {                     //if ifstream obj is good
                for (i = 0; i < numOfLines; i++) {
                    fin >> m_collection[i];
+                   if (m_collection[i] > 0) read++;
                }
-               if (numOfLines == i) {      //if read success
+               if (numOfLines == i && numOfLines == read) {      //if read success
                    m_collectionSize = numOfLines;
                    m_originalFlag = true;
                    success = true;
@@ -131,7 +133,7 @@ namespace sdds {
    Numbers& Numbers::operator=(const Numbers& N)
    {
        if (this != &N) {
-           //save(filename); ??
+           save(m_filename);
            delete[] m_collection;
            setEmpty();
            if (N.m_collectionSize > 0) {
@@ -178,10 +180,9 @@ namespace sdds {
            ostr.setf(ios::fixed);
            ostr.precision(2);
            if (m_originalFlag == false) {
-               ostr << "Copy Of";
+               ostr << "Copy Of ";
            }
-           //insert the filename?
-           ostr << endl;
+           ostr << m_filename << endl;
            for (int i = 0; i < m_collectionSize; i++) {
                if (i < m_collectionSize - 1) {
                    ostr << m_collection[i] << ", ";
