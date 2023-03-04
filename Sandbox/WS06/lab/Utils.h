@@ -5,9 +5,7 @@ namespace sdds {
 	class Utils
 	{
 		void sort(double* nums, unsigned int size);
-
 	};
-
 }
 
 

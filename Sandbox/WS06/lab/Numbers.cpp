@@ -179,6 +179,8 @@ namespace sdds {
            m_collection = temp;
            m_collectionSize = m_collectionSize + 1;
        }
+       save(m_filename);
+       sort();
        return *this;
    }
    std::ostream& Numbers::display(std::ostream& ostr) const
