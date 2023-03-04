@@ -1,6 +1,7 @@
 #ifndef SDDS_NUMBERS_H_
 #define SDDS_NUMBERS_H_
 #include <iostream>
+#include <cstring>
 namespace sdds {
    class Numbers {
 
@@ -11,27 +12,27 @@ namespace sdds {
        bool m_addedFlag;
 
        unsigned int countLines(const char* filename);
-       void sort(double* collectionPtr, unsigned int size);
+       void sort(double* nums, unsigned int size);
        void setEmpty();
-       bool load();
-       Numbers& save();
+       bool load(const char* filename);
+       Numbers& save(const char* filename);
        double max() const;
        double min() const;
        double average() const;
 
    public:
        Numbers();
-       Numbers(char* filename);
+       Numbers(const char* filename);
        ~Numbers();
        Numbers(Numbers& N);
-       Numbers& operator=(Numbers& N);
+       Numbers& operator=(const Numbers& N);
        operator bool() const;
        Numbers& sort();
-       Numbers& operator+=(Numbers& RoN);
+       Numbers& operator+=(const double value);
        std::ostream& display(std::ostream& ostr = std::cout) const;
    };
 
-   std::ostream& operator<<(std::ostream& ostr, Numbers& RoN);
+   std::ostream& operator<<(std::ostream& ostr, const Numbers& RoN);
    std::istream& operator>>(std::istream& istr, Numbers& RoN);
 
 }
