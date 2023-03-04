@@ -32,7 +32,7 @@ namespace sdds {
        bool success = false;
        int numOfLines{};
        int i{};
-       int read = 1;
+       int read{};
 
        delete[] m_collection;
        m_collection = nullptr;
@@ -44,7 +44,7 @@ namespace sdds {
            if (fin.is_open()) {                     //if ifstream obj is good
                for (i = 0; i < numOfLines; i++) {
                    fin >> m_collection[i];
-                   if (m_collection[i] > 0) read++;
+                   if (m_collection[i] > -99) read++; //ok??? valid standard??
                }
                if (numOfLines == i && numOfLines == read) {      //if read success
                    m_collectionSize = numOfLines;
@@ -211,7 +211,12 @@ namespace sdds {
    }
    std::istream& operator>>(std::istream& istr, Numbers& RoN)
    {
-       //RoN += istr;
+       double temp{};
+       if (istr) {
+           istr >> temp;
+           RoN += temp;
+       }
+       
        return istr;
    }
 }
