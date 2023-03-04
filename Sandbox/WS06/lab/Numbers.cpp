@@ -31,7 +31,7 @@ namespace sdds {
    {
        bool success = false;
        int numOfLines{};
-       int numOfReads{};
+       int i{};
 
        delete[] m_collection;
        m_collection = nullptr;
@@ -41,17 +41,15 @@ namespace sdds {
            m_collection = new double[numOfLines];
            ifstream fin(filename);
            if (fin.is_open()) {                     //if ifstream obj is good
-               while (fin) {
-                   fin >> m_collection[numOfReads];
-                   numOfReads++;
+               for (i = 0; i < numOfLines; i++) {
+                   fin >> m_collection[i];
                }
-               if (numOfLines == numOfReads) {      //if read success
+               if (numOfLines == i) {      //if read success
                    m_collectionSize = numOfLines;
                    m_originalFlag = true;
                    success = true;
                }
                else {
-                   //discard all the read? 
                    fin.close();
                    setEmpty();
                }
@@ -77,12 +75,18 @@ namespace sdds {
 
    double Numbers::max() const
    {
-       return m_collection[m_collectionSize - 1];
+       Numbers temp;
+       temp = *this;
+       temp.sort(temp.m_collection, temp.m_collectionSize);
+       return temp.m_collection[m_collectionSize - 1];
    }
 
    double Numbers::min() const
    {
-       return m_collection[0];
+       Numbers temp;
+       temp = *this;
+       temp.sort(temp.m_collection, temp.m_collectionSize);
+       return temp.m_collection[0];
    }
 
    double Numbers::average() const
@@ -147,7 +151,7 @@ namespace sdds {
    }
    Numbers& Numbers::sort()
    {
-       sort();
+       sort(m_collection, m_collectionSize);
        return *this;
    }
    Numbers& Numbers::operator+=(const double value)
@@ -179,15 +183,22 @@ namespace sdds {
            //insert the filename?
            ostr << endl;
            for (int i = 0; i < m_collectionSize; i++) {
-               ostr << m_collection[i] << ", ";
+               if (i < m_collectionSize - 1) {
+                   ostr << m_collection[i] << ", ";
+               }
+               else if (i == m_collectionSize - 1) {
+                   ostr << m_collection[i] << endl;
+               }
+               
            }
-           ostr << endl;
            ostr.width(76);
            ostr.fill('-');
+           ostr << '\n';
            ostr << "Total of " << m_collectionSize << " number(s), Largest: "
                << max() << ", Smallest: " << min() << ", Average: " << average() << endl;
            ostr.width(76);
            ostr.fill('=');
+           ostr << '\n';
        }
        return ostr;
    }

@@ -7,7 +7,7 @@ namespace sdds {
 
        double* m_collection;
        char m_filename[255];
-       int m_collectionSize;
+       unsigned int m_collectionSize;
        bool m_originalFlag;
        bool m_addedFlag;
 
