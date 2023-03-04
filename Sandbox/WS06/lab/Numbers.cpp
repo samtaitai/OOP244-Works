@@ -23,7 +23,7 @@ namespace sdds {
        m_collection = nullptr;
        strcpy(m_filename, "\0");
        m_collectionSize = 0;
-       m_originalFlag = false;
+       m_originalFlag = true;
        m_addedFlag = false;
    }
 
@@ -128,16 +128,18 @@ namespace sdds {
    Numbers::Numbers(Numbers& N)
    {
        setEmpty();
-       operator=(N);
+       //operator=(N);
+       *this = N;
    }
    Numbers& Numbers::operator=(const Numbers& N)
    {
        if (this != &N) {
-           save(m_filename);
+           save(m_filename);                                //what this one does?
            delete[] m_collection;
            setEmpty();
            if (N.m_collectionSize > 0) {
-               m_originalFlag = false;
+               strcpy(m_filename, N.m_filename);
+               m_originalFlag = false;                      //true by default
                m_collection = new double[N.m_collectionSize];
                for (int i = 0; i < N.m_collectionSize; i++) {
                    m_collection[i] = N.m_collection[i];
