@@ -7,6 +7,7 @@ I have done all the coding by myself
 and only copied the code that my professor provided to complete my workshops and assignments.
 */
 #define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include <fstream>
 #include <cstring>
 #include "Numbers.h"
@@ -84,7 +85,7 @@ namespace sdds {
    Numbers& Numbers::save(const char* filename)
    {
        //If the current object is an original and new values are added to it
-       if (m_originalFlag == true) {
+       if (m_originalFlag == true && m_addedFlag == true) {
            ofstream fout(filename);
            fout.setf(ios::fixed);
            fout.precision(2);
@@ -142,25 +143,20 @@ namespace sdds {
    //copy constructor
    Numbers::Numbers(Numbers& N)
    {
-       if (m_collectionSize != 0) {
-           setEmpty();
-           *this = N;
-       }
-       else {
-           *this = N;
-       }
+       setEmpty();
+       operator=(N);
    }
 
    //copy assignment
    Numbers& Numbers::operator=(const Numbers& N)
    {
        if (this != &N) {
-           save(m_filename);                                //what this one does?
+           save(m_filename);                                
            delete[] m_collection;
            setEmpty();
            if (N.m_collectionSize > 0) {
                strcpy(m_filename, N.m_filename);
-               m_originalFlag = false;                      //true by default
+               m_originalFlag = false;                      
                m_collection = new double[N.m_collectionSize];
                for (unsigned int i = 0; i < N.m_collectionSize; i++) {
                    m_collection[i] = N.m_collection[i];
@@ -192,6 +188,7 @@ namespace sdds {
            delete[] m_collection;
            m_collection = temp;
            m_collectionSize = m_collectionSize + 1;
+           m_addedFlag = true;
        }
        save(m_filename);
        sort();
