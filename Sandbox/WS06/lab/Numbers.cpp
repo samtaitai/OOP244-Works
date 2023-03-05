@@ -10,9 +10,10 @@ and only copied the code that my professor provided to complete my workshops and
 #include <fstream>
 #include <cstring>
 #include "Numbers.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
-   void Numbers::sort(double* nums, unsigned int size) {
+   /*void Numbers::sort(double* nums, unsigned int size) {
       unsigned int i, j;
       double temp;
       for(i = size - 1; size && i > 0; i--) {
@@ -24,7 +25,7 @@ namespace sdds {
             }
          }
       }
-   }
+   }*/
 
    void Numbers::setEmpty()
    {
@@ -87,7 +88,7 @@ namespace sdds {
    {
        Numbers temp;
        temp = *this;
-       temp.sort(temp.m_collection, temp.m_collectionSize);
+       U.sort(temp.m_collection, temp.m_collectionSize);
        return temp.m_collection[m_collectionSize - 1];
    }
 
@@ -95,7 +96,7 @@ namespace sdds {
    {
        Numbers temp;
        temp = *this;
-       temp.sort(temp.m_collection, temp.m_collectionSize);
+       U.sort(temp.m_collection, temp.m_collectionSize);
        return temp.m_collection[0];
    }
 
@@ -163,7 +164,7 @@ namespace sdds {
    }
    Numbers& Numbers::sort()
    {
-       sort(m_collection, m_collectionSize);
+       U.sort(m_collection, m_collectionSize);
        return *this;
    }
    Numbers& Numbers::operator+=(const double value)

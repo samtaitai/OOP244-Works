@@ -20,7 +20,7 @@ namespace sdds {
        bool m_addedFlag;
 
        unsigned int countLines(const char* filename);
-       void sort(double* nums, unsigned int size);
+       //void sort(double* nums, unsigned int size);
        void setEmpty();
        bool load(const char* filename);
        Numbers& save(const char* filename);
