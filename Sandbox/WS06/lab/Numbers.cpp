@@ -27,6 +27,16 @@ namespace sdds {
       }
    }*/
 
+   //private 
+   unsigned int Numbers::countLines(const char* filename) { /**/
+        unsigned int lines = 0u;
+        ifstream nums(filename);
+        while (nums) {
+            lines += (nums.get() == '\n');
+        }
+        return lines;
+    }
+
    void Numbers::setEmpty()
    {
        m_collection = nullptr;
@@ -109,14 +119,7 @@ namespace sdds {
        return temp / m_collectionSize;
    }
 
-   unsigned int Numbers::countLines(const char* filename) { /**/
-      unsigned int lines = 0u;
-      ifstream nums(filename);
-      while(nums) {
-         lines += (nums.get() == '\n');
-      }
-      return lines;
-   }
+   //constructors
    Numbers::Numbers()
    {
        setEmpty();
@@ -129,17 +132,23 @@ namespace sdds {
        }
        load(filename);
    }
+
+   //destructor
    Numbers::~Numbers()
    {
        delete[] m_collection;
        setEmpty();
    }
+
+   //copy constructor
    Numbers::Numbers(Numbers& N)
    {
        setEmpty();
        //operator=(N);
        *this = N;
    }
+
+   //copy assignment
    Numbers& Numbers::operator=(const Numbers& N)
    {
        if (this != &N) {
@@ -158,6 +167,7 @@ namespace sdds {
        }
        return *this;
    }
+
    Numbers::operator bool() const
    {
        return m_collectionSize > 0;
@@ -184,7 +194,7 @@ namespace sdds {
        sort();
        return *this;
    }
-   std::ostream& Numbers::display(std::ostream& ostr) const
+   ostream& Numbers::display(ostream& ostr) const
    {
        if (m_collectionSize == 0) {
            ostr << "Empty list";
@@ -216,11 +226,13 @@ namespace sdds {
        }
        return ostr;
    }
-   std::ostream& operator<<(std::ostream& ostr, const Numbers& RoN)
+
+   //helpers
+   ostream& operator<<(ostream& ostr, const Numbers& RoN)
    {
        return RoN.display(ostr);
    }
-   std::istream& operator>>(std::istream& istr, Numbers& RoN)
+   istream& operator>>(istream& istr, Numbers& RoN)
    {
        double temp{};
        if (istr) {
