@@ -1,7 +1,7 @@
 #include "Utils.h"
 
 namespace sdds {
-	Utils U;
+	Utils U;            //file scope variable
 
     void sdds::Utils::sort(double* nums, unsigned int size)
     {
