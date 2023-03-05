@@ -10,10 +10,10 @@ and only copied the code that my professor provided to complete my workshops and
 #include <fstream>
 #include <cstring>
 #include "Numbers.h"
-#include "Utils.h"
+//#include "Utils.h"
 using namespace std;
 namespace sdds {
-   /*void Numbers::sort(double* nums, unsigned int size) {
+   void Numbers::sort(double* nums, unsigned int size) {
       unsigned int i, j;
       double temp;
       for(i = size - 1; size && i > 0; i--) {
@@ -25,7 +25,7 @@ namespace sdds {
             }
          }
       }
-   }*/
+   }
 
    //private 
    unsigned int Numbers::countLines(const char* filename) { /**/
@@ -42,7 +42,7 @@ namespace sdds {
        m_collection = nullptr;
        strcpy(m_filename, "\0");
        m_collectionSize = 0;
-       m_originalFlag = true;
+       m_originalFlag = false;
        m_addedFlag = false;
    }
 
@@ -53,22 +53,23 @@ namespace sdds {
        int i{};
        int read{};
 
-       delete[] m_collection;
+       delete[] m_collection;                       //delete the current collection
        m_collection = nullptr;
-       numOfLines = countLines(filename);
+       numOfLines = countLines(filename);           //get no of lines of file
 
        if (numOfLines > 0) {                        //if file is not empty
-           m_collection = new double[numOfLines];
+           m_collection = new double[numOfLines];   //aloc 
            ifstream fin(filename);
            if (fin.is_open()) {                     //if ifstream obj is good
                for (i = 0; i < numOfLines; i++) {
                    fin >> m_collection[i];
                    if (m_collection[i] > -99) read++; //ok??? valid standard??
+                   //read++;
                }
-               if (numOfLines == i && numOfLines == read) {      //if read success
+               //numOfLines == i && numOfLines == read
+               if (numOfLines == i && numOfLines == read) {            //if read success
                    m_collectionSize = numOfLines;
                    m_originalFlag = true;
-                   success = true;
                }
                else {
                    fin.close();
@@ -76,7 +77,7 @@ namespace sdds {
                }
            }
        }
-
+       if (read > 0) success = true;
        return success;
    }
 
@@ -98,7 +99,7 @@ namespace sdds {
    {
        Numbers temp;
        temp = *this;
-       U.sort(temp.m_collection, temp.m_collectionSize);
+       temp.sort(temp.m_collection, temp.m_collectionSize);
        return temp.m_collection[m_collectionSize - 1];
    }
 
@@ -106,7 +107,7 @@ namespace sdds {
    {
        Numbers temp;
        temp = *this;
-       U.sort(temp.m_collection, temp.m_collectionSize);
+       temp.sort(temp.m_collection, temp.m_collectionSize);
        return temp.m_collection[0];
    }
 
@@ -127,25 +128,27 @@ namespace sdds {
    Numbers::Numbers(const char* filename)
    {
        setEmpty();
-       if (filename) {
-           strcpy(m_filename, filename);
-       }
-       load(filename);
+       strcpy(m_filename, filename);
+       load(m_filename);
    }
 
    //destructor
    Numbers::~Numbers()
    {
+       save(m_filename);
        delete[] m_collection;
-       setEmpty();
    }
 
    //copy constructor
    Numbers::Numbers(Numbers& N)
    {
-       setEmpty();
-       //operator=(N);
-       *this = N;
+       if (m_collectionSize != 0) {
+           setEmpty();
+           *this = N;
+       }
+       else {
+           *this = N;
+       }
    }
 
    //copy assignment
@@ -174,7 +177,7 @@ namespace sdds {
    }
    Numbers& Numbers::sort()
    {
-       U.sort(m_collection, m_collectionSize);
+       sort(m_collection, m_collectionSize);
        return *this;
    }
    Numbers& Numbers::operator+=(const double value)
