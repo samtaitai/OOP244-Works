@@ -77,7 +77,7 @@ namespace sdds {
            ofstream fout(filename);
            fout.setf(ios::fixed);
            fout.precision(2);
-           for (int i = 0; i < m_collectionSize; i++) {
+           for (unsigned int i = 0; i < m_collectionSize; i++) {
                fout << m_collection[i] << endl;
            }
        }
@@ -103,7 +103,7 @@ namespace sdds {
    double Numbers::average() const
    {
        double temp{};
-       for (int i = 0; i < m_collectionSize; i++) {
+       for (unsigned int i = 0; i < m_collectionSize; i++) {
            temp += m_collection[i];
        }
        return temp / m_collectionSize;
@@ -150,7 +150,7 @@ namespace sdds {
                strcpy(m_filename, N.m_filename);
                m_originalFlag = false;                      //true by default
                m_collection = new double[N.m_collectionSize];
-               for (int i = 0; i < N.m_collectionSize; i++) {
+               for (unsigned int i = 0; i < N.m_collectionSize; i++) {
                    m_collection[i] = N.m_collection[i];
                }
                m_collectionSize = N.m_collectionSize;
@@ -172,7 +172,7 @@ namespace sdds {
        if (m_collectionSize > 0) {
            double* temp{};
            temp = new double[m_collectionSize + 1];
-           for (int i = 0; i < m_collectionSize; i++) {
+           for (unsigned int i = 0; i < m_collectionSize; i++) {
                temp[i] = m_collection[i];
            }
            temp[m_collectionSize] = value;
@@ -196,7 +196,7 @@ namespace sdds {
                ostr << "Copy Of ";
            }
            ostr << m_filename << endl;
-           for (int i = 0; i < m_collectionSize; i++) {
+           for (unsigned int i = 0; i < m_collectionSize; i++) {
                if (i < m_collectionSize - 1) {
                    ostr << m_collection[i] << ", ";
                }
