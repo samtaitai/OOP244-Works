@@ -191,7 +191,6 @@ namespace sdds {
            m_addedFlag = true;
        }
        save(m_filename);
-       sort();
        return *this;
    }
    ostream& Numbers::display(ostream& ostr) const
