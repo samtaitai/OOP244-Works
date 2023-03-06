@@ -1,0 +1,8 @@
+In the case of 'badFileFormat.txt', there were lots of uninitialized value errors. Especially insertion operator and display() function.
+In display(), the if statement that filtering out 'empty list' was 'm_collectionSize == 0' before. Also I didn't deallocate 'm_collection' after load() was not successful. 
+Visual studio somehow managed the output but the matrix did treat 'L' instance as if it's in a good state and display everything except for it replaced garbage values with 0.
+Later I added delete[] and fixed the if statement as 'bool(*this) == false' then errors were gone. 
+
+In early stage of development, I didn't notice I added garbage values at the end of 'badFileFormat.txt' which made me confused over the course of development. I made it work by adding unnecessary conditions which I removed later. 
+
+Implementing extraction operator was a bit hard at the beginning. '>>' has istream reference as a left operand and Numbers reference as a right operand. Later I realized += operator's right operand type is double, extraced double type value out of istream then added it to the right operand by using += operator. 
