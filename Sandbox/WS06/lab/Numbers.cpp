@@ -215,12 +215,12 @@ namespace sdds {
                }
                
            }
-           ostr.width(76);
+           ostr.width(77);
            ostr.fill('-');
            ostr << '\n';
            ostr << "Total of " << m_collectionSize << " number(s), Largest: "
                << max() << ", Smallest: " << min() << ", Average: " << average() << endl;
-           ostr.width(76);
+           ostr.width(77);
            ostr.fill('=');
            ostr << '\n';
        }
