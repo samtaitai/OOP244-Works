@@ -215,14 +215,15 @@ namespace sdds {
                }
                
            }
-           ostr.width(77);
-           ostr.fill('-');
-           ostr << '\n';
+           for (int i = 0; i < 76; i++) {
+               ostr << '-';
+           }
+           ostr << endl;
            ostr << "Total of " << m_collectionSize << " number(s), Largest: "
                << max() << ", Smallest: " << min() << ", Average: " << average() << endl;
-           ostr.width(77);
-           ostr.fill('=');
-           ostr << '\n';
+           for (int i = 0; i < 76; i++) {
+               ostr << '=';
+           }
        }
        return ostr;
    }
