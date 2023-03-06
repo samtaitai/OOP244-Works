@@ -64,17 +64,16 @@ namespace sdds {
            if (fin.is_open()) {                     //if ifstream obj is good
                for (i = 0; i < numOfLines; i++) {
                    fin >> m_collection[i];
-                   if (m_collection[i] > -99) read++; //ok??? valid standard??
-                   //read++;
+                   if (fin && m_collection[i] > -99) read++;
                }
-               //numOfLines == i && numOfLines == read
-               if (numOfLines == i && numOfLines == read) {            //if read success
+               if (numOfLines == read) {            
                    m_collectionSize = numOfLines;
                    m_originalFlag = true;
                }
                else {
                    fin.close();
                    setEmpty();
+                   read = 0;
                }
            }
        }
@@ -196,7 +195,7 @@ namespace sdds {
    }
    ostream& Numbers::display(ostream& ostr) const
    {
-       if (m_collectionSize == 0) {
+       if (bool(*this) == false) {
            ostr << "Empty list";
        }
        else {
