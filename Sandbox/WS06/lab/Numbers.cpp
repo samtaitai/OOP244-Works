@@ -72,6 +72,7 @@ namespace sdds {
                }
                else {
                    fin.close();
+                   delete[] m_collection;
                    setEmpty();
                    read = 0;
                }
