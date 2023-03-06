@@ -53,6 +53,7 @@ namespace sdds {
        int numOfLines{};
        int i{};
        int read{};
+       double temp{};
 
        delete[] m_collection;                       //delete the current collection
        m_collection = nullptr;
@@ -64,7 +65,7 @@ namespace sdds {
            if (fin.is_open()) {                     //if ifstream obj is good
                for (i = 0; i < numOfLines; i++) {
                    fin >> m_collection[i];
-                   if (fin && m_collection[i] > -99) read++;
+                   if (fin) read++;
                }
                if (numOfLines == read) {            
                    m_collectionSize = numOfLines;
