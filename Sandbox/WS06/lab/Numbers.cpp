@@ -203,7 +203,7 @@ namespace sdds {
            ostr.setf(ios::fixed);
            ostr.precision(2);
            if (m_originalFlag == false) {
-               ostr << "Copy Of ";
+               ostr << "Copy of ";
            }
            ostr << m_filename << endl;
            for (unsigned int i = 0; i < m_collectionSize; i++) {
