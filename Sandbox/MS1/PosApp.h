@@ -2,13 +2,13 @@
 #define SDDS_POSAPP_H
 #include <iostream>
 #include <fstream>
-#include "Item.h"
+//#include "Item.h"
 
 namespace sdds {
 	class PosApp {
 
 		char m_filename[255];
-		Item* m_itemList;
+		char* m_itemList;			//temporarily Item->char
 		int m_noOfItems;
 
 		void setEmpty();
