@@ -18,9 +18,9 @@ that my professor provided to complete my project milestones.
 namespace sdds {
 	class Item {
 	public:
-		char m_name[255];
-		/*int m_quantity;
-		double m_price;*/
+		char* m_name;
+		int m_quantity;
+		double m_price;
 
 		void setEmpty();
 		Item();

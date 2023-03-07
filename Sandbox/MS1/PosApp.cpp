@@ -106,7 +106,7 @@ namespace sdds {
 		cout << "Loading data from " << filename << endl;
 		return true;
 	}
-	std::ostream& PosApp::menu(std::ostream& ostr) 
+	std::ostream& PosApp::menu(std::ostream& ostr)  
 	{
 		bool done = false;
 		int select{};
