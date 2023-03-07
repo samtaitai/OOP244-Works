@@ -1,10 +1,24 @@
+/* Citation and Sources...
+Final Project Milestone 1
+Module: PosApp
+Filename: PosApp.cpp
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/7  MS1 submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
 #include "Item.h"
 #include "PosApp.h"
 #include "Utils.h"
-
 
 using namespace std;
 
@@ -132,6 +146,10 @@ namespace sdds {
 		
 		return ostr;
 	}
+	PosApp::PosApp()
+	{
+		setEmpty();
+	}
 	PosApp::PosApp(const char* filename)
 	{
 		setEmpty();
@@ -140,6 +158,7 @@ namespace sdds {
 	PosApp::~PosApp()
 	{
 		delete[] m_itemList;
+		//cout << "PosApp is dying";
 	}
 	PosApp& PosApp::run () 
 	{

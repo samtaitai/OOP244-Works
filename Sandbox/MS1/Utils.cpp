@@ -1,3 +1,18 @@
+/* Citation and Sources...
+Final Project Milestone 1
+Module: Utils
+Filename: Utils.cpp
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/7  MS1 submission
+-----------------------------------------------------------
+Provided by the professor:
+getInt();
+getInt(int min, int max, const char* prompt);
+-----------------------------------------------------------*/
 #include <iostream>
 #include "Utils.h"
 
@@ -6,7 +21,6 @@ using namespace std;
 namespace sdds {
 	Utils U;
 
-	//code from Fardad *citation needed*
 	int Utils::getInt() {
 		int value{};
 		bool done{};
@@ -31,7 +45,6 @@ namespace sdds {
 		return value;
 	}
 
-	//code from Fardad *citation needed*
 	int Utils::getInt(int min, int max, const char* prompt) {
 		int value{};
 		if (prompt) cout << prompt;
