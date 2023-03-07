@@ -3,6 +3,7 @@
 #include <cstring>
 #include "PosApp.h"
 #include "Utils.h"
+#include "Item.h"
 
 using namespace std;
 
