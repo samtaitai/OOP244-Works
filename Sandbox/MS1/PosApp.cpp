@@ -18,7 +18,7 @@ namespace sdds {
 	PosApp& PosApp::addItem()
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Adding Item to the store";
 		cout << endl;
@@ -29,7 +29,7 @@ namespace sdds {
 	PosApp& PosApp::removeItem()
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Remove Item";
 		cout << endl;
@@ -40,7 +40,7 @@ namespace sdds {
 	PosApp& PosApp::stockItem()
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Select an item to stock";
 		cout << endl;
@@ -51,7 +51,7 @@ namespace sdds {
 	PosApp& PosApp::listItems () 
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Listing Items";
 		cout << endl;
@@ -62,7 +62,7 @@ namespace sdds {
 	PosApp& PosApp::POS()
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Starting Point of Sale";
 		cout << endl;
@@ -73,7 +73,7 @@ namespace sdds {
 	PosApp& PosApp::saveRecs()
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Saving Data";
 		cout << endl;
@@ -84,7 +84,7 @@ namespace sdds {
 	bool PosApp::loadRecs(const char* filename)
 	{
 		cout.setf(ios::left);
-		cout.width(100);
+		cout.width(77);
 		cout.fill('.');
 		cout << ">>>> Loading Items"; 
 		cout << endl;

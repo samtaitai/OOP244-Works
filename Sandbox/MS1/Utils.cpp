@@ -14,7 +14,7 @@ namespace sdds {
 			cin >> value;
 			if (cin) {						
 				if (cin.get() != '\n') {				//if not integer	
-					cout << "Invalid integer, try again: ";
+					cout << "Invalid Integer, try again: ";
 				}
 				else {
 					done = true;
@@ -22,7 +22,7 @@ namespace sdds {
 			}
 			else {										//if cin fail
 				cin.clear();				
-				cout << "Invalid integer, try again: ";
+				cout << "Invalid Integer, try again: ";
 			}
 			
 			(!done) && cin.ignore(10000, '\n'); 
@@ -36,7 +36,7 @@ namespace sdds {
 		do {
 			value = getInt();
 		} while ((value < min || value > max) &&
-			cout << " [" << min << "<=value<=" << max << "], retry: " << prompt);
+			cout << "[" << min << "<=value<=" << max << "], retry: " << prompt);
 		return value;
 	}
 }
