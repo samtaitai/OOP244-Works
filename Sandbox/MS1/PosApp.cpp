@@ -16,7 +16,7 @@ that my professor provided to complete my project milestones.
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-#include "Item.h"
+#include "Item.h"	//nested first?
 #include "PosApp.h"
 #include "Utils.h"
 
