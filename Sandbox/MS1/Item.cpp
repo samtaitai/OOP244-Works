@@ -1,3 +1,4 @@
+#include <cstring>
 #include "Item.h"
 
 using namespace std;
@@ -5,7 +6,7 @@ using namespace std;
 namespace sdds {
 	void sdds::Item::setEmpty()
 	{
-		m_name = nullptr;
+		strcpy(m_name, "\0");
 		m_quantity = 0;
 		m_price = 0.0;
 	}
@@ -17,7 +18,7 @@ namespace sdds {
 
 	sdds::Item::~Item()
 	{
-		delete[] m_name;
+		//delete[] m_name;
 	}
 }
 

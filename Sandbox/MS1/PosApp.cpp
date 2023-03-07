@@ -13,6 +13,7 @@ namespace sdds {
 	{
 		strcpy(m_filename, "\0");
 		m_itemList = nullptr;
+		m_noOfItems = 0;
 	}
 	PosApp& PosApp::addItem()
 	{
