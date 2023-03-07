@@ -6,6 +6,7 @@ using namespace std;
 namespace sdds {
 	Utils U;
 
+	//code from Fardad *citation needed*
 	int Utils::getInt() {
 		int value{};
 		bool done{};
@@ -30,6 +31,7 @@ namespace sdds {
 		return value;
 	}
 
+	//code from Fardad *citation needed*
 	int Utils::getInt(int min, int max, const char* prompt) {
 		int value{};
 		if (prompt) cout << prompt;
