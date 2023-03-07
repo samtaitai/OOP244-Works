@@ -23,8 +23,8 @@ namespace sdds {
 	class PosApp {
 
 		char m_filename[255];
-		Item* m_itemList;			
 		int m_noOfItems;
+		Item* m_itemList;
 
 		void setEmpty();
 		PosApp& addItem();

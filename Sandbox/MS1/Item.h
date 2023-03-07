@@ -19,8 +19,8 @@ namespace sdds {
 	class Item {
 	public:
 		char m_name[255];
-		int m_quantity;
-		double m_price;
+		/*int m_quantity;
+		double m_price;*/
 
 		void setEmpty();
 		Item();

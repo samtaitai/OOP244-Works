@@ -148,17 +148,19 @@ namespace sdds {
 	}
 	PosApp::PosApp()
 	{
+		//cout << "PosApp default constructor\n";
 		setEmpty();
 	}
 	PosApp::PosApp(const char* filename)
 	{
+		//cout << "PosApp one-arg constructor\n";
 		setEmpty();
 		if (filename) strcpy(m_filename, filename);
 	}
 	PosApp::~PosApp()
 	{
 		delete[] m_itemList;
-		//cout << "PosApp is dying";
+		//cout << "PosApp is dying\n";
 	}
 	PosApp& PosApp::run () 
 	{
