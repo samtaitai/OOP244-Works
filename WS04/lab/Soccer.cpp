@@ -19,6 +19,7 @@ namespace sdds {
 	}
 
 	SoccerTeam::SoccerTeam(const char* tname, double fines, int foul) {
+		setEmpty();
 		setName(tname);
 		setFine(fines, foul);
 		m_goals = 0;

@@ -20,6 +20,7 @@ namespace sdds {
 	}
 
 	Tournament::Tournament(const char* name, int noOfteam, const SoccerTeam* soccer) {
+		setEmpty();
 		setTournament(name, noOfteam, soccer);
 	}
 
@@ -29,7 +30,11 @@ namespace sdds {
 	}
 
 	void Tournament::setTournament(const char* name, int noOfteam, const SoccerTeam* soccer) {
-		if (name && noOfteam > 0 && soccer != nullptr) {
+		if (name && soccer) {	//if not empty = update the existed one
+			delete[] m_name;
+			delete[] m_soccer;
+			setEmpty();
+
 			m_name = new char[strlen(name) + 1];
 			strcpy(m_name, name);
 			m_num = noOfteam;
@@ -38,9 +43,11 @@ namespace sdds {
 				m_soccer[i] = soccer[i];
 			}
 		}
-		else {
-			setEmpty();				//fixed delete[] issue
-		}
+		//below is not necessary; because it's alreay safe empty state
+		//else {					//if safe empty state
+		//	setEmpty();				//fixed delete[] issue
+		//	
+		//}
 	}
 
 	void Tournament::setEmpty() {
