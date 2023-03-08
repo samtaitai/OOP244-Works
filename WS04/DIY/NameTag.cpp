@@ -18,10 +18,12 @@ namespace sdds {
 		setEmpty();
 	}
 	NameTag::NameTag(const char* name) {
+		setEmpty();						//add
 		setName(name);
 		m_ext = 0;
 	}
 	NameTag::NameTag(const char* name, int ext) {
+		setEmpty();						//add
 		setName(name);
 		setExt(ext);
 	}
@@ -32,8 +34,13 @@ namespace sdds {
 	NameTag& NameTag::setName(const char* name) {
 		
 		unsigned int i{};
+										//at the creation of objects, all=>safe empty state
+										//otherwise, delete[] garbage=>serious error!
+		if (m_name != nullptr) {
+			delete[] m_name;			//when update the existed one, free memory
+			setEmpty();					//m_name = nullptr again
+		}
 		
-		setEmpty();
 		if (name) {
 			if (strlen(name) > 40) {
 				m_name = new char[strlen(name) + 1];
