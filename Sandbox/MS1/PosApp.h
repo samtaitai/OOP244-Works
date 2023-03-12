@@ -17,14 +17,14 @@ that my professor provided to complete my project milestones.
 #define SDDS_POSAPP_H
 #include <iostream>
 #include <fstream>
-#include "Item.h"
+//#include "Item.h"
 
 namespace sdds {
 	class PosApp {
 
 		char m_filename[255];
 		int m_noOfItems;
-		Item* m_itemList;
+		char* m_itemList;
 
 		void setEmpty();
 		PosApp& addItem();
@@ -37,12 +37,16 @@ namespace sdds {
 		std::ostream& menu(std::ostream& ostr = std::cout);
 
 	public:
-		PosApp();
 		PosApp(const char* filename);
 		~PosApp();
-		PosApp& run();
+
 		//Can neither get copied nor assigned to another PosApp object. 
 		//Your code must prevent such actions.
+		PosApp(PosApp& R) = delete;
+		PosApp& operator=(const PosApp& R) = delete;
+
+		PosApp& run();
+		
 	};
 }
 

@@ -16,7 +16,7 @@ that my professor provided to complete my project milestones.
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-#include "Item.h"	//nested first?
+//#include "Item.h"	//nested first?
 #include "PosApp.h"
 #include "Utils.h"
 
@@ -106,7 +106,7 @@ namespace sdds {
 		cout << "Loading data from " << filename << endl;
 		return true;
 	}
-	std::ostream& PosApp::menu(std::ostream& ostr)  
+	ostream& PosApp::menu(ostream& ostr)  
 	{
 		bool done = false;
 		int select{};
@@ -145,11 +145,6 @@ namespace sdds {
 		};
 		
 		return ostr;
-	}
-	PosApp::PosApp()
-	{
-		//cout << "PosApp default constructor\n";
-		setEmpty();
 	}
 	PosApp::PosApp(const char* filename)
 	{
