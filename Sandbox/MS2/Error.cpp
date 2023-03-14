@@ -21,7 +21,10 @@ namespace sdds {
 	Error::Error(const char* msg)
 	{
 		clear();
-		if (msg) strcpy(m_errMsg, msg);
+		if (msg) {
+			m_errMsg = new char[strlen(msg) + 1];
+			strcpy(m_errMsg, msg);
+		}
 	}
 	Error::Error(const Error& Ro)
 	{
