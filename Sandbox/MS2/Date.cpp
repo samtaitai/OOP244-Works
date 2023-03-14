@@ -15,18 +15,10 @@ namespace sdds {
 	{
 		*this = Date();
 		m_dateOnly = true;
-		if (year <= MIN_YEAR && year >= MAX_YEAR) {
-			m_year = year;
-		}
-		else {
-			m_err = "Invalid Year";
-		}
-		if (month <= 1 && month >= 12) {
-			m_month = month;
-		}
-		else {
-			m_err = "Invalid Month";
-		}
+		if (year >= MIN_YEAR || year <= MAX_YEAR) m_err = "Invalid Year";
+		m_year = year;
+		if (month >= 1 || month <= 12) m_err = "Invalid Month";
+		m_month = month;
 		m_day = U.daysOfMonth(m_year, m_month);
 		m_hour = 0;
 		m_minute = 0;
@@ -35,18 +27,10 @@ namespace sdds {
 	{
 		*this = Date(year, month, day);
 		m_dateOnly = false;
-		if (hour <= 0 && hour >= 23) {
-			m_hour = hour;
-		}
-		else {
-			m_err = "Invalid Hour";
-		}
-		if (min <= 0 && min >= 59) {
-			m_minute = min;
-		}
-		else {
-			m_err = "Invalid Minute";
-		}
+		if (hour >= 0 || hour <= 23) m_err = "Invalid Hour";
+		m_hour = hour;
+		if (min >= 0 || min <= 59) m_err = "Invalid Minute"; 
+		m_minute = min;
 	}
 
 	bool Date::operator==(const Date& Ro) const
@@ -107,11 +91,108 @@ namespace sdds {
 	{
 		return m_err;
 	}
+
+	bool Date::isDateOnly() const
+	{
+		return m_dateOnly;
+	}
+
+	std::ostream& Date::display(std::ostream& ostr) const
+	{
+		if (*this) {
+			if (isDateOnly()) {
+				ostr << m_year << '/' << m_month << '/' << m_day;
+			}
+			else {
+				ostr << m_year << '/' << m_month << '/' << m_day
+					<< ', ' << m_hour << ':' << m_minute;
+			}
+		}
+		else {
+			if (isDateOnly()) {
+				error().getMsg() << '(' << m_year << '/'
+					<< m_month << '/' << m_day << ')';
+			}
+			else {
+				error().getMsg() << '(' << m_year << '/' << m_month
+					<< '/' << m_day << ', ' << m_hour << ':'
+					<< m_minute << ')';
+			}
+		}
+		return ostr;
+	}
+
+	std::istream& Date::read(std::istream& istr)
+	{
+		if (!*this) {						//if this is in error state
+			*this = Date(0, 0, 0, 0, 0);	//set all to 0
+			error().clear();				//clear err msg
+		}
+		else {
+			if (isDateOnly()) {
+				istr >> m_year;
+				if (istr) {
+					istr.ignore();
+					istr >> m_month;
+					if (istr) {
+						istr.ignore();
+						istr >> m_day;
+						if (!istr) m_err = Error("Cannot read day entry");
+					}
+					else {
+						m_err = Error("Cannot read month entry");
+					}
+				}
+				else {
+					m_err = Error("Cannot read year entry");
+				}
+			}
+			else {
+				istr >> m_year;
+				if (istr) {
+					istr.ignore();
+					istr >> m_month;
+					if (istr) {
+						istr.ignore();
+						istr >> m_day;
+						if (istr) {
+							istr.ignore();
+							istr >> m_hour;
+							if (istr) {
+								istr.ignore();
+								istr >> m_minute;
+								if(!istr) m_err = Error("Cannot read minute entry");
+							}
+							else {
+								m_err = Error("Cannot read hour entry");
+							}
+						}
+						else {
+							m_err = Error("Cannot read day entry");
+						}
+					}
+					else {
+						m_err = Error("Cannot read month entry");
+					}
+				}
+				else {
+					m_err = Error("Cannot read year entry");
+				}
+			}
+		}
+		return istr;
+	}
 	
 	std::ostream& operator<<(std::ostream& ostr, const Date& Ro)
 	{
-		
+		Ro.display(ostr);
 		return ostr;
+	}
+
+	std::istream& operator>>(std::istream& istr, Date& Ro)
+	{
+		Ro.read(istr);
+		return istr;
 	}
 
 }

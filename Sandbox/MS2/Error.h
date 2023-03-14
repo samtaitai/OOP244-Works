@@ -5,10 +5,9 @@
 namespace sdds {
 	class Error {
 		char* m_errMsg;
-		void clear();
-		
 
 	public:
+		void clear();
 		Error();
 		Error(const char* msg);
 		Error(const Error& Ro);

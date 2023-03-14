@@ -18,7 +18,7 @@ namespace sdds {
 	public:
 		Date();
 		Date(int year, int month, int day);
-		Date(int year, int month, int day, int hour, int min);
+		Date(int year, int month, int day, int hour, int min = 0);
 		bool operator==(const Date& Ro) const;
 		bool operator!=(const Date& Ro) const; 
 		bool operator<(const Date& Ro) const;
@@ -28,6 +28,9 @@ namespace sdds {
 		operator bool() const;
 		Date& dateOnly(bool isDateOnly);
 		Error error() const;
+		bool isDateOnly() const;
+		std::ostream& display(std::ostream& ostr = std::cout) const;
+		std::istream& read(std::istream& istr = std::cin);
 	};
 	std::ostream& operator<<(std::ostream& ostr, const Date& Ro);
 	std::istream& operator>>(std::istream& istr, Date& Ro);
