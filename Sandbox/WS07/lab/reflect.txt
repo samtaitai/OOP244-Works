@@ -1,0 +1,4 @@
+While getting myself comfortable of creating derived classed, I found it's challenging to understand how derived class' constructors work especially with default values for each parameters. 
+In my understanding, when a derived class is created, its base class is created beforehand. Any values in the initialization area are used to create an object from the base class. If the base class has a setter function, we can use the setter function inside the derived class' constructor; it only sets up values, not create an object of the base class in the body. 
+
+One thing I added was a query function for the Dog class' extra attribute(m_numWalks). I suppose it should make more sense that there is a query for it while Pet class has a bunch of query functions for every single attributes of it. Without this query funciton, I'm afraid there would hardly be a way for the helper function(insertion operator) to get access to m_numWalks. I didn't consider using 'friend' at all. 
