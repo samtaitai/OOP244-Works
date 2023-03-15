@@ -3,7 +3,7 @@
 using namespace std;
 
 namespace sdds {
-	Dog::Dog(const char* thename, int theage, double thecharge): Pet(thename, 0, 4.0)
+	Dog::Dog(const char* thename, int theage, double thecharge): Pet(thename) //Pet(thename, 0, 4.0)
 	{
 		m_numWalks = 0;
 	}
@@ -15,10 +15,11 @@ namespace sdds {
 			healthDelta += 0.15 * (getHugs() - 1);
 			healthDelta += 0.10 * (getFeeds() - 2);
 			healthDelta += 0.10 * (getGrooms() - 1);
-			healthDelta += 0.20 * (getWalks() - 2);
+			healthDelta += 0.20 * (m_numWalks - 2);
 			//end
 			applyHealthDelta(healthDelta);
 			Pet::operator++(1);			//why unary takes arg?
+			m_numWalks = 0;
 		}
 		
 		return *this;
@@ -39,7 +40,9 @@ namespace sdds {
 	}
 	void Dog::walk()
 	{
-		if (this->isAlive()) m_numWalks++;
+		if (this->isAlive()) {
+			m_numWalks += 1;
+		} 
 	}
 	void Dog::reSpawn()
 	{
