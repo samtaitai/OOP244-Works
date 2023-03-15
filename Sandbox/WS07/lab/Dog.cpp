@@ -1,3 +1,11 @@
+/*
+Name: So Yon Lee
+Email: slee550@myseneca.ca
+Student ID: 179142211
+Date: 15 Mar 2023
+I have done all the coding by myself
+and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 #include "Dog.h"
 
 using namespace std;
@@ -26,7 +34,7 @@ namespace sdds {
 	}
 	Dog& Dog::operator=(const Dog& Ro)
 	{
-		Pet::operator=(*this);
+		Pet::operator=(Ro);
 		m_numWalks = Ro.m_numWalks;
 		addCharge(8.0);
 		return *this;
