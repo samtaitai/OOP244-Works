@@ -175,7 +175,7 @@ namespace sdds {
 							if (istr) {
 								istr.ignore();
 								istr >> m_minute;
-								if(!istr) m_err = Error("Cannot read minute entry");
+								if (!istr) m_err = Error("Cannot read minute entry");
 							}
 							else {
 								m_err = Error("Cannot read hour entry");
@@ -206,53 +206,29 @@ namespace sdds {
 		else {
 			if (isDateOnly()) {
 				istr >> m_year;
-				if (istr) {
-					istr.ignore();
-					istr >> m_month;
-					if (istr) {
-						istr.ignore();
-						istr >> m_day;
-						if (!istr) m_err = Error("Cannot read day entry");
-					}
-					else {
-						m_err = Error("Cannot read month entry");
-					}
-				}
-				else {
-					m_err = Error("Cannot read year entry");
-				}
+				if (!istr || m_year < MIN_YEAR || m_year > MAX_YEAR) m_err = Error("Cannot read year entry");
+				istr.ignore();
+				istr >> m_month;
+				if (!istr || m_month < 1 || m_month > 12) m_err = Error("Cannot read month entry");
+				istr.ignore();
+				istr >> m_day;
+				if (!istr || m_day != U.daysOfMonth(m_year, m_month)) m_err = Error("Cannot read day entry");
 			}
 			else {
 				istr >> m_year;
-				if (istr) {
-					istr.ignore();
-					istr >> m_month;
-					if (istr) {
-						istr.ignore();
-						istr >> m_day;
-						if (istr) {
-							istr.ignore();
-							istr >> m_hour;
-							if (istr) {
-								istr.ignore();
-								istr >> m_minute;
-								if (!istr) m_err = Error("Cannot read minute entry");
-							}
-							else {
-								m_err = Error("Cannot read hour entry");
-							}
-						}
-						else {
-							m_err = Error("Cannot read day entry");
-						}
-					}
-					else {
-						m_err = Error("Cannot read month entry");
-					}
-				}
-				else {
-					m_err = Error("Cannot read year entry");
-				}
+				if (!istr || m_year < MIN_YEAR || m_year > MAX_YEAR) m_err = Error("Cannot read year entry");
+				istr.ignore();
+				istr >> m_month;
+				if (!istr || m_month < 1 || m_month > 12) m_err = Error("Cannot read month entry");
+				istr.ignore();
+				istr >> m_day;
+				if (!istr || m_day != U.daysOfMonth(m_year, m_month)) m_err = Error("Cannot read day entry");
+				istr.ignore();
+				istr >> m_hour;
+				if (!istr || m_hour < 0 || m_month > 23) m_err = Error("Cannot read hour entry");
+				istr.ignore();
+				istr >> m_minute;
+				if (!istr || m_minute < 0 || m_minute > 59) m_err = Error("Cannot read minute entry");
 			}
 		}
 		return istr;
