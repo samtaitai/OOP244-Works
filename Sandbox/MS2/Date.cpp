@@ -104,36 +104,240 @@ namespace sdds {
 
 	ostream& Date::display(ostream& ostr) const
 	{
-		if (*this) {
+		if (*this) {	//non error state
 			if (isDateOnly()) {
-				ostr << m_year << '/' << m_month << '/' << m_day;
+				ostr << m_year << '/';
+				if (m_month < 10) { 
+					ostr << '0' << m_month << '/'; 
+					if (m_day < 10) {
+						ostr << '0' << m_day;
+					}
+					else {
+						ostr << m_day;
+					}
+				}
+				else { 
+					ostr << m_month << '/'; 
+					if (m_day < 10) {
+						ostr << '0' << m_day;
+					}
+					else {
+						ostr << m_day;
+					}
+				}
 			}
-			else {
-				ostr << m_year << '/' << m_month << '/' << m_day
-					<< ", ";
-				if (m_hour < 10) {
-					ostr << '0' << m_hour << ':' << m_minute;	//need to do same thing for minute too? 
+			else {		//include time
+				ostr << m_year << '/';
+				if (m_month < 10) {
+					ostr << '0' << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+						else {
+							ostr << m_hour;
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+
+					}
+					else {
+						ostr << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+						else {
+							ostr << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+					}
 				}
 				else {
-					ostr << m_hour << ':' << m_minute;
+					ostr << m_month << '/';
+					ostr << '0' << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+						else {
+							ostr << m_hour;
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+
+					}
+					else {
+						ostr << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+						else {
+							ostr << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute;
+							}
+							else {
+								ostr << m_minute;
+							}
+						}
+					}
 				}
-				
 			}
 		}
-		else {
+		else {		//error state
 			if (isDateOnly()) {
-				error().getMsg() << '(' << m_year << '/'
-					<< m_month << '/' << m_day << ')';
-			}
-			else {
-				error().getMsg() << '(' << m_year << '/' << m_month
-					<< '/' << m_day << ", ";
-				
-				if (m_hour < 10) {
-					ostr << '0' << m_hour << ':' << m_minute << ')';
+				error().getMsg() << '(' << m_year << '/';
+				if (m_month < 10) {
+					ostr << '0' << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ')';
+					}
+					else {
+						ostr << m_day << ')';
+					}
 				}
 				else {
-					ostr << m_hour << ':' << m_minute << ')';
+					ostr << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ')';
+					}
+					else {
+						ostr << m_day << ')';
+					}
+				}
+			}
+			else {
+				error().getMsg() << '(' << m_year << '/';
+				if (m_month < 10) {
+					ostr << '0' << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+						else {
+							ostr << m_hour;
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+
+					}
+					else {
+						ostr << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+						else {
+							ostr << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+					}
+				}
+				else {
+					ostr << m_month << '/';
+					if (m_day < 10) {
+						ostr << '0' << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+						else {
+							ostr << m_hour;
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+
+					}
+					else {
+						ostr << m_day << ", ";
+						if (m_hour < 10) {
+							ostr << '0' << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+						else {
+							ostr << m_hour << ':';
+							if (m_minute < 10) {
+								ostr << '0' << m_minute << ')';
+							}
+							else {
+								ostr << m_minute << ')';
+							}
+						}
+					}
 				}
 			}
 		}
@@ -226,39 +430,7 @@ namespace sdds {
 
 	ofstream& Date::write(std::ofstream& ostr)
 	{
-		if (*this) {
-			if (isDateOnly()) {
-				ostr << m_year << '/' << m_month << '/' << m_day;
-			}
-			else {
-				ostr << m_year << '/' << m_month << '/' << m_day
-					<< ", ";
-				if (m_hour < 10) {
-					ostr << '0' << m_hour << ':' << m_minute;	//need to do same thing for minute too? 
-				}
-				else {
-					ostr << m_hour << ':' << m_minute;
-				}
-
-			}
-		}
-		else {
-			if (isDateOnly()) {
-				error().getMsg() << '(' << m_year << '/'
-					<< m_month << '/' << m_day << ')';
-			}
-			else {
-				error().getMsg() << '(' << m_year << '/' << m_month
-					<< '/' << m_day << ", ";
-
-				if (m_hour < 10) {
-					ostr << '0' << m_hour << ':' << m_minute << ')';
-				}
-				else {
-					ostr << m_hour << ':' << m_minute << ')';
-				}
-			}
-		}
+		display(ostr);
 		return ostr;
 	}
 	
