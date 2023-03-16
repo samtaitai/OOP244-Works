@@ -142,7 +142,7 @@ namespace sdds {
 							}
 						}
 						else {
-							ostr << m_hour;
+							ostr << m_hour << ':';
 							if (m_minute < 10) {
 								ostr << '0' << m_minute;
 							}
@@ -261,7 +261,7 @@ namespace sdds {
 							}
 						}
 						else {
-							ostr << m_hour;
+							ostr << m_hour << ':';
 							if (m_minute < 10) {
 								ostr << '0' << m_minute << ')';
 							}
@@ -307,7 +307,7 @@ namespace sdds {
 							}
 						}
 						else {
-							ostr << m_hour;
+							ostr << m_hour << ':';
 							if (m_minute < 10) {
 								ostr << '0' << m_minute << ')';
 							}
