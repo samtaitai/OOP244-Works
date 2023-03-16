@@ -148,31 +148,71 @@ namespace sdds {
 		else {
 			if (isDateOnly()) {
 				istr >> m_year;
-				if (!istr) m_err = Error("Cannot read year entry");
-				istr.ignore();
-				istr >> m_month;
-				if (!istr) m_err = Error("Cannot read month entry");
-				istr.ignore();
-				istr >> m_day;
-				if (!istr) m_err = Error("Cannot read day entry");
-				*this = Date(m_year, m_month, m_day);
+				if (!istr) {
+					setClear();
+					m_err = Error("Cannot read year entry");
+				}
+				else {
+					istr.ignore();
+					istr >> m_month;
+					if (!istr) {
+						setClear();
+						m_err = Error("Cannot read month entry");
+					} 
+					else {
+						istr.ignore();
+						istr >> m_day;
+						if (!istr) {
+							setClear();
+							m_err = Error("Cannot read day entry");
+						}
+						else {
+							*this = Date(m_year, m_month, m_day);
+						}
+					}
+				}
 			}
 			else {
 				istr >> m_year;
-				if (!istr) m_err = Error("Cannot read year entry");
-				istr.ignore();
-				istr >> m_month;
-				if (!istr) m_err = Error("Cannot read month entry");
-				istr.ignore();
-				istr >> m_day;
-				if (!istr) m_err = Error("Cannot read day entry");
-				istr.ignore();
-				istr >> m_hour;
-				if (!istr) m_err = Error("Cannot read hour entry");
-				istr.ignore();
-				istr >> m_minute;
-				if (!istr) m_err = Error("Cannot read minute entry");
-				*this = Date(m_year, m_month, m_day, m_hour, m_minute);
+				if (!istr) {
+					setClear();
+					m_err = Error("Cannot read year entry");
+				}
+				else {
+					istr.ignore();
+					istr >> m_month;
+					if (!istr) {
+						setClear();
+						m_err = Error("Cannot read month entry");
+					}
+					else {
+						istr.ignore();
+						istr >> m_day;
+						if (!istr) {
+							setClear();
+							m_err = Error("Cannot read day entry");
+						}
+						else {
+							istr.ignore();
+							istr >> m_hour;
+							if (!istr) {
+								setClear();
+								m_err = Error("Cannot read hour entry");
+							}
+							else {
+								istr.ignore();
+								istr >> m_minute;
+								if (!istr) {
+									setClear();
+									m_err = Error("Cannot read minute entry");
+								}
+								else {
+									*this = Date(m_year, m_month, m_day, m_hour, m_minute);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 		return istr;
