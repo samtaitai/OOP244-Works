@@ -98,7 +98,7 @@ namespace sdds {
 		return m_dateOnly;
 	}
 
-	std::ostream& Date::display(std::ostream& ostr) const
+	ostream& Date::display(ostream& ostr) const
 	{
 		if (*this) {
 			if (isDateOnly()) {
@@ -106,7 +106,14 @@ namespace sdds {
 			}
 			else {
 				ostr << m_year << '/' << m_month << '/' << m_day
-					<< ", " << m_hour << ':' << m_minute;
+					<< ", ";
+				if (m_hour < 10) {
+					ostr << '0' << m_hour << ':' << m_minute;	//need to do same thing for minute too? 
+				}
+				else {
+					ostr << m_hour << ':' << m_minute;
+				}
+				
 			}
 		}
 		else {
@@ -116,14 +123,20 @@ namespace sdds {
 			}
 			else {
 				error().getMsg() << '(' << m_year << '/' << m_month
-					<< '/' << m_day << ", " << m_hour << ':'
-					<< m_minute << ')';
+					<< '/' << m_day << ", ";
+				
+				if (m_hour < 10) {
+					ostr << '0' << m_hour << ':' << m_minute << ')';
+				}
+				else {
+					ostr << m_hour << ':' << m_minute << ')';
+				}
 			}
 		}
 		return ostr;
 	}
 
-	std::istream& Date::read(std::istream& istr)
+	istream& Date::read(istream& istr)
 	{
 		if (!*this) {						//if this is in error state
 			*this = Date(0, 0, 0, 0, 0);	//set all to 0
@@ -184,15 +197,27 @@ namespace sdds {
 		return istr;
 	}
 	
-	std::ostream& operator<<(std::ostream& ostr, const Date& Ro)
+	ostream& operator<<(ostream& ostr, const Date& Ro)
 	{
 		Ro.display(ostr);
 		return ostr;
 	}
 
-	std::istream& operator>>(std::istream& istr, Date& Ro)
+	std::ofstream& operator<<(std::ofstream& ostr, const Date& Ro)
+	{
+		//fout << A; implementation?
+		return ostr;
+	}
+
+	istream& operator>>(istream& istr, Date& Ro)
 	{
 		Ro.read(istr);
+		return istr;
+	}
+
+	std::ifstream& operator>>(std::ifstream& istr, Date& Ro)
+	{
+		//fin >> B; implementation???
 		return istr;
 	}
 

@@ -1,6 +1,7 @@
 #ifndef SDDS_DATE_H
 #define SDDS_DATE_H
 #include <iostream>
+#include <fstream>
 #include "Error.h"
 #include "Utils.h"
 #include "POS.h"
@@ -33,7 +34,9 @@ namespace sdds {
 		std::istream& read(std::istream& istr = std::cin);
 	};
 	std::ostream& operator<<(std::ostream& ostr, const Date& Ro);
+	std::ofstream& operator<<(std::ofstream& ostr, const Date& Ro);
 	std::istream& operator>>(std::istream& istr, Date& Ro);
+	std::ifstream& operator>>(std::ifstream& istr, Date& Ro);
 }
 
 #endif
