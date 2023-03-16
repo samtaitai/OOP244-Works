@@ -4,7 +4,11 @@
 using namespace std;
 
 namespace sdds {
-
+	void Date::setClear()
+	{
+		*this = Date(0, 0, 0, 0, 0);
+		error().clear();
+	}
 	Date::Date()
 	{
 		U.getSystemDate(m_year, m_month, m_day, m_hour, m_minute, false);
@@ -199,36 +203,37 @@ namespace sdds {
 
 	ifstream& Date::load(ifstream& istr)
 	{
-		if (!*this) {						//if this is in error state
-			*this = Date(0, 0, 0, 0, 0);	//set all to 0
-			error().clear();				//clear err msg
+		if (!*this) {						//if this is in error state, set all to 0, clear err msg
+			setClear();
 		}
 		else {
 			if (isDateOnly()) {
 				istr >> m_year;
-				if (!istr || m_year < MIN_YEAR || m_year > MAX_YEAR) m_err = Error("Cannot read year entry");
+				if (!istr) m_err = Error("Cannot read year entry");
 				istr.ignore();
 				istr >> m_month;
-				if (!istr || m_month < 1 || m_month > 12) m_err = Error("Cannot read month entry");
+				if (!istr) m_err = Error("Cannot read month entry");
 				istr.ignore();
 				istr >> m_day;
-				if (!istr || m_day != U.daysOfMonth(m_year, m_month)) m_err = Error("Cannot read day entry");
+				if (!istr) m_err = Error("Cannot read day entry");
+				*this = Date(m_year, m_month, m_day);
 			}
 			else {
 				istr >> m_year;
-				if (!istr || m_year < MIN_YEAR || m_year > MAX_YEAR) m_err = Error("Cannot read year entry");
+				if (!istr) m_err = Error("Cannot read year entry");
 				istr.ignore();
 				istr >> m_month;
-				if (!istr || m_month < 1 || m_month > 12) m_err = Error("Cannot read month entry");
+				if (!istr) m_err = Error("Cannot read month entry");
 				istr.ignore();
 				istr >> m_day;
-				if (!istr || m_day != U.daysOfMonth(m_year, m_month)) m_err = Error("Cannot read day entry");
+				if (!istr) m_err = Error("Cannot read day entry");
 				istr.ignore();
 				istr >> m_hour;
-				if (!istr || m_hour < 0 || m_month > 23) m_err = Error("Cannot read hour entry");
+				if (!istr) m_err = Error("Cannot read hour entry");
 				istr.ignore();
 				istr >> m_minute;
-				if (!istr || m_minute < 0 || m_minute > 59) m_err = Error("Cannot read minute entry");
+				if (!istr) m_err = Error("Cannot read minute entry");
+				*this = Date(m_year, m_month, m_day, m_hour, m_minute);
 			}
 		}
 		return istr;

@@ -16,6 +16,8 @@ namespace sdds {
 		bool m_dateOnly;
 		Error m_err;
 
+		void setClear();
+
 	public:
 		Date();
 		Date(int year, int month, int day);
