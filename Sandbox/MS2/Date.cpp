@@ -106,7 +106,7 @@ namespace sdds {
 			}
 			else {
 				ostr << m_year << '/' << m_month << '/' << m_day
-					<< ', ' << m_hour << ':' << m_minute;
+					<< ", " << m_hour << ':' << m_minute;
 			}
 		}
 		else {
@@ -116,7 +116,7 @@ namespace sdds {
 			}
 			else {
 				error().getMsg() << '(' << m_year << '/' << m_month
-					<< '/' << m_day << ', ' << m_hour << ':'
+					<< '/' << m_day << ", " << m_hour << ':'
 					<< m_minute << ')';
 			}
 		}
