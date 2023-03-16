@@ -163,7 +163,7 @@ namespace sdds {
 						istr.ignore();
 						istr >> m_day;
 						if (!istr) {
-							setClear();
+							*this = Date(m_year, m_month, 0);
 							m_err = Error("Cannot read day entry");
 						}
 						else {
@@ -182,28 +182,28 @@ namespace sdds {
 					istr.ignore();
 					istr >> m_month;
 					if (!istr) {
-						setClear();
+						*this = Date(m_year, 0, 0, 0, 0);
 						m_err = Error("Cannot read month entry");
 					}
 					else {
 						istr.ignore();
 						istr >> m_day;
 						if (!istr) {
-							setClear();
+							*this = Date(m_year, m_month, 0, 0, 0);
 							m_err = Error("Cannot read day entry");
 						}
 						else {
 							istr.ignore();
 							istr >> m_hour;
 							if (!istr) {
-								setClear();
+								*this = Date(m_year, m_month, m_day, 0, 0);
 								m_err = Error("Cannot read hour entry");
 							}
 							else {
 								istr.ignore();
 								istr >> m_minute;
 								if (!istr) {
-									setClear();
+									*this = Date(m_year, m_month, m_day, m_hour, 0);
 									m_err = Error("Cannot read minute entry");
 								}
 								else {
