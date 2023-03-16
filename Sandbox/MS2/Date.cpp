@@ -142,67 +142,6 @@ namespace sdds {
 
 	istream& Date::read(istream& istr)
 	{
-		if (!*this) {						//if this is in error state
-			*this = Date(0, 0, 0, 0, 0);	//set all to 0
-			error().clear();				//clear err msg
-		}
-		else {
-			if (isDateOnly()) {
-				istr >> m_year;
-				if (istr) {
-					istr.ignore();
-					istr >> m_month;
-					if (istr) {
-						istr.ignore();
-						istr >> m_day;
-						if (!istr) m_err = Error("Cannot read day entry");
-					}
-					else {
-						m_err = Error("Cannot read month entry");
-					}
-				}
-				else {
-					m_err = Error("Cannot read year entry");
-				}
-			}
-			else {
-				istr >> m_year;
-				if (istr) {
-					istr.ignore();
-					istr >> m_month;
-					if (istr) {
-						istr.ignore();
-						istr >> m_day;
-						if (istr) {
-							istr.ignore();
-							istr >> m_hour;
-							if (istr) {
-								istr.ignore();
-								istr >> m_minute;
-								if (!istr) m_err = Error("Cannot read minute entry");
-							}
-							else {
-								m_err = Error("Cannot read hour entry");
-							}
-						}
-						else {
-							m_err = Error("Cannot read day entry");
-						}
-					}
-					else {
-						m_err = Error("Cannot read month entry");
-					}
-				}
-				else {
-					m_err = Error("Cannot read year entry");
-				}
-			}
-		}
-		return istr;
-	}
-
-	ifstream& Date::load(ifstream& istr)
-	{
 		if (!*this) {						//if this is in error state, set all to 0, clear err msg
 			setClear();
 		}
@@ -236,6 +175,12 @@ namespace sdds {
 				*this = Date(m_year, m_month, m_day, m_hour, m_minute);
 			}
 		}
+		return istr;
+	}
+
+	ifstream& Date::load(ifstream& istr)
+	{
+		read(istr);
 		return istr;
 	}
 
