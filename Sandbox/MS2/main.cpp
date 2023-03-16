@@ -337,7 +337,7 @@ bool T5() {
       cout << "Data in file:  10/1/1\n> ";
       fin >> A;
       cout << "Read From file:  " << A << endl;
-      if(!A) {
+      if(!A) {      //date object is false means bool(m_err) means m_errMsg != nullptr
          cout << "Correctly detected " << A.error() << endl;
       } else {
          cout << "Your read function does not check the year entry limits after entry" << endl;
