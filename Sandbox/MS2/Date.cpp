@@ -196,6 +196,105 @@ namespace sdds {
 		}
 		return istr;
 	}
+
+	ifstream& Date::load(ifstream& istr)
+	{
+		if (!*this) {						//if this is in error state
+			*this = Date(0, 0, 0, 0, 0);	//set all to 0
+			error().clear();				//clear err msg
+		}
+		else {
+			if (isDateOnly()) {
+				istr >> m_year;
+				if (istr) {
+					istr.ignore();
+					istr >> m_month;
+					if (istr) {
+						istr.ignore();
+						istr >> m_day;
+						if (!istr) m_err = Error("Cannot read day entry");
+					}
+					else {
+						m_err = Error("Cannot read month entry");
+					}
+				}
+				else {
+					m_err = Error("Cannot read year entry");
+				}
+			}
+			else {
+				istr >> m_year;
+				if (istr) {
+					istr.ignore();
+					istr >> m_month;
+					if (istr) {
+						istr.ignore();
+						istr >> m_day;
+						if (istr) {
+							istr.ignore();
+							istr >> m_hour;
+							if (istr) {
+								istr.ignore();
+								istr >> m_minute;
+								if (!istr) m_err = Error("Cannot read minute entry");
+							}
+							else {
+								m_err = Error("Cannot read hour entry");
+							}
+						}
+						else {
+							m_err = Error("Cannot read day entry");
+						}
+					}
+					else {
+						m_err = Error("Cannot read month entry");
+					}
+				}
+				else {
+					m_err = Error("Cannot read year entry");
+				}
+			}
+		}
+		return istr;
+	}
+
+	ofstream& Date::write(std::ofstream& ostr)
+	{
+		if (*this) {
+			if (isDateOnly()) {
+				ostr << m_year << '/' << m_month << '/' << m_day;
+			}
+			else {
+				ostr << m_year << '/' << m_month << '/' << m_day
+					<< ", ";
+				if (m_hour < 10) {
+					ostr << '0' << m_hour << ':' << m_minute;	//need to do same thing for minute too? 
+				}
+				else {
+					ostr << m_hour << ':' << m_minute;
+				}
+
+			}
+		}
+		else {
+			if (isDateOnly()) {
+				error().getMsg() << '(' << m_year << '/'
+					<< m_month << '/' << m_day << ')';
+			}
+			else {
+				error().getMsg() << '(' << m_year << '/' << m_month
+					<< '/' << m_day << ", ";
+
+				if (m_hour < 10) {
+					ostr << '0' << m_hour << ':' << m_minute << ')';
+				}
+				else {
+					ostr << m_hour << ':' << m_minute << ')';
+				}
+			}
+		}
+		return ostr;
+	}
 	
 	ostream& operator<<(ostream& ostr, const Date& Ro)
 	{
@@ -203,9 +302,9 @@ namespace sdds {
 		return ostr;
 	}
 
-	std::ofstream& operator<<(std::ofstream& ostr, const Date& Ro)
+	std::ofstream& operator<<(std::ofstream& ostr, Date& Ro)
 	{
-		//fout << A; implementation?
+		Ro.write(ostr);
 		return ostr;
 	}
 
@@ -217,7 +316,7 @@ namespace sdds {
 
 	std::ifstream& operator>>(std::ifstream& istr, Date& Ro)
 	{
-		//fin >> B; implementation???
+		Ro.load(istr);
 		return istr;
 	}
 

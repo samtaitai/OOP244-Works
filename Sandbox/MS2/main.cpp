@@ -305,12 +305,12 @@ bool T5() {
       B.dateOnly(false);
       cout << "Testing operator<< and >> overload for iostream, " << endl;
       cout << "Please enter the following data and time:  2023/2/27, 1:35\n> ";
-      cin >> A;
+      cin >> A;     //from keyboard stream
       cout << "Read From file:  " << A << endl;
-      fout << A;
+      fout << A;    //write file
       fout.close();
       fin.open("date.txt");
-      fin >> B;
+      fin >> B;     //load file
       if(A != B) {
          cout << "Most likely you did not use istream and/or ostream refrences in your\n"
             "operator<< and operator>> overloads and used cin and cout instead" << endl;

@@ -32,9 +32,11 @@ namespace sdds {
 		bool isDateOnly() const;
 		std::ostream& display(std::ostream& ostr = std::cout) const;
 		std::istream& read(std::istream& istr = std::cin);
+		std::ifstream& load(std::ifstream& istr);
+		std::ofstream& write(std::ofstream& ostr);
 	};
 	std::ostream& operator<<(std::ostream& ostr, const Date& Ro);
-	std::ofstream& operator<<(std::ofstream& ostr, const Date& Ro);
+	std::ofstream& operator<<(std::ofstream& ostr, Date& Ro);
 	std::istream& operator>>(std::istream& istr, Date& Ro);
 	std::ifstream& operator>>(std::ifstream& istr, Date& Ro);
 }
