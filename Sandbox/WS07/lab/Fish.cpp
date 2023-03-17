@@ -12,7 +12,7 @@ using namespace std;
 
 namespace sdds {
 	//Pet(const char* name, int age = 0, double incrBaseCharge = 0);
-	Fish::Fish(const char* thename, int theage, double thecharge): Pet(thename) //Pet(thename, 0, 2.0)
+	Fish::Fish(const char* thename, int theage, double thecharge): Pet(thename, 0, COST_BASE) //Pet(thename, 0, 2.0)
 	{
 		//do nothing
 	}
@@ -20,13 +20,13 @@ namespace sdds {
 	{
 		Pet::feed();
 		if (this->isAlive()) {
-			addCharge(0.1);
+			addCharge(COST_FEED);
 		}
 	}
 	void Fish::reSpawn()
 	{
 		Pet::reSpawn();
-		addCharge(0.5);
+		addCharge(COST_REVIVE);
 	}
 	Fish& Fish::operator++(int)
 	{
@@ -43,7 +43,7 @@ namespace sdds {
 	Fish& Fish::operator=(const Fish& Ro)
 	{
 		Pet::operator=(Ro);
-		addCharge(4.0);
+		addCharge(COST_BASE * 2);
 		return *this;
 	}
 	ostream& operator<<(ostream& ostr, Fish& Ro) {
