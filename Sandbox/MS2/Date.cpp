@@ -360,7 +360,7 @@ namespace sdds {
 					istr.ignore();
 					istr >> m_month;
 					if (!istr) {
-						setClear();
+						*this = Date(m_year, 0, 0);
 						m_err = Error("Cannot read month entry");
 					} 
 					else {
