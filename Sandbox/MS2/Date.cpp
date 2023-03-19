@@ -34,11 +34,21 @@ namespace sdds {
 	{
 		*this = Date();
 		m_dateOnly = true;
-		if (year < MIN_YEAR || year > MAX_YEAR) m_err = "Invalid Year";
+		if (year < MIN_YEAR || year > MAX_YEAR) {
+			m_err = "Invalid Year";
+		}
+		else {
+			if (month < 1 || month > 12) {
+				m_err = "Invalid Month";
+			}
+			else {
+				if (day < 1 || day > U.daysOfMonth(m_year, m_month)) {
+					m_err = "Invalid Day";
+				}
+			}
+		}
 		m_year = year;
-		if (month < 1 || month > 12) m_err = "Invalid Month";
 		m_month = month;
-		if (day < 1 || day > U.daysOfMonth(m_year, m_month)) m_err = "Invalid Day";
 		m_day = day;
 		m_hour = 0;
 		m_minute = 0;
@@ -47,9 +57,15 @@ namespace sdds {
 	{
 		*this = Date(year, month, day);
 		m_dateOnly = false;
-		if (hour < 0 || hour > 23) m_err = "Invalid Hour";
+		if (hour < 0 || hour > 23) {
+			m_err = "Invalid Hour";
+		}
+		else {
+			if (min < 0 || min > 59) {
+				m_err = "Invalid Minute";
+			}
+		}
 		m_hour = hour;
-		if (min < 0 || min > 59) m_err = "Invalid Minute"; 
 		m_minute = min;
 	}
 
