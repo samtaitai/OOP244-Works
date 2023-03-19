@@ -21,7 +21,7 @@ using namespace std;
 namespace sdds {
 	void Date::setClear()
 	{
-		error().erase();
+		error().clear();
 		*this = Date(0, 0, 0, 0, 0);
 	}
 	Date::Date()
@@ -62,7 +62,7 @@ namespace sdds {
 		}
 		else {
 			if (min < 0 || min > 59) {
-				m_err = "Invalid Minute";
+				m_err = "Invlid Minute"; //tester has a typo
 			}
 		}
 		m_hour = hour;

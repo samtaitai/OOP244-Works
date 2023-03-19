@@ -21,8 +21,8 @@ namespace sdds {
 		char* m_errMsg;
 
 	public:
+		void setEmpty();
 		void clear();
-		void erase();
 		Error();
 		Error(const char* msg);
 		Error(const Error& Ro);

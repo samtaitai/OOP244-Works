@@ -19,11 +19,11 @@ that my professor provided to complete my project milestones.
 using namespace std;
 
 namespace sdds {
-	void Error::clear()
+	void Error::setEmpty()
 	{
 		m_errMsg = nullptr;
 	}
-	void Error::erase()	//not for creation, for update
+	void Error::clear()	//not for creation, for update
 	{
 		if (*this) {
 			delete[] m_errMsg;
@@ -37,11 +37,11 @@ namespace sdds {
 	}
 	Error::Error()
 	{
-		clear();
+		setEmpty();
 	}
 	Error::Error(const char* msg)
 	{
-		clear();
+		setEmpty();
 		if (msg) {
 			m_errMsg = new char[strlen(msg) + 1];
 			strcpy(m_errMsg, msg);
@@ -50,7 +50,7 @@ namespace sdds {
 	//copy constructor
 	Error::Error(const Error& Ro)
 	{
-		clear();
+		setEmpty();
 		operator=(Ro);
 	}
 	Error& Error::operator=(const Error& Ro)
