@@ -22,6 +22,7 @@ namespace sdds {
 
 	public:
 		void clear();
+		void erase();
 		Error();
 		Error(const char* msg);
 		Error(const Error& Ro);

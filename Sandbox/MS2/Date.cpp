@@ -21,8 +21,8 @@ using namespace std;
 namespace sdds {
 	void Date::setClear()
 	{
+		error().erase();
 		*this = Date(0, 0, 0, 0, 0);
-		error().clear();
 	}
 	Date::Date()
 	{

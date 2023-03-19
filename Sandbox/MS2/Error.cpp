@@ -23,6 +23,13 @@ namespace sdds {
 	{
 		m_errMsg = nullptr;
 	}
+	void Error::erase()	//not for creation, for update
+	{
+		if (*this) {
+			delete[] m_errMsg;
+			m_errMsg = nullptr;
+		}
+	}
 	ostream& Error::getMsg(ostream& ostr) const
 	{
 		if (*this) ostr << m_errMsg;
@@ -40,6 +47,7 @@ namespace sdds {
 			strcpy(m_errMsg, msg);
 		}
 	}
+	//copy constructor
 	Error::Error(const Error& Ro)
 	{
 		clear();
