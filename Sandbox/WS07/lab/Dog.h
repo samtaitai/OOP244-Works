@@ -13,6 +13,9 @@ and only copied the code that my professor provided to complete my workshops and
 
 namespace sdds {
 	class Dog :public Pet {
+		const double COST_BASE = 4.00;		// Fee: Initial purchase
+		const double COST_FEED = 0.25;		// Fee: For each feeding
+		const double COST_REVIVE = 1.00;		// Fee: Respawn if perished
 		int m_numWalks;
 
 	public:

@@ -13,6 +13,10 @@ and only copied the code that my professor provided to complete my workshops and
 
 namespace sdds {
 	class Fish:public Pet {
+		const double COST_BASE = 2.00;		// Fee: Initial purchase
+		const double COST_FEED = 0.10;		// Fee: For each feeding
+		const double COST_REVIVE = 0.50;		// Fee: Respawn if perished
+
 	public:
 		//Pet(const char* name, int age = 0, double incrBaseCharge = 0);
 		Fish(const char* name, int age = 0, double increBaseCharge = 2.0);

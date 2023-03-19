@@ -11,7 +11,7 @@ and only copied the code that my professor provided to complete my workshops and
 using namespace std;
 
 namespace sdds {
-	Dog::Dog(const char* thename, int theage, double thecharge): Pet(thename) //Pet(thename, 0, 4.0)
+	Dog::Dog(const char* thename, int theage, double thecharge): Pet(thename, 0, COST_BASE) //Pet(thename, 0, 4.0)
 	{
 		m_numWalks = 0;
 	}
@@ -36,14 +36,14 @@ namespace sdds {
 	{
 		Pet::operator=(Ro);
 		m_numWalks = Ro.m_numWalks;
-		addCharge(8.0);
+		addCharge(COST_BASE * 2);
 		return *this;
 	}
 	void Dog::feed()
 	{
 		Pet::feed();
 		if (this->isAlive()) {
-			addCharge(0.25);
+			addCharge(COST_FEED);
 		}
 	}
 	void Dog::walk()
@@ -56,7 +56,7 @@ namespace sdds {
 	{
 		Pet::reSpawn();
 		m_numWalks = 0;
-		addCharge(1.0);
+		addCharge(COST_REVIVE);
 	}
 	int Dog::getWalks()
 	{
