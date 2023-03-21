@@ -1,0 +1,18 @@
+In order to overwrtie base class's method, derived class's method has to have the same prototype; even 'const' does matter. 
+
+A class does have at least pure virtual function, the class becomes abstract class. In this case, Video class doesn't have apperently pure virtual function inside itself; but it inherites Media class which its every mehods is pure virtual function; Video class doesn't implement Media's play function so it inherits it directly which makes Video class abstract class.
+
+In order to make virtual destructor pure virtual, the syntax needs to be: 
+virtual ~Destructor() = default;
+or
+virtual ~Destructor(){}; 
+both work. 
+
+Because I've just finished MS2 and I think it's facsinating that calling a constructor inside 'load' function and let the constructor does all validation work. So I tried the same thick inside those concrete classes(VRVideo, Animation) to validate its attribute values. Like this: 
+
+*this = Animation(Video::get(), m_dimension);
+
+But the compiler reports that I don't have an assign operator for it. I get that because obiviously I need a copy assignment to do it. 
+
+Besides, Video class has copy assignment and copy constructor but we stopped them from acting. From what I understood today's lecture, if I made them available, derived classes(VRVideo, Animation) would inherit rule of three in Video class and be able to copy itself.   
+
