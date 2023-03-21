@@ -22,9 +22,9 @@ namespace sdds {
 
 	std::ostream& Animation::play(std::ostream& ostr) const
 	{
-		if (m_dimension != 0) {
+		if (Video::get() != 0 && m_dimension != 0) {
 			ostr << "Animation is in " << m_dimension << "-D" << endl;
-			ostr << "Video length = " << Video::get() << endl;
+			ostr << "Video length = " << Video::get();
 		}
 		return ostr;
 	}

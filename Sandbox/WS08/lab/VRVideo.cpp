@@ -32,9 +32,9 @@ namespace sdds {
 	}
 	std::ostream& VRVideo::play(std::ostream& ostr) const
 	{
-		if (m_equipment) { //or make bool conversion operator
+		if (Video::get() != 0 && m_equipment != 0) { //or make bool conversion operator
 			ostr << "VRVideo requires " << m_equipment << endl;
-			ostr << "Video length = " << Video::get() << endl;
+			ostr << "Video length = " << Video::get();
 		}
 		
 		return ostr;
