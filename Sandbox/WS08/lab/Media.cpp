@@ -9,13 +9,13 @@ and only copied the code that my professor provided to complete my workshops and
 #include "Media.h"
 
 namespace sdds {
-	std::ostream& sdds::operator<<(std::ostream& ostr, const Media& m)
+	std::ostream& operator<<(std::ostream& ostr, const Media& m)
 	{
 		m.play(ostr);
 		return ostr;
 	}
 
-	std::istream& sdds::operator>>(std::istream& istr, Media& m)
+	std::istream& operator>>(std::istream& istr, Media& m)
 	{
 		m.load(istr);
 		return istr;
