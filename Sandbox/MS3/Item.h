@@ -1,5 +1,7 @@
 #ifndef SDDS_ITEM_H
 #define SDDS_ITEM_H
+#include <iostream>
+#include <fstream>
 #include "PosIO.h"
 #include "POS.h"
 #include "Error.h"
