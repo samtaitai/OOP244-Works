@@ -1,3 +1,18 @@
+/* Citation and Sources...
+Final Project Milestone 2
+Module: Date
+Filename: Date.cpp
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/19  MS2 submission
+-----------------------------------------------------------
+Provided by https://stackoverflow.com/questions/16248359/
+setprecision(), setfill(), setw()
+-----------------------------------------------------------*/
+#include <iomanip>
 #include "Date.h"
 #include "Error.h"
 
@@ -6,8 +21,8 @@ using namespace std;
 namespace sdds {
 	void Date::setClear()
 	{
-		*this = Date(0, 0, 0, 0, 0);
 		error().clear();
+		*this = Date(0, 0, 0, 0, 0);
 	}
 	Date::Date()
 	{
@@ -19,11 +34,21 @@ namespace sdds {
 	{
 		*this = Date();
 		m_dateOnly = true;
-		if (year < MIN_YEAR || year > MAX_YEAR) m_err = "Invalid Year";
+		if (year < MIN_YEAR || year > MAX_YEAR) {
+			m_err = "Invalid Year";
+		}
+		else {
+			if (month < 1 || month > 12) {
+				m_err = "Invalid Month";
+			}
+			else {
+				if (day < 1 || day > U.daysOfMonth(m_year, m_month)) {
+					m_err = "Invalid Day";
+				}
+			}
+		}
 		m_year = year;
-		if (month < 1 || month > 12) m_err = "Invalid Month";
 		m_month = month;
-		if (day < 1 || day > U.daysOfMonth(m_year, m_month)) m_err = "Invalid Day";
 		m_day = day;
 		m_hour = 0;
 		m_minute = 0;
@@ -32,9 +57,15 @@ namespace sdds {
 	{
 		*this = Date(year, month, day);
 		m_dateOnly = false;
-		if (hour < 0 || hour > 23) m_err = "Invalid Hour";
+		if (hour < 0 || hour > 23) {
+			m_err = "Invalid Hour";
+		}
+		else {
+			if (min < 0 || min > 59) {
+				m_err = "Invlid Minute"; //tester has a typo
+			}
+		}
 		m_hour = hour;
-		if (min < 0 || min > 59) m_err = "Invalid Minute"; 
 		m_minute = min;
 	}
 
@@ -107,238 +138,33 @@ namespace sdds {
 		if (*this) {	//non error state
 			if (isDateOnly()) {
 				ostr << m_year << '/';
-				if (m_month < 10) { 
-					ostr << '0' << m_month << '/'; 
-					if (m_day < 10) {
-						ostr << '0' << m_day;
-					}
-					else {
-						ostr << m_day;
-					}
-				}
-				else { 
-					ostr << m_month << '/'; 
-					if (m_day < 10) {
-						ostr << '0' << m_day;
-					}
-					else {
-						ostr << m_day;
-					}
-				}
+				ostr << fixed << setprecision(2) << setfill('0');
+				ostr << setw(2) << m_month << '/' 
+					<< setw(2) << m_day;
 			}
 			else {		//include time
 				ostr << m_year << '/';
-				if (m_month < 10) {
-					ostr << '0' << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-
-					}
-					else {
-						ostr << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-					}
-				}
-				else {
-					ostr << m_month << '/';
-					ostr << '0' << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-						else {
-							ostr << m_hour;
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-
-					}
-					else {
-						ostr << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute;
-							}
-							else {
-								ostr << m_minute;
-							}
-						}
-					}
-				}
+				ostr << fixed << setprecision(2) << setfill('0');
+				ostr << setw(2) << m_month << '/'
+					<< setw(2) << m_day << ", "
+					<< setw(2) << m_hour << ':'
+					<< setw(2) << m_minute;
 			}
 		}
 		else {		//error state
 			if (isDateOnly()) {
 				error().getMsg() << '(' << m_year << '/';
-				if (m_month < 10) {
-					ostr << '0' << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ')';
-					}
-					else {
-						ostr << m_day << ')';
-					}
-				}
-				else {
-					ostr << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ')';
-					}
-					else {
-						ostr << m_day << ')';
-					}
-				}
+				ostr << fixed << setprecision(2) << setfill('0');
+				ostr << setw(2) << m_month << '/'
+					<< setw(2) << m_day << ')';
 			}
-			else {
+			else {	//include time
 				error().getMsg() << '(' << m_year << '/';
-				if (m_month < 10) {
-					ostr << '0' << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-
-					}
-					else {
-						ostr << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-					}
-				}
-				else {
-					ostr << m_month << '/';
-					if (m_day < 10) {
-						ostr << '0' << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-
-					}
-					else {
-						ostr << m_day << ", ";
-						if (m_hour < 10) {
-							ostr << '0' << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-						else {
-							ostr << m_hour << ':';
-							if (m_minute < 10) {
-								ostr << '0' << m_minute << ')';
-							}
-							else {
-								ostr << m_minute << ')';
-							}
-						}
-					}
-				}
+				ostr << fixed << setprecision(2) << setfill('0');
+				ostr << setw(2) << m_month << '/'
+					<< setw(2) << m_day << ", "
+					<< setw(2) << m_hour << ':'
+					<< setw(2) << m_minute << ')';
 			}
 		}
 		return ostr;

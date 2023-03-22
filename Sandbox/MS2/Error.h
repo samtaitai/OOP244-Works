@@ -1,3 +1,17 @@
+/* Citation and Sources...
+Final Project Milestone 2
+Module: Error
+Filename: Error.h
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/19  MS2 submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
 #ifndef SDDS_ERROR_H
 #define SDDS_ERROR_H
 #include <iostream>
@@ -7,6 +21,7 @@ namespace sdds {
 		char* m_errMsg;
 
 	public:
+		void setEmpty();
 		void clear();
 		Error();
 		Error(const char* msg);

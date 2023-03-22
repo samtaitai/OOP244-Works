@@ -1,13 +1,14 @@
 /* Citation and Sources...
-Final Project Milestone 1
+Final Project Milestone 2
 Module: Utils
-Filename: Utils.cpp
-Version 1.0
+Filename: Utils.h
+Version 1.1
 Author	Soyon Lee
 Revision History
 -----------------------------------------------------------
 Date      Reason
 2023/3/7  MS1 submission
+2023/3/19  MS2 submission
 -----------------------------------------------------------
 Provided by the professor:
 getInt();
