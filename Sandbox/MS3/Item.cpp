@@ -187,8 +187,8 @@ namespace sdds {
 		cout << "Sku" << endl;
 		do {
 			cout << "> ";
-			istr.getline(m_SKU, MAX_SKU_LEN);
-			if (istr) done = true;
+			istr.get(m_SKU,',');
+			if (istr && strlen(m_SKU) <= MAX_SKU_LEN) done = true;
 			else {
 				istr.clear();
 				istr.ignore(9999, '\n');
@@ -196,11 +196,12 @@ namespace sdds {
 			}
 		} while (!done);
 		done = false;
+		istr.ignore(9999, '\n');
 		cout << "Name" << endl;
 		do {
 			cout << "> ";
-			istr.getline(name, MAX_NAME_LEN);
-			if (istr) {
+			istr.get(name, ',');
+			if (istr && strlen(name) <= MAX_NAME_LEN) {
 				delete[] m_name;	//in case of update
 				m_name = new char[strlen(name) + 1];
 				strcpy(m_name, name);
@@ -213,6 +214,7 @@ namespace sdds {
 			}
 		} while (!done);
 		done = false;
+		istr.ignore(9999, '\n');
 		cout << "Price" << endl;
 		do {
 			cout << "> ";
@@ -281,13 +283,17 @@ namespace sdds {
 		double price{};
 		bool taxed{};
 		int quantity{};
+		//char firstLetter{};
 
-		istr >> sku;
-		if (!istr || strlen(sku) > MAX_SKU_LEN) m_errState = ERROR_POS_SKU;
+		//T, <- should take care of it 
+		//istr.get(firstLetter);
+		istr.ignore(2, '\n');
+		istr.get(sku, MAX_SKU_LEN, ',');
+		if (!istr) m_errState = ERROR_POS_SKU;
 		else {
 			istr.ignore();
-			istr >> name;
-			if (!istr || name == nullptr || strlen(name) > MAX_NAME_LEN) m_errState = ERROR_POS_NAME;
+			istr.get(name, MAX_NAME_LEN, ',');
+			if (!istr || name == nullptr) m_errState = ERROR_POS_NAME;
 			else {
 				istr.ignore();
 				istr >> price;
