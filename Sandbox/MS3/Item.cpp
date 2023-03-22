@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include <iostream>
 #include "Item.h"
@@ -45,10 +46,10 @@ namespace sdds {
 	{
 		delete[] m_name;
 	}
-	bool Item::operator==(const Item& Ro) const
+	bool Item::operator==(const char* sku) const
 	{
 		bool result{};
-		if (Ro.m_name && m_SKU == Ro.m_SKU) result = true;
+		if (sku && strcmp(m_SKU,sku) == 0) result = true;
 		return result;
 	}
 	bool Item::operator>(const Item& Ro) const
@@ -95,6 +96,28 @@ namespace sdds {
 	Item::operator bool() const
 	{
 		return !bool(m_errState);	//if error is true(exist), Item is false(errorous)
+	}
+	Item& Item::displayType(int form)
+	{
+		if (form == 1) m_displayType = POS_LIST;
+		else if (form == 2) m_displayType = POS_FORM;
+		return *this;
+	}
+	double Item::cost() const
+	{
+		double result{};
+		if (m_taxed == true) result = m_price * (1 + TAX);
+		else result = m_price;
+		return result;
+	}
+	int Item::quantity() const
+	{
+		return m_quantity;
+	}
+	Item& Item::clear()
+	{
+		m_errState.clear();
+		return *this;
 	}
 	std::ostream& Item::write(std::ostream& ostr) const
 	{
@@ -164,7 +187,11 @@ namespace sdds {
 			cout << "> ";
 			istr >> m_SKU;
 			if (istr && strlen(m_SKU) <= MAX_SKU_LEN) done = true;
-			else cout << "SKU too long" << endl;
+			else {
+				istr.clear();
+				istr.ignore(9999, '\n');
+				cout << "SKU too long" << endl;
+			}
 		} while (!done);
 		done = false;
 		cout << "Name" << endl;
@@ -172,32 +199,57 @@ namespace sdds {
 			cout << "> ";
 			istr >> m_name;
 			if (istr && strlen(m_name) <= MAX_NAME_LEN) done = true;
-			else cout << "Item name too long" << endl;
+			else {
+				istr.clear();
+				istr.ignore(9999, '\n');
+				cout << "Item name too long" << endl;
+			}
 		} while (!done);
 		done = false;
 		cout << "Price" << endl;
 		do {
 			cout << "> ";
 			istr >> m_price;
-			if (istr && strlen(m_name) >= 0) done = true;
-			else cout << "Invalid price value" << endl;
+			if (istr && m_price >= 0) done = true;
+			else {
+				istr.clear();
+				istr.ignore(9999, '\n');
+				cout << "Invalid price value" << endl;
+			}
 		} while (!done);
 		done = false;
 		cout << "Taxed?" << endl;
+		cout << "(Y)es/(N)o: ";
+		istr >> ch;
+		if (!istr || ch != 'y' && ch != 'n') {
+			while (!done) {
+				istr.clear();
+				istr.ignore(9999, '\n');
+				cout << "Only 'y' and 'n' are acceptable: ";
+				istr >> ch;
+				if (istr && ch == 'y') {
+					done = true;
+						m_taxed = true;
+				}
+				else if (istr && ch == 'n') {
+					done = true;
+						m_taxed = false;
+				}
+			}
+		}
+		done = false;
+		cout << "Quantity" << endl;
 		do {
-			cout << "(Y)es/(N)o: ";
-			istr >> ch;
-			if (istr && (ch == 'Y' || ch == 'y')) {
-				done = true;
-				m_taxed = true;
+			cout << "> ";
+			istr >> m_quantity;
+			if (istr && m_quantity > 0 && m_quantity < MAX_STOCK_NUMBER) done = true;
+			else {
+				istr.clear();
+				istr.ignore(9999, '\n');
+				cout << "Invalid quantity value" << endl;
 			}
-			else if (istr && (ch == 'N' || ch == 'n')) {
-				done = true;
-				m_taxed = false;
-			}
-			else cout << "Invalid price value" << endl;
 		} while (!done);
-		
+
 		return istr;
 	}
 	std::ofstream& Item::save(std::ofstream& ostr) const
@@ -208,5 +260,68 @@ namespace sdds {
 		ostr.precision(2);
 		ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity << endl;
 		return ostr;
+	}
+	std::ifstream& Item::load(std::ifstream& istr)
+	{
+		clear();
+
+		char sku[MAX_SKU_LEN + 1];		//should I set this like 9999?
+		char name[MAX_NAME_LEN + 1];
+		double price;
+		bool taxed;
+		int quantity;
+
+		istr >> sku;
+		if (!istr || strlen(sku) > MAX_SKU_LEN) m_errState = ERROR_POS_SKU;
+		else {
+			istr.ignore();
+			istr >> name;
+			if (!istr || name == nullptr || strlen(name) > MAX_NAME_LEN) m_errState = ERROR_POS_NAME;
+			else {
+				istr.ignore();
+				istr >> price;
+				if (!istr || price < 0) m_errState = ERROR_POS_PRICE;
+				else {
+					istr.ignore();
+					istr >> taxed;
+					if (!istr || taxed != 1 && taxed != 0) m_errState = ERROR_POS_TAX;
+					else {
+						istr.ignore();
+						istr >> quantity;
+						if (!istr || quantity < 0 || quantity > MAX_STOCK_NUMBER) m_errState = ERROR_POS_QTY;
+						else {
+							strcpy(m_SKU, sku);
+							delete[] m_name;	//in case of update
+							m_name = new char[strlen(name) + 1];
+							strcpy(m_name, name);
+							m_price = price;
+							if (taxed == 1) m_taxed = true;
+							m_quantity = quantity;
+						}
+					}
+				}
+			}
+		}
+
+		return istr;
+	}
+	std::ostream& Item::bprint(std::ostream& ostr) const
+	{
+		ostr << "| ";
+		ostr.width(20);
+		ostr.setf(ios::left);
+		ostr << m_name;
+		ostr.unsetf(ios::left);
+		ostr << '|';
+		ostr.width(11);
+		ostr << m_price;
+		if (m_taxed == true) ostr << " T |";
+		else ostr << "   |";
+
+		return ostr;
+	}
+	double operator+=(Item& Lo, const Item& Ro)
+	{
+		return (Lo.cost()+Ro.cost()) * (Lo.quantity() + Ro.quantity());
 	}
 }

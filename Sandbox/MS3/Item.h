@@ -7,7 +7,7 @@
 
 namespace sdds {
 	class Item: public PosIO {
-		char m_SKU[MAX_SKU_LEN];
+		char m_SKU[MAX_SKU_LEN + 1];
 		char* m_name;	//up to MAX_NAME_LEN characters
 		double m_price;
 		bool m_taxed; 
@@ -22,28 +22,28 @@ namespace sdds {
 		//construct & rule of three
 		Item();
 		Item(Item& Ro);
-		Item& operator=(const Item& Ro);
+		virtual Item& operator=(const Item& Ro);
 		virtual ~Item();
 
 		//operator
-		bool operator==(const Item& Ro) const;
-		bool operator>(const Item& Ro) const;
-		int operator+=(const int quantity);
-		int operator-=(const int quantity);
-		operator bool() const;
+		virtual bool operator==(const char* sku) const;
+		virtual bool operator>(const Item& Ro) const;
+		virtual int operator+=(const int quantity);
+		virtual int operator-=(const int quantity);
+		virtual operator bool() const;
 
-		//pure virtual methods
-		virtual Item& displayType(int form) const = 0;
-		virtual double cost() const = 0;
-		virtual int quantity() const = 0;
-		virtual Item& clear() = 0;
+		//pure virtual methods??
+		virtual Item& displayType(int form);
+		virtual double cost() const;
+		virtual int quantity() const;
+		virtual Item& clear();
 
 		//io
-		std::ostream& write(std::ostream&) const;
-		std::istream& read(std::istream&);
-		std::ofstream& save(std::ofstream&) const;
-		std::ifstream& load(std::ifstream&);
-		std::ostream& bPrint(std::ostream&) const;
+		virtual std::ostream& write(std::ostream&) const;
+		virtual std::istream& read(std::istream&);
+		virtual std::ofstream& save(std::ofstream&) const;
+		virtual std::ifstream& load(std::ifstream&);
+		virtual std::ostream& bprint(std::ostream&) const;
 
 	};
 	double operator+=(Item& Lo, const Item& Ro);
