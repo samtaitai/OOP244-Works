@@ -128,10 +128,18 @@ namespace sdds {
 				ostr.width(7);
 				ostr.setf(ios::left);
 				ostr << m_SKU;
-				ostr.unsetf(ios::left);
 				ostr << '|';
 				ostr.width(20);
-				ostr << m_name;
+				if(strlen(m_name) <= 20) ostr << m_name;
+				else {
+					char temp[21];
+					for (int i = 0; i < 20; i++) {
+						temp[i] = m_name[i];
+					}
+					temp[20] = '\0';	//this is it
+					ostr << temp;
+				}
+				ostr.unsetf(ios::left);
 				ostr << '|';
 				ostr.width(7);
 				ostr.setf(ios::fixed);
@@ -149,8 +157,8 @@ namespace sdds {
 				ostr << m_quantity;
 				ostr << '|';
 				ostr.width(9);
-				ostr << m_price * m_quantity << '|';
-
+				if(m_taxed == false) ostr << m_price * m_quantity << '|';
+				else ostr << m_price * m_quantity * (1+TAX) << '|';
 			}
 			else if (m_displayType == POS_FORM) {
 				ostr << "=============v" << endl;
@@ -285,9 +293,6 @@ namespace sdds {
 		int quantity{};
 		//char firstLetter{};
 
-		//T, <- should take care of it 
-		//istr.get(firstLetter);
-		istr.ignore(2, '\n');
 		istr.get(sku, MAX_SKU_LEN, ',');
 		if (!istr) m_errState = ERROR_POS_SKU;
 		else {
