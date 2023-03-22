@@ -181,12 +181,14 @@ namespace sdds {
 	{
 		bool done = false;
 		char ch{};
+		char name[1024];
+		strcpy(name, "\0");
 
 		cout << "Sku" << endl;
 		do {
 			cout << "> ";
-			istr >> m_SKU;
-			if (istr && strlen(m_SKU) <= MAX_SKU_LEN) done = true;
+			istr.getline(m_SKU, MAX_SKU_LEN);
+			if (istr) done = true;
 			else {
 				istr.clear();
 				istr.ignore(9999, '\n');
@@ -197,8 +199,13 @@ namespace sdds {
 		cout << "Name" << endl;
 		do {
 			cout << "> ";
-			istr >> m_name;
-			if (istr && strlen(m_name) <= MAX_NAME_LEN) done = true;
+			istr.getline(name, MAX_NAME_LEN);
+			if (istr) {
+				delete[] m_name;	//in case of update
+				m_name = new char[strlen(name) + 1];
+				strcpy(m_name, name);
+				done = true;
+			}
 			else {
 				istr.clear();
 				istr.ignore(9999, '\n');
@@ -218,6 +225,7 @@ namespace sdds {
 			}
 		} while (!done);
 		done = false;
+		istr.ignore(9999, '\n');
 		cout << "Taxed?" << endl;
 		cout << "(Y)es/(N)o: ";
 		istr >> ch;
@@ -238,6 +246,7 @@ namespace sdds {
 			}
 		}
 		done = false;
+		istr.ignore(9999, '\n');
 		cout << "Quantity" << endl;
 		do {
 			cout << "> ";
@@ -265,11 +274,13 @@ namespace sdds {
 	{
 		clear();
 
-		char sku[MAX_SKU_LEN + 1];		//should I set this like 9999?
-		char name[MAX_NAME_LEN + 1];
-		double price;
-		bool taxed;
-		int quantity;
+		char sku[1024];		//it should be way longer than max_sku_len
+		char name[1024];
+		strcpy(sku, "\0");
+		strcpy(name, "\0");
+		double price{};
+		bool taxed{};
+		int quantity{};
 
 		istr >> sku;
 		if (!istr || strlen(sku) > MAX_SKU_LEN) m_errState = ERROR_POS_SKU;
