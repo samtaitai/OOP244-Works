@@ -54,22 +54,24 @@ namespace sdds {
 	}
 	bool Item::operator>(const Item& Ro) const
 	{
-		/*bool result{};
-		int i{};*/
+		bool result = false;
+		int i{};
 
-		/*if (strlen(m_name) < strlen(Ro.m_name)) {
-			do {
-				if (m_name[i] > Ro.m_name[i]) result = true;
-				i++;
-			} while (m_name[i] == Ro.m_name[i] && i < strlen(m_name));
+		if (strlen(m_name) < strlen(Ro.m_name)) {
+			for (i = 0; i < strlen(m_name); i++) {
+				if (m_name[i] != Ro.m_name[i]) {
+					if (m_name[i] > Ro.m_name[i]) result = true;
+				}
+			}
 		}
 		else {
-			do {
-				if (m_name[i] > Ro.m_name[i]) result = true;
-				i++;
-			} while (m_name[i] == Ro.m_name[i] && i < strlen(Ro.m_name));
-		}*/
-		return true;
+			for (i = 0; i < strlen(Ro.m_name); i++) {
+				if (m_name[i] != Ro.m_name[i]) {
+					if (m_name[i] > Ro.m_name[i]) result = true;
+				}
+			}
+		}
+		return result;
 	}
 	int Item::operator+=(const int quantity)
 	{
@@ -175,7 +177,7 @@ namespace sdds {
 				else {
 					ostr << "N/A" << endl;
 				}
-				ostr << "Stock Qty:   " << m_quantity;
+				ostr << "Stock Qty:   " << m_quantity << endl;
 
 			}
 		}
@@ -349,7 +351,6 @@ namespace sdds {
 		ostr << m_price;
 		if (m_taxed == true) ostr << "| T |" << endl;
 		else ostr << "|   |" << endl;
-
 		return ostr;
 	}
 	double operator+=(double Lo, const Item& Ro)
