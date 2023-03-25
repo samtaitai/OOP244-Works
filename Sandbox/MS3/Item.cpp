@@ -29,7 +29,11 @@ namespace sdds {
 	Item& Item::operator=(const Item& Ro)
 	{
 		if (Ro.m_name && this != &Ro) {
+			
+			clear();
 			delete[] m_name;
+	
+
 			m_name = new char[strlen(Ro.m_name) + 1];	//assume string length validation was checked?  
 			strcpy(m_name, Ro.m_name);
 			strcpy(m_SKU, Ro.m_SKU);
@@ -273,11 +277,10 @@ namespace sdds {
 	}
 	std::ofstream& Item::save(std::ofstream& ostr) const
 	{
-		//T will be taken care in main.cpp? 
-		ostr << ',' << m_SKU << ',' << m_name << ',';
+		ostr << "T," << m_SKU << ',' << m_name << ',';
 		ostr.setf(ios::fixed);
 		ostr.precision(2);
-		ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity << endl;
+		ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity;
 		return ostr;
 	}
 	std::ifstream& Item::load(std::ifstream& istr)
@@ -292,6 +295,7 @@ namespace sdds {
 		bool taxed{};
 		int quantity{};
 		//char firstLetter{};
+
 
 		istr.get(sku, MAX_SKU_LEN, ',');
 		if (!istr) m_errState = ERROR_POS_SKU;
