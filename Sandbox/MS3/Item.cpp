@@ -1,3 +1,17 @@
+/* Citation and Sources...
+Final Project Milestone 3
+Module: Item
+Filename: Item.cpp
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/25  MS3 submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include <iostream>
@@ -350,9 +364,9 @@ namespace sdds {
 		ostr.unsetf(ios::left);
 		ostr << '|';
 		ostr.width(11);
-		ostr << m_price;
-		if (m_taxed == true) ostr << "| T |" << endl;
-		else ostr << "|   |" << endl;
+		if (m_taxed == true) ostr << m_price * (1 + TAX) << "| T |" << endl;
+		else ostr << m_price << "|   |" << endl;
+
 		return ostr;
 	}
 	double operator+=(double Lo, const Item& Ro)

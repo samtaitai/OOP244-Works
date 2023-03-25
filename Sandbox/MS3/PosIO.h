@@ -1,3 +1,17 @@
+/* Citation and Sources...
+Final Project Milestone 3
+Module: PosIO
+Filename: PosIO.h
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/25  MS3 submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
 #ifndef SDDS_POSIO_H
 #define SDDS_POSIO_H
 #include <iostream>
