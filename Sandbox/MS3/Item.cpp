@@ -363,11 +363,11 @@ namespace sdds {
 		}
 		ostr.unsetf(ios::left);
 		ostr << '|';
-		ostr.width(11);
-		if (m_taxed == true) ostr << m_price * (1 + TAX) << ' ';
-		else ostr << m_price << ' ';
-		if (m_taxed == true) ostr << "|  T  |" << endl;
-		else ostr << "|     |" << endl;
+		ostr.width(10);
+		if (m_taxed == true) ostr << m_price * (1 + TAX);
+		else ostr << m_price;
+		if (m_taxed == true) ostr << " |  T  |" << endl;
+		else ostr << " |     |" << endl;
 
 		return ostr;
 	}
