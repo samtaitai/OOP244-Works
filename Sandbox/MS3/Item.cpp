@@ -297,12 +297,12 @@ namespace sdds {
 		//cout << istr.eof()?"eof":"not";
 
 		if (!istr.eof()) {				//if not end of file, do below
-			istr.get(sku, MAX_SKU_LEN, ',');
-			if (!istr) m_errState = ERROR_POS_SKU;
+			istr.get(sku, 1023, ',');
+			if (!istr || strlen(sku) > MAX_SKU_LEN) m_errState = ERROR_POS_SKU;
 			else {
 				istr.ignore();
-				istr.get(name, MAX_NAME_LEN, ',');
-				if (!istr) m_errState = ERROR_POS_NAME;
+				istr.get(name, 1023, ',');
+				if (!istr || strlen(name) > MAX_NAME_LEN) m_errState = ERROR_POS_NAME;
 				else {
 					istr.ignore();
 					istr >> price;
@@ -322,12 +322,14 @@ namespace sdds {
 								strcpy(m_name, name);
 								m_price = price;
 								if (taxed == 1) m_taxed = true;
+								else if (taxed == 0) m_taxed = false;
 								m_quantity = quantity;
 							}
 						}
 					}
 				}
 			}
+			istr.clear();							//without this, if(badfile) -> false
 		}
 		return istr;
 	}
