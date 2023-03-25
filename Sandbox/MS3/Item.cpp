@@ -69,7 +69,7 @@ namespace sdds {
 	bool Item::operator>(const Item& Ro) const
 	{
 		bool result = false;
-		int i{};
+		unsigned int i{};
 
 		if (strlen(m_name) < strlen(Ro.m_name)) {
 			for (i = 0; i < strlen(m_name); i++) {
@@ -255,7 +255,7 @@ namespace sdds {
 		cout << "Taxed?" << endl;
 		cout << "(Y)es/(N)o: ";
 		istr >> ch;
-		if (!istr || ch != 'y' && ch != 'n') {
+		if (!istr || (ch != 'y' && ch != 'n')) {
 			while (!done) {
 				istr.clear();
 				istr.ignore(9999, '\n');
@@ -324,7 +324,7 @@ namespace sdds {
 					else {
 						istr.ignore();
 						istr >> taxed;
-						if (!istr || taxed != 1 && taxed != 0) m_errState = ERROR_POS_TAX;
+						if (!istr || (taxed != 1 && taxed != 0)) m_errState = ERROR_POS_TAX;
 						else {
 							istr.ignore();
 							istr >> quantity;
