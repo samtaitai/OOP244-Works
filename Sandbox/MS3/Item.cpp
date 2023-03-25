@@ -29,11 +29,7 @@ namespace sdds {
 	Item& Item::operator=(const Item& Ro)
 	{
 		if (Ro.m_name && this != &Ro) {
-			
-			clear();
 			delete[] m_name;
-	
-
 			m_name = new char[strlen(Ro.m_name) + 1];	//assume string length validation was checked?  
 			strcpy(m_name, Ro.m_name);
 			strcpy(m_SKU, Ro.m_SKU);
@@ -58,10 +54,10 @@ namespace sdds {
 	}
 	bool Item::operator>(const Item& Ro) const
 	{
-		bool result{};
-		int i{};
+		/*bool result{};
+		int i{};*/
 
-		if (strlen(m_name) < strlen(Ro.m_name)) {
+		/*if (strlen(m_name) < strlen(Ro.m_name)) {
 			do {
 				if (m_name[i] > Ro.m_name[i]) result = true;
 				i++;
@@ -72,8 +68,8 @@ namespace sdds {
 				if (m_name[i] > Ro.m_name[i]) result = true;
 				i++;
 			} while (m_name[i] == Ro.m_name[i] && i < strlen(Ro.m_name));
-		}
-		return result;
+		}*/
+		return true;
 	}
 	int Item::operator+=(const int quantity)
 	{
@@ -99,7 +95,7 @@ namespace sdds {
 	}
 	Item::operator bool() const
 	{
-		return !bool(m_errState);	//if error is true(exist), Item is false(errorous)
+		return !m_errState;	
 	}
 	Item& Item::displayType(int form)
 	{
@@ -296,39 +292,41 @@ namespace sdds {
 		int quantity{};
 		//char firstLetter{};
 
+		//cout << istr.eof()?"eof":"not";
 
-		istr.get(sku, MAX_SKU_LEN, ',');
-		if (!istr) m_errState = ERROR_POS_SKU;
-		else {
-			istr.ignore();
-			istr.get(name, MAX_NAME_LEN, ',');
-			if (!istr || name == nullptr) m_errState = ERROR_POS_NAME;
+		if (!istr.eof()) {				//if not end of file, do below
+			istr.get(sku, MAX_SKU_LEN, ',');
+			if (!istr) m_errState = ERROR_POS_SKU;
 			else {
 				istr.ignore();
-				istr >> price;
-				if (!istr || price < 0) m_errState = ERROR_POS_PRICE;
+				istr.get(name, MAX_NAME_LEN, ',');
+				if (!istr) m_errState = ERROR_POS_NAME;
 				else {
 					istr.ignore();
-					istr >> taxed;
-					if (!istr || taxed != 1 && taxed != 0) m_errState = ERROR_POS_TAX;
+					istr >> price;
+					if (!istr || price < 0) m_errState = ERROR_POS_PRICE;
 					else {
 						istr.ignore();
-						istr >> quantity;
-						if (!istr || quantity < 0 || quantity > MAX_STOCK_NUMBER) m_errState = ERROR_POS_QTY;
+						istr >> taxed;
+						if (!istr || taxed != 1 && taxed != 0) m_errState = ERROR_POS_TAX;
 						else {
-							strcpy(m_SKU, sku);
-							delete[] m_name;	//in case of update
-							m_name = new char[strlen(name) + 1];
-							strcpy(m_name, name);
-							m_price = price;
-							if (taxed == 1) m_taxed = true;
-							m_quantity = quantity;
+							istr.ignore();
+							istr >> quantity;
+							if (!istr || quantity < 0 || quantity > MAX_STOCK_NUMBER) m_errState = ERROR_POS_QTY;
+							else {
+								strcpy(m_SKU, sku);
+								delete[] m_name;	//in case of update
+								m_name = new char[strlen(name) + 1];
+								strcpy(m_name, name);
+								m_price = price;
+								if (taxed == 1) m_taxed = true;
+								m_quantity = quantity;
+							}
 						}
 					}
 				}
 			}
 		}
-
 		return istr;
 	}
 	std::ostream& Item::bprint(std::ostream& ostr) const
