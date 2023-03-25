@@ -332,18 +332,26 @@ namespace sdds {
 		ostr << "| ";
 		ostr.width(20);
 		ostr.setf(ios::left);
-		ostr << m_name;
+		if (strlen(m_name) <= 20) ostr << m_name;
+		else {
+			char temp[21];
+			for (int i = 0; i < 20; i++) {
+				temp[i] = m_name[i];
+			}
+			temp[20] = '\0';	//this is it
+			ostr << temp;
+		}
 		ostr.unsetf(ios::left);
 		ostr << '|';
 		ostr.width(11);
 		ostr << m_price;
-		if (m_taxed == true) ostr << " T |";
-		else ostr << "   |";
+		if (m_taxed == true) ostr << "| T |" << endl;
+		else ostr << "|   |" << endl;
 
 		return ostr;
 	}
-	double operator+=(Item& Lo, const Item& Ro)
+	double operator+=(double Lo, const Item& Ro)
 	{
-		return (Lo.cost()+Ro.cost()) * (Lo.quantity() + Ro.quantity());
+		return Lo + (Ro.cost() * Ro.quantity());
 	}
 }

@@ -48,7 +48,7 @@ namespace sdds {
 		virtual std::ostream& bprint(std::ostream&) const;
 
 	};
-	double operator+=(Item& Lo, const Item& Ro);
+	double operator+=(double Lo, const Item& Ro);
 }
 
 #endif 
