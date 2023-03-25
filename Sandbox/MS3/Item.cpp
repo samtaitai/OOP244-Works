@@ -182,7 +182,7 @@ namespace sdds {
 				ostr << "Sku:         " << m_SKU << endl;
 				ostr.setf(ios::fixed);
 				ostr.precision(2);
-				ostr << "Price        " << m_price << endl;
+				ostr << "Price:       " << m_price << endl;
 				ostr << "Price + tax: ";
 				if (m_taxed == true) {
 
@@ -364,8 +364,10 @@ namespace sdds {
 		ostr.unsetf(ios::left);
 		ostr << '|';
 		ostr.width(11);
-		if (m_taxed == true) ostr << m_price * (1 + TAX) << "| T |" << endl;
-		else ostr << m_price << "|   |" << endl;
+		if (m_taxed == true) ostr << m_price * (1 + TAX) << ' ';
+		else ostr << m_price << ' ';
+		if (m_taxed == true) ostr << "|  T  |" << endl;
+		else ostr << "|     |" << endl;
 
 		return ostr;
 	}
