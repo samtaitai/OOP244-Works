@@ -1,3 +1,11 @@
+/*
+Name: So Yon Lee
+Email: slee550@myseneca.ca
+Student ID: 179142211
+Date: 28 Mar 2023
+I have done all the coding by myself
+and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 #include "Contact.h"
 #include "Tools.h"
 
@@ -43,11 +51,7 @@ namespace sdds {
 			Person::write(ostr);
 			ostr << endl;
 			ostr << m_addr << endl;
-			ostr << m_city << ' ';
-			for (unsigned int i = 0; i < 2; i++) {	//is it only way?
-				ostr << m_province[i];
-			}
-			ostr << endl;
+			ostr << m_city << ' ' << m_province << endl;
 			for (unsigned int i = 0; i < 3; i++) {
 				ostr << m_postalCode[i];
 			}
