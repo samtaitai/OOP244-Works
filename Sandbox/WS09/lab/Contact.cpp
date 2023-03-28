@@ -29,6 +29,7 @@ namespace sdds {
 	}
 	Contact::~Contact()			//erase everything because of virtual
 	{
+		cout << "Contact destructor\n";
 		//call Person's destructor automatically
 		~*this;
 	}
@@ -70,10 +71,15 @@ namespace sdds {
 	}
 	void Contact::operator~()	 
 	{
+<<<<<<< HEAD
 		Person::operator~(); //should do this manually
+=======
+		Person::operator~(); 
+>>>>>>> 4caa732d217540d03f832ba3314ec7006ca27798
 		delete[] m_addr;
 		delete[] m_city;
 		m_addr = m_city = nullptr;
+		cout << "Contact ~ working...\n";
 	}
 	std::istream& operator>>(std::istream& leftOperand, Contact& rightOperand)
 	{

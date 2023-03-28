@@ -29,6 +29,7 @@ namespace sdds {
       return *this;
    }
    Person::~Person() {
+       std::cout << "Person destructor\n";
       ~*this;
    }
    std::istream& Person::read(std::istream& istr) {
@@ -60,6 +61,7 @@ namespace sdds {
       delete[] m_lastName;
       delete[] m_middleName;
       m_name = m_lastName = m_middleName = nullptr;
+      std::cout << "Person ~ working...\n";
    }
 
    std::istream& operator>>(std::istream& leftOperand, Person& rightOperand) {
