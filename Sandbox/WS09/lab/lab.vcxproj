@@ -26,7 +26,7 @@
   <ItemGroup>
     <ClCompile Include="Contact.cpp" />
     <ClCompile Include="Person.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Tools.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

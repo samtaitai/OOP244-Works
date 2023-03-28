@@ -34,9 +34,10 @@ namespace sdds {
 	}
 	std::istream& Contact::read(std::istream& istr)
 	{
+		//istr.clear();
 		if (!istr.eof()) {
-			~*this;				//clean up only Derived's
-			Person::read(istr);	//this will clean up Base's 
+			~*this;
+			Person::read(istr);	
 			m_addr = dynRead(istr, ',');
 			m_city = dynRead(istr, ',');
 			istr.getline(m_province, 3, ',');
@@ -67,9 +68,9 @@ namespace sdds {
 	{
 		return m_addr && m_addr[0] && m_city && m_city[0] && m_province[0] && m_postalCode[0];
 	}
-	void Contact::operator~()	//when you want to erase only Derived's part? 
+	void Contact::operator~()	 
 	{
-		//Person::operator~();
+		Person::operator~(); //should do this manually
 		delete[] m_addr;
 		delete[] m_city;
 		m_addr = m_city = nullptr;
