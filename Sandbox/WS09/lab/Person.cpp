@@ -32,12 +32,14 @@ namespace sdds {
       ~*this;
    }
    std::istream& Person::read(std::istream& istr) {
-      ~*this;
-      m_name = dynRead(istr, ',');
-      m_middleName = dynRead(istr, ',');
-      m_lastName = dynRead(istr);
-      if (istr.fail()) ~*this;
-      return istr;
+       if (!istr.eof()) {
+           ~*this;
+           m_name = dynRead(istr, ',');
+           m_middleName = dynRead(istr, ',');
+           m_lastName = dynRead(istr);
+           if (istr.fail()) ~*this;
+       }
+       return istr;
    }
    std::ostream& Person::write(std::ostream& ostr) const {
       if (*this) {

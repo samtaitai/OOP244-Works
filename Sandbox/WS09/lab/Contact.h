@@ -19,6 +19,7 @@ namespace sdds {
 		void operator~();
 	};
 	std::istream& operator>>(std::istream& leftOperand, Contact& rightOperand);
+	std::istream& operator>>(std::ifstream& leftOperand, Contact& rightOperand);
 	std::ostream& operator<<(std::ostream& leftOperand, const Contact& rightOperand);
 }
 

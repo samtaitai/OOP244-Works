@@ -19,31 +19,26 @@ namespace sdds {
 		}
 		return *this;
 	}
-	Contact::~Contact()
+	Contact::~Contact()			//erase everything because of virtual
 	{
-		~*this;
+		//call Person's destructor automatically
+		delete[] m_addr;
+		delete[] m_city;
 	}
 	std::istream& Contact::read(std::istream& istr)
 	{
-
-		~*this;	 
-		Person::read(istr);
-		//If any data other than the middle name is missing or exceeds the field length, \
-		the Contact should be put in an invalid state.
-		m_addr = dynRead(istr, ',');
-		m_city = dynRead(istr, ',');
-
-		/*istr.get(m_province, 512, ',');
-		if (strLen(m_province) > 2) ~*this;
-		istr.ignore();
-		istr >> m_postalCode;
-		if (strLen(m_postalCode) > 6) ~*this;*/
-
-		istr.getline(m_province, 3, ',');
-		if (!istr) ~*this;
-		istr.getline(m_postalCode, 7);
-		if (!istr) ~*this;
-
+		if (!istr.eof()) {
+			~*this;				//clean up only Derived's
+			Person::read(istr);	//this will clean up Base's 
+			m_addr = dynRead(istr, ',');
+			m_city = dynRead(istr, ',');
+			istr.getline(m_province, 3, ',');
+			istr.getline(m_postalCode, 7);
+			if (istr.fail()) {
+				~*this;
+				//istr.clear();
+			}
+		}
 		return istr;
 	}
 	std::ostream& Contact::write(std::ostream& ostr) const
@@ -64,6 +59,7 @@ namespace sdds {
 			for (unsigned int i = 3; i < 6; i++) {
 				ostr << m_postalCode[i];
 			}
+			ostr << endl;
 		}
 		return ostr;
 	}
@@ -71,9 +67,9 @@ namespace sdds {
 	{
 		return m_addr && m_addr[0] && m_city && m_city[0] && m_province[0] && m_postalCode[0];
 	}
-	void Contact::operator~()
+	void Contact::operator~()	//when you want to erase only Derived's part? 
 	{
-		Person::operator~();
+		//Person::operator~();
 		delete[] m_addr;
 		delete[] m_city;
 		m_addr = m_city = nullptr;
@@ -83,6 +79,13 @@ namespace sdds {
 		rightOperand.read(leftOperand);
 		return leftOperand;
 	}
+
+	std::istream& operator>>(std::ifstream& leftOperand, Contact& rightOperand)
+	{
+		if (leftOperand) rightOperand.read(leftOperand);
+		return leftOperand;
+	}
+
 	std::ostream& operator<<(std::ostream& leftOperand, const Contact& rightOperand)
 	{
 		rightOperand.write(leftOperand);
