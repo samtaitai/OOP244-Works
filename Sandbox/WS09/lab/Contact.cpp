@@ -52,7 +52,11 @@ namespace sdds {
 			Person::write(ostr);
 			ostr << endl;
 			ostr << m_addr << endl;
-			ostr << m_city << ' ' << m_province << endl;
+			ostr << m_city << ' ';
+			for (unsigned int i = 0; i < 2; i++) {	//is it only way?
+				ostr << m_province[i];
+			}
+			ostr << endl;
 			for (unsigned int i = 0; i < 3; i++) {
 				ostr << m_postalCode[i];
 			}
