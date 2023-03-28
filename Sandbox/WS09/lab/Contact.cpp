@@ -22,8 +22,7 @@ namespace sdds {
 	Contact::~Contact()			//erase everything because of virtual
 	{
 		//call Person's destructor automatically
-		delete[] m_addr;
-		delete[] m_city;
+		~*this;
 	}
 	std::istream& Contact::read(std::istream& istr)
 	{
@@ -34,10 +33,7 @@ namespace sdds {
 			m_city = dynRead(istr, ',');
 			istr.getline(m_province, 3, ',');
 			istr.getline(m_postalCode, 7);
-			if (istr.fail()) {
-				~*this;
-				//istr.clear();
-			}
+			if (istr.fail() || strLen(m_postalCode) != 6) ~*this;
 		}
 		return istr;
 	}

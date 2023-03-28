@@ -6,8 +6,8 @@ namespace sdds {
 	class Contact :public Person {
 		char* m_addr = nullptr;
 		char* m_city = nullptr;
-		char m_province[2]{};
-		char m_postalCode[6]{};
+		char m_province[3]{};	//srsly???? 2 + 1!!
+		char m_postalCode[7]{};
 	public:
 		Contact() = default;
 		Contact(const Contact& Ro);
