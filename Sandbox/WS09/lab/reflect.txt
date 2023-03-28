@@ -1,0 +1,26 @@
+I was wondering if I use the same function for istream and ifstream. For a function like this: 
+
+std::istream& read(std::istream& istr);
+
+In milestone3, I made 2 sets of IO functions like this:
+
+virtual std::ostream& write(std::ostream&) const;
+virtual std::istream& read(std::istream&);
+virtual std::ofstream& save(std::ofstream&) const;
+virtual std::ifstream& load(std::ifstream&); 
+
+I was thinking that because istream and ifstream are in the same family(hierarchy), they might be able to share the same funciton in the polymorphic way.
+
+Hence this time, I made only one set of IO function but I felt like I should different helper functions like this cause helpers are not part of the class hierarchy:
+
+std::istream& operator>>(std::istream& leftOperand, Contact& rightOperand);
+std::istream& operator>>(std::ifstream& leftOperand, Contact& rightOperand); 
+
+and it turned out it worked. 
+
+Another thing that I learned is, in this workshop, we introduced ~ operator which main function is to deallocate resources. 
+Hence, in both classes, what those destructors do is actually is calling ~ operator. 
+What I found is, Contact's destructor automatically calls Person's destructor even though I didn't explictly call it inside Contact's destructor. 
+However, when I call ~ operator itself, it doesn't automatically call Person's ~ operator. 
+
+In a case of copy constructor, the complier automatically call Base's default constructor even though there's no explicit code to do it. Because it is a special method. However, copy assignment should call Base's copy assignment inside the function body; the case of ~ operator works in the same way I suppose. 
