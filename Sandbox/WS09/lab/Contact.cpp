@@ -25,23 +25,24 @@ namespace sdds {
 	}
 	std::istream& Contact::read(std::istream& istr)
 	{
-		/*char t_province[512]{};
-		char t_postalCode[512]{};*/
 
-		~*this;	//like setEmpty? 
+		~*this;	 
 		Person::read(istr);
 		//If any data other than the middle name is missing or exceeds the field length, \
 		the Contact should be put in an invalid state.
 		m_addr = dynRead(istr, ',');
 		m_city = dynRead(istr, ',');
-		istr.get(m_province, 512, ',');
+
+		/*istr.get(m_province, 512, ',');
 		if (strLen(m_province) > 2) ~*this;
-		//else strCpy(m_province, t_province);
 		istr.ignore();
 		istr >> m_postalCode;
-		if (strLen(m_postalCode) > 6) ~*this;
-		//else strCpy(m_postalCode, t_postalCode);
-		
+		if (strLen(m_postalCode) > 6) ~*this;*/
+
+		istr.getline(m_province, 3, ',');
+		if (!istr) ~*this;
+		istr.getline(m_postalCode, 7);
+		if (!istr) ~*this;
 
 		return istr;
 	}
@@ -52,13 +53,19 @@ namespace sdds {
 			ostr << endl;
 			ostr << m_addr << endl;
 			ostr << m_city << ' ' << m_province << endl;
-			ostr << m_postalCode;
+			for (unsigned int i = 0; i < 3; i++) {
+				ostr << m_postalCode[i];
+			}
+			ostr << ' ';
+			for (unsigned int i = 3; i < 6; i++) {
+				ostr << m_postalCode[i];
+			}
 		}
 		return ostr;
 	}
 	Contact::operator bool() const
 	{
-		return m_addr != nullptr && m_province[0] != '\0';
+		return m_addr && m_addr[0] && m_city && m_city[0] && m_province[0] && m_postalCode[0];
 	}
 	void Contact::operator~()
 	{
