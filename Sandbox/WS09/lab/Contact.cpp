@@ -48,18 +48,23 @@ namespace sdds {
 	}
 	std::ostream& Contact::write(std::ostream& ostr) const
 	{
+		char temp[8]{};
+		char tempPt1[4]{};
+		char tempPt2[4]{};
+
 		if (*this) {
 			Person::write(ostr);
 			ostr << endl;
 			ostr << m_addr << endl;
 			ostr << m_city << ' ' << m_province << endl;
 			for (unsigned int i = 0; i < 3; i++) {
-				ostr << m_postalCode[i];
+				tempPt1[i] = m_postalCode[i];
+				tempPt2[i] = m_postalCode[i+3];
 			}
-			ostr << ' ';
-			for (unsigned int i = 3; i < 6; i++) {
-				ostr << m_postalCode[i];
-			}
+			strCat(temp, tempPt1);
+			strCat(temp, " ");
+			strCat(temp, tempPt2);
+			ostr << temp;
 			ostr << endl;
 		}
 		return ostr;
