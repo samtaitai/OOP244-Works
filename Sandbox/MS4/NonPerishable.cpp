@@ -1,5 +1,7 @@
 #include "NonPerishable.h"
 
+using namespace std;
+
 namespace sdds {
 	char sdds::NonPerishable::itemType() const
 	{
@@ -13,7 +15,7 @@ namespace sdds {
 				ostr << "     N / A   |";
 			}
 			else if (m_displayType == POS_FORM) {
-				ostr << "=============^";
+				ostr << "=============^" << endl;
 			}
 		}
 		return ostr;

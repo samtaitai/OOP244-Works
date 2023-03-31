@@ -289,10 +289,13 @@ namespace sdds {
 	}
 	std::ofstream& Item::save(std::ofstream& ostr) const
 	{
-		ostr << "T," << m_SKU << ',' << m_name << ',';
-		ostr.setf(ios::fixed);
-		ostr.precision(2);
-		ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity;
+		if (*this) {
+			ostr << "T," << m_SKU << ',' << m_name << ',';
+			ostr.setf(ios::fixed);
+			ostr.precision(2);
+			ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity;
+		}
+		
 		return ostr;
 	}
 	std::ifstream& Item::load(std::ifstream& istr)
@@ -306,9 +309,6 @@ namespace sdds {
 		double price{};
 		bool taxed{};
 		int quantity{};
-		//char firstLetter{};
-
-		//cout << istr.eof()?"eof":"not";
 
 		if (!istr.eof()) {				//if not end of file, do below
 			istr.get(sku, 1023, ',');
