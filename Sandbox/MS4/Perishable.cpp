@@ -26,7 +26,7 @@ std::ostream& sdds::Perishable::write(std::ostream& ostr) const
 	if (*this) {
 		Item::write(ostr);
 		if (m_displayType == POS_LIST) {
-			ostr << ' ' << m_expiryDate << " |";
+			ostr << "  " << m_expiryDate << " |";
 		}
 		else if (m_displayType == POS_FORM) {
 			ostr << "Expiry date: " << m_expiryDate << endl;
@@ -45,8 +45,8 @@ std::istream& sdds::Perishable::read(std::istream& istr)
 		int day{};
 		Date temp;
 
-		cout << "Expiry date(YYYY/MM/DD)" << endl;
-		cout << '>';
+		cout << "Expiry date (YYYY/MM/DD)" << endl;
+		cout << "> ";
 		istr >> year;
 		istr.ignore();
 		istr >> month;
