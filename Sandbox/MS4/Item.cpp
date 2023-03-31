@@ -177,7 +177,7 @@ namespace sdds {
 				ostr << '|';
 				ostr.width(9);
 				if(m_taxed == false) ostr << m_price * m_quantity << '|';
-				else ostr << m_price * m_quantity * (1+TAX) << '|';
+				else ostr << m_price * (1 + TAX) * m_quantity  << '|';
 			}
 			else if (m_displayType == 2) {
 				ostr << "=============v" << endl;
