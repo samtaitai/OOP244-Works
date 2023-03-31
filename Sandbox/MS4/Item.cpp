@@ -9,8 +9,8 @@ Revision History
 Date      Reason
 2023/3/25  MS3 submission
 -----------------------------------------------------------
-I have done all the coding by myself and only copied the code
-that my professor provided to complete my project milestones.
+sourced by outside of lecture codes: 
+ifstream.peek() (source:https://cplusplus.com/reference/istream/istream/peek/)
 -----------------------------------------------------------*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
@@ -115,8 +115,8 @@ namespace sdds {
 	}
 	Item& Item::displayType(int form)
 	{
-		if (form == 1) m_displayType = POS_LIST;
-		else if (form == 2) m_displayType = POS_FORM;
+		if (form == POS_LIST) m_displayType = 1;
+		else if (form == POS_FORM) m_displayType = 2;
 		return *this;
 	}
 	double Item::cost() const
@@ -138,9 +138,11 @@ namespace sdds {
 	std::ostream& Item::write(std::ostream& ostr) const
 	{
 		//when ostr.width(), default is right alignment
+		unsigned int i{};
 
 		if (*this) {
-			if (m_displayType == POS_LIST) {
+			if (m_displayType == 1) {
+				ostr.fill(' ');		//why 0-padding from 2nd item?
 				ostr.width(7);
 				ostr.setf(ios::left);
 				ostr << m_SKU;
@@ -148,8 +150,8 @@ namespace sdds {
 				ostr.width(20);
 				if(strlen(m_name) <= 20) ostr << m_name;
 				else {
-					char temp[21];
-					for (int i = 0; i < 20; i++) {
+					char temp[21]{};
+					for (i = 0; i < 20; i++) {
 						temp[i] = m_name[i];
 					}
 					temp[20] = '\0';	//this is it
@@ -176,7 +178,7 @@ namespace sdds {
 				if(m_taxed == false) ostr << m_price * m_quantity << '|';
 				else ostr << m_price * m_quantity * (1+TAX) << '|';
 			}
-			else if (m_displayType == POS_FORM) {
+			else if (m_displayType == 2) {
 				ostr << "=============v" << endl;
 				ostr << "Name:        " << m_name << endl;
 				ostr << "Sku:         " << m_SKU << endl;
@@ -186,7 +188,7 @@ namespace sdds {
 				ostr << "Price + tax: ";
 				if (m_taxed == true) {
 
-					ostr << m_price * m_quantity << endl;
+					ostr << m_price * (TAX + 1) << endl;
 				}
 				else {
 					ostr << "N/A" << endl;
@@ -284,13 +286,12 @@ namespace sdds {
 				cout << "Invalid quantity value" << endl;
 			}
 		} while (!done);
-
 		return istr;
 	}
 	std::ofstream& Item::save(std::ofstream& ostr) const
 	{
 		if (*this) {
-			ostr << "T," << m_SKU << ',' << m_name << ',';
+			ostr << itemType() << ',' << m_SKU << ',' << m_name << ',';
 			ostr.setf(ios::fixed);
 			ostr.precision(2);
 			ostr << m_price << ',' << int(m_taxed) << ',' << m_quantity;
@@ -310,7 +311,7 @@ namespace sdds {
 		bool taxed{};
 		int quantity{};
 
-		if (!istr.eof()) {				//if not end of file, do below
+		if (istr.peek() != EOF) {				//!istr.eof() not working
 			istr.get(sku, 1023, ',');
 			if (!istr || strlen(sku) > MAX_SKU_LEN) m_errState = ERROR_POS_SKU;
 			else {
@@ -343,8 +344,9 @@ namespace sdds {
 					}
 				}
 			}
-			istr.clear();							//without this, if(badfile) -> false
+										
 		}
+		istr.clear();
 		return istr;
 	}
 	std::ostream& Item::bprint(std::ostream& ostr) const

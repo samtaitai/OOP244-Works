@@ -15,8 +15,7 @@ std::ostream& sdds::Perishable::write(std::ostream& ostr) const
 			ostr << ' ' << m_expiryDate << " |";
 		}
 		else if (m_displayType == POS_FORM) {
-			ostr << "Expiry date: " << endl;
-			ostr << m_expiryDate << endl;
+			ostr << "Expiry date: " << m_expiryDate << endl;
 			ostr << "=============^" << endl;
 		}
 	}

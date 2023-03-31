@@ -24,7 +24,7 @@ int main() {
    div("NonPerishable Test");
    nonPerishableTest();
    div("Perishable Test");
-   perishableTest();
+   //perishableTest();
    return 0;
 }
 void perishableTest() {
@@ -34,8 +34,8 @@ void perishableTest() {
    Perishable PI[10];
    ifstream input("perishableInput.csv");
    ofstream output("perishableOutput.csv");
-   while((input >> PI[i]).ignore(100, '\n')) {
-      output << PI[i++] << endl;
+   while((input >> PI[i]).ignore(100, '\n')) {  //load
+       output << PI[i++] << endl;               //save
    }
    cout << "Enter the following:" << endl;
    cout << "Sku" << endl;
@@ -50,13 +50,13 @@ void perishableTest() {
    cout << "> 10" << endl;
    cout << "Expiry date(YYYY/MM/DD)" << endl;
    cout << "> 2023/04/10" << endl << endl;
-   cin >> PI[i];
-   output << PI[i++];
+   cin >> PI[i];                            //read
+   output << PI[i++];                       //save
    num = i;
    output.close();
    div("LIST");
    for(i = 0; i < num; i++) {
-      cout << PI[i].displayType(POS_LIST) << endl;
+      cout << PI[i].displayType(POS_LIST) << endl;  //write
    }
    div("FORM");
    for(i = 0; i < num; i++) {
