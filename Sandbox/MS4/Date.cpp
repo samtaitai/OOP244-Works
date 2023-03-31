@@ -1,5 +1,5 @@
 /* Citation and Sources...
-Final Project Milestone 2
+Final Project Milestone 4
 Module: Date
 Filename: Date.cpp
 Version 1.0
@@ -8,9 +8,10 @@ Revision History
 -----------------------------------------------------------
 Date      Reason
 2023/3/19  MS2 submission
+2023/3/31  MS4 submission
 -----------------------------------------------------------
-Provided by https://stackoverflow.com/questions/16248359/
-setprecision(), setfill(), setw()
+Sourced by outside of lecture codes: 
+setprecision(), setfill(), setw() (source: https://stackoverflow.com/questions/16248359/)
 -----------------------------------------------------------*/
 #include <iomanip>
 #include "Date.h"

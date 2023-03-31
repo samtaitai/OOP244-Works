@@ -1,3 +1,17 @@
+/* Citation and Sources...
+Final Project Milestone 4
+Module: Perishable
+Filename: Perishable.cpp
+Version 1.0
+Author	Soyon Lee
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2023/3/31  MS4 submission
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my project milestones.
+-----------------------------------------------------------*/
 #include "Perishable.h"
 
 using namespace std;

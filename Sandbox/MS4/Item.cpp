@@ -1,13 +1,14 @@
 /* Citation and Sources...
-Final Project Milestone 3
+Final Project Milestone 4
 Module: Item
 Filename: Item.cpp
-Version 1.0
+Version 1.1
 Author	Soyon Lee
 Revision History
 -----------------------------------------------------------
 Date      Reason
 2023/3/25  MS3 submission
+2023/3/31  MS4 submission
 -----------------------------------------------------------
 sourced by outside of lecture codes: 
 ifstream.peek() (source:https://cplusplus.com/reference/istream/istream/peek/)
@@ -344,9 +345,9 @@ namespace sdds {
 					}
 				}
 			}
-										
+			istr.clear();	//should be here. in line 349, it caused crash.
 		}
-		istr.clear();
+		
 		return istr;
 	}
 	std::ostream& Item::bprint(std::ostream& ostr) const

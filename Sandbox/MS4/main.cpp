@@ -24,7 +24,7 @@ int main() {
    div("NonPerishable Test");
    nonPerishableTest();
    div("Perishable Test");
-   //perishableTest();
+   perishableTest();
    return 0;
 }
 void perishableTest() {
