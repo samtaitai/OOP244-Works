@@ -24,7 +24,7 @@ namespace sdds {
 	class PosApp {
 
 		char m_filename[128 + 1]{};
-		Item* m_iptr{}; //how to initialize? 
+		Item* m_iptr[MAX_NO_ITEMS]; //how to initialize? 
 		int m_nptr{};
 		//action title?
 

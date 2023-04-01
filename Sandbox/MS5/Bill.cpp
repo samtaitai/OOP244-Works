@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Bill.h"
 #include "Date.h"
+
 using namespace std;
 namespace sdds {
    void Bill::clear() {

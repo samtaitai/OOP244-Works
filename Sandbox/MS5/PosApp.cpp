@@ -79,16 +79,17 @@ namespace sdds {
 		//Loop through the items up to nptr and display the row and \
 		the Items in POS_LIST format, calculating the total asset value of the Items.
 		//Print the footer and the total asset as follows:
-		sort(m_iptr, m_nptr);
+		
+		//sort(m_iptr, m_nptr);	//[ERROR]cannot instantiate abstract class
 		cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
 		cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
 		for (i = 0; i < m_nptr; i++) {
-			cout << m_iptr[i].displayType(POS_LIST) << endl;
-			if (m_iptr[i].isTaxed() == true) {
-				totalAsset += m_iptr[i].cost() * (1 + TAX) * m_iptr[i].quantity();
+			cout << m_iptr[i]->displayType(POS_LIST) << endl;
+			if (m_iptr[i]->isTaxed() == true) {
+				totalAsset += m_iptr[i]->cost() * (1 + TAX) * m_iptr[i]->quantity();
 			}
 			else {
-				totalAsset += m_iptr[i].cost() * m_iptr[i].quantity();
+				totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
 			}
 		}
 		//later, if(sth == true), print totalAsset; otherwise not
@@ -97,7 +98,7 @@ namespace sdds {
 		cout.setf(ios::fixed);
 		cout.precision(2);
 		cout << totalAsset << "| " << endl;
-		cout << "-----------------------------------------------^--------------^";
+		cout << "-----------------------------------------------^--------------^" << endl;
 
 		return *this;
 	}
@@ -130,6 +131,7 @@ namespace sdds {
 	void PosApp::loadRecs(const char* filename)
 	{
 		char ch{};
+		unsigned int i{};
 
 		//like this?
 		actionTitle("Loading Items");
@@ -151,22 +153,26 @@ namespace sdds {
 			emptyFile.close();
 			strcpy(m_filename, "\0");
 			m_nptr = 0;
-			delete[] m_iptr;
-			m_iptr = nullptr;
+			//delete[] m_iptr;
+			//m_iptr = nullptr;
 		}
-		else if (input && m_nptr < MAX_NO_ITEMS) {
-			input.get(ch);
-			if (ch == 'N') {
-				NonPerishable np;
-				np.load(input);
-				m_iptr[m_nptr] = np;
+		else if (input) {
+			
+			while (input.peek() != EOF && m_nptr <= MAX_NO_ITEMS) {
+				input.get(ch);
+				input.ignore();
+				if (ch == 'N') {
+					Item* itemPtr = new NonPerishable;
+					input >> *itemPtr;
+					m_iptr[m_nptr] = itemPtr;
+				}
+				else if (ch == 'P') {
+					Item* itemPtr = new Perishable;
+					input >> *itemPtr;
+					m_iptr[m_nptr] = itemPtr;
+				}
 				m_nptr++;
-			}
-			else if (ch == 'P') {
-				Perishable ps;
-				ps.load(input);
-				m_iptr[m_nptr] = ps;
-				m_nptr++;
+				input.ignore(); //remove \n
 			}
 		}
 	}
@@ -212,12 +218,12 @@ namespace sdds {
 	}
 	void PosApp::actionTitle(const char* title)
 	{
-		cout.setf(ios::left);
+		cout << ">>>> ";
 		cout.width(77);
 		cout.fill('.');
-		cout << ">>>> " << title;
+		cout.setf(ios::left);
+		cout << title;
 		cout << endl;
-		cout.unsetf(ios::left);
 	}
 	PosApp::PosApp(const char* filename)
 	{
@@ -225,7 +231,7 @@ namespace sdds {
 	}
 	PosApp::~PosApp()
 	{
-		delete[] m_iptr;
+		//delete[] m_iptr;
 	}
 	PosApp& PosApp::run () 
 	{
