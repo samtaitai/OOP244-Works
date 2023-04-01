@@ -72,6 +72,7 @@ namespace sdds {
 		unsigned int i{};
 		int totalAsset{};
 		actionTitle("Listing Items");
+		cout.unsetf(ios::left);
 
 		/*implementation*/
 		//Sort all the Items in Iptr array based on their name in ascending order.
@@ -84,7 +85,10 @@ namespace sdds {
 		cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
 		cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
 		for (i = 0; i < m_nptr; i++) {
-			cout << m_iptr[i]->displayType(POS_LIST) << endl;
+			cout.fill(' ');
+			cout.width(4);
+			cout << i + 1;
+			cout << " | " << m_iptr[i]->displayType(POS_LIST) << endl;
 			if (m_iptr[i]->isTaxed() == true) {
 				totalAsset += m_iptr[i]->cost() * (1 + TAX) * m_iptr[i]->quantity();
 			}
