@@ -129,7 +129,7 @@ namespace sdds {
 		insert them into the ofstream instance up to nptr.
 		ofstream output(m_filename);
 		for (i = 0; i < m_nptr; i++) {
-			output << m_iptr[i];
+			output << *(m_iptr[i]) << endl;
 		}
 	}
 	void PosApp::loadRecs(const char* filename)
