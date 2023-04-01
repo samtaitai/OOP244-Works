@@ -48,7 +48,6 @@ namespace sdds {
 		PosApp(PosApp& R) = delete;
 		PosApp& operator=(const PosApp& R) = delete;
 		PosApp& run();
-		//void swap(Item* a, Item* b);
 		void sort(Item** array, int size);
 		
 	};

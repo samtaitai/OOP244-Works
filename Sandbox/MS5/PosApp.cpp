@@ -69,7 +69,7 @@ namespace sdds {
 	PosApp& PosApp::listItems() 
 	{
 		unsigned int i{};
-		int totalAsset{};
+		double totalAsset{};
 		actionTitle("Listing Items");
 		cout.unsetf(ios::left);
 
@@ -89,12 +89,8 @@ namespace sdds {
 			cout.width(4);
 			cout << i + 1;
 			cout << " | " << m_iptr[i]->displayType(POS_LIST) << endl;
-			if (m_iptr[i]->isTaxed() == true) {
-				totalAsset += m_iptr[i]->cost() * (1 + TAX) * m_iptr[i]->quantity();
-			}
-			else {
-				totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
-			}
+			//cost() already takes care of taxed
+			totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
 		}
 		//later, if(sth == true), print totalAsset; otherwise not
 		cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
@@ -230,12 +226,7 @@ namespace sdds {
 		cout << "Goodbye!" << endl;
 		return *this;
 	}
-	/*void PosApp::swap(Item* a, Item* b)
-	{
-		Item* t = a;
-		a = b;
-		b = t;
-	}*/
+
 	void PosApp::sort(Item** array, int size)
 	{
 		int i, j;
