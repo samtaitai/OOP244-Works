@@ -77,8 +77,9 @@ namespace sdds {
 		cout << "                               Total Asset: $  |       ";
 		cout.setf(ios::fixed);
 		cout.precision(2);
-		cout << totalAsset << "| " << endl;
+		cout << totalAsset << "|" << endl;
 		cout << "-----------------------------------------------^--------------^" << endl;
+		cout << endl;
 
 		return *this;
 	}
@@ -147,7 +148,7 @@ namespace sdds {
 			ostr << "2- Add item" << endl;
 			ostr << "3- Remove item" << endl;
 			ostr << "4- Stock item" << endl;
-			ostr << "5- Point of Sale" << endl;
+			ostr << "5- POS" << endl;
 			ostr << "0- exit program" << endl;
 			select = 
 				U.getInt(0, 5, "> ");
@@ -173,13 +174,13 @@ namespace sdds {
 				break;
 			}
 		};
-		
 		return ostr;
 	}
 	void PosApp::actionTitle(const char* title)
 	{
+		
 		cout << ">>>> ";
-		cout.width(77);
+		cout.width(72);
 		cout.fill('.');
 		cout.setf(ios::left);
 		cout << title;
