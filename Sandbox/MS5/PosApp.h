@@ -18,7 +18,7 @@ void swap(Item** array, int size);
 #define SDDS_POSAPP_H
 #include <iostream>
 #include <fstream>
-#include "POS.h";
+#include "POS.h"
 #include "Item.h"
 
 namespace sdds {

@@ -56,7 +56,7 @@ namespace sdds {
 	}
 	PosApp& PosApp::listItems() 
 	{
-		unsigned int i{};
+		int i{};
 		double totalAsset{};
 		actionTitle("Listing Items");
 		cout.unsetf(ios::left);
@@ -103,7 +103,6 @@ namespace sdds {
 	void PosApp::loadRecs(const char* filename)
 	{
 		char ch{};
-		unsigned int i{};
 
 		//like this?
 		actionTitle("Loading Items");
