@@ -27,14 +27,13 @@ namespace sdds {
 	}
 	Date::Date()
 	{
-		U.getSystemDate(m_year, m_month, m_day, m_hour, m_minute, false);
 		m_dateOnly = false;
 		m_err = Error();
+		U.getSystemDate(m_year, m_month, m_day, m_hour, m_minute, m_dateOnly);
 	}
 	Date::Date(int year, int month, int day)
 	{
-		*this = Date();
-		m_dateOnly = true;
+		*this = Date(); 
 		if (year < MIN_YEAR || year > MAX_YEAR) {
 			m_err = "Invalid Year";
 		}
@@ -43,7 +42,7 @@ namespace sdds {
 				m_err = "Invalid Month";
 			}
 			else {
-				if (day < 1 || day > U.daysOfMonth(m_year, m_month)) {
+				if (day < 1 || day > U.daysOfMonth(year, month)) {
 					m_err = "Invalid Day";
 				}
 			}
@@ -53,11 +52,11 @@ namespace sdds {
 		m_day = day;
 		m_hour = 0;
 		m_minute = 0;
+		m_dateOnly = true;
 	}
 	Date::Date(int year, int month, int day, int hour, int min)
 	{
 		*this = Date(year, month, day);
-		m_dateOnly = false;
 		if (hour < 0 || hour > 23) {
 			m_err = "Invalid Hour";
 		}
@@ -68,6 +67,7 @@ namespace sdds {
 		}
 		m_hour = hour;
 		m_minute = min;
+		m_dateOnly = false;
 	}
 
 	bool Date::operator==(const Date& Ro) const

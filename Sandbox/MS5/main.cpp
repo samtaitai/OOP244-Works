@@ -11,20 +11,21 @@
 #include <fstream>
 #include <iostream>
 #include "PosApp.h"
+
 void resetDataFile();
 void displayfileContent();
 int main() {
    resetDataFile();
    displayfileContent();
-   sdds::PosApp pos("posdata.csv");
+   sdds::PosApp pos("posdata.csv");             //create PosApp obj 
    pos.run();
    displayfileContent();
    return 0;
 }
 void resetDataFile() {
    char ch{};
-   std::ofstream outfile("posdata.csv");
-   std::ifstream infile("posdataOrigin.csv");
+   std::ofstream outfile("posdata.csv");        //write to here
+   std::ifstream infile("posdataOrigin.csv");   //read from here
    while(infile.get(ch)) {
       outfile.put(ch);
    }

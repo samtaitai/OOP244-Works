@@ -116,10 +116,6 @@ namespace sdds {
 	{
 		return m_quantity;
 	}
-	/*bool Item::isTaxed() const
-	{
-		return m_taxed;
-	}*/
 	char* Item::name() const
 	{
 		return m_name;

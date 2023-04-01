@@ -81,7 +81,6 @@ std::ifstream& sdds::Perishable::load(std::ifstream& istr)
 		int year{};
 		int month{};
 		int day{};
-		Date temp;
 
 		istr.ignore();	//ignore first ,
 		istr >> year;
@@ -90,8 +89,8 @@ std::ifstream& sdds::Perishable::load(std::ifstream& istr)
 		istr.ignore();
 		istr >> day;
 
-		temp = Date(year, month, day);	//dateonly is set up internally
-		if (temp) {						//not in a errorous state,
+		Date temp = Date(year, month, day);	//dateonly is set up internally
+		if (temp) {							//not in a errorous state,
 			m_expiryDate = temp;
 		}
 		else {
