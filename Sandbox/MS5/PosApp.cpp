@@ -91,7 +91,7 @@ namespace sdds {
 	}
 	void PosApp::saveRecs()
 	{
-		unsigned int i{};
+		int i{};
 
 		actionTitle("Saving Data");
 
