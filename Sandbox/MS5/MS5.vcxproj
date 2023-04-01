@@ -148,7 +148,6 @@
     <ClInclude Include="POS.h" />
     <ClInclude Include="PosApp.h" />
     <ClInclude Include="PosIO.h" />
-    <ClInclude Include="sort.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

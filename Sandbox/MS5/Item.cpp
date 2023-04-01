@@ -135,6 +135,10 @@ namespace sdds {
 	{
 		return m_taxed;
 	}
+	char* Item::name() const
+	{
+		return m_name;
+	}
 	Item& Item::clear()
 	{
 		m_errState.clear();

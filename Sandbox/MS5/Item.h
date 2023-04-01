@@ -54,6 +54,7 @@ namespace sdds {
 		virtual double cost() const;
 		virtual int quantity() const;
 		virtual bool isTaxed() const;
+		virtual char* name() const;
 		virtual Item& clear();
 
 		//io

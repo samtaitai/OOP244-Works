@@ -23,7 +23,6 @@ void sort( T* array, int size )
 #include "POS.h"
 #include "NonPerishable.h"
 #include "Perishable.h"
-#include "sort.h"
 
 using namespace std;
 
@@ -81,7 +80,8 @@ namespace sdds {
 		the Items in POS_LIST format, calculating the total asset value of the Items.
 		//Print the footer and the total asset as follows:
 		
-		//sort(m_iptr, m_nptr);	//[ERROR]cannot instantiate abstract class
+		sort(m_iptr, m_nptr);	//[ERROR]cannot instantiate abstract class
+
 		cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
 		cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
 		for (i = 0; i < m_nptr; i++) {
@@ -123,10 +123,6 @@ namespace sdds {
 
 		actionTitle("Saving Data");
 
-		/*implementation*/
-		//Create an instance of ofstream using the data filename.
-		//loop through the Items pointed by the Iptr pointers and \
-		insert them into the ofstream instance up to nptr.
 		ofstream output(m_filename);
 		for (i = 0; i < m_nptr; i++) {
 			output << *(m_iptr[i]) << endl;
@@ -140,17 +136,6 @@ namespace sdds {
 		//like this?
 		actionTitle("Loading Items");
 
-		/*implementation*/
-		//open the data file in an ifstream object (we will call this input here).
-		//if opening the file was not successful create the file by opening \
-		and closing it using an ofstream object.
-		//Empty the PosApp class (make sure there are no Items in the Iptr)
-		//while the input is in a good state and the Iptr array is not full
-		//read one character
-		//create a dynamic Item (either Perishable, or NonPershable) based on \
-		the character being P or N and keep the address in the next available \
-		Iptr pointer
-		//extract the Item from the input and add one to the nptr
 		ifstream input(filename);
 		if (!input) {
 			ofstream emptyFile(filename);
@@ -162,7 +147,7 @@ namespace sdds {
 		}
 		else if (input) {
 			
-			while (input.peek() != EOF && m_nptr <= MAX_NO_ITEMS) {
+			while (input.peek() != EOF && m_nptr < MAX_NO_ITEMS) {
 				input.get(ch);
 				input.ignore();
 				if (ch == 'N') {
@@ -244,5 +229,26 @@ namespace sdds {
 		saveRecs();
 		cout << "Goodbye!" << endl;
 		return *this;
+	}
+	/*void PosApp::swap(Item* a, Item* b)
+	{
+		Item* t = a;
+		a = b;
+		b = t;
+	}*/
+	void PosApp::sort(Item** array, int size)
+	{
+		int i, j;
+		Item* temp;
+
+		for (i = 0; i < size - 1; i++) {
+			for (j = 0; j < size - i - 1; j++) {
+				if (*(array[j]) > *(array[j + 1])) {	//should be Item::operator>
+					temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
+				}
+			}
+		}
 	}
 }
