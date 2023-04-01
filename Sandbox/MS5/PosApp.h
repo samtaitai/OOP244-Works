@@ -2,15 +2,16 @@
 Final Project Milestone 1
 Module: PosApp
 Filename: PosApp.h
-Version 1.0
+Version 1.1
 Author	Soyon Lee
 Revision History
 -----------------------------------------------------------
 Date      Reason
 2023/3/7  MS1 submission
+2023/4/1  MS51 submission
 -----------------------------------------------------------
-I have done all the coding by myself and only copied the code
-that my professor provided to complete my project milestones.
+Provided by the lecture material:
+void swap(Item** array, int size);
 -----------------------------------------------------------*/
 
 #ifndef SDDS_POSAPP_H

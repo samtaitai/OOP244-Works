@@ -2,16 +2,16 @@
 Final Project Milestone 1
 Module: PosApp
 Filename: PosApp.cpp
-Version 1.0
+Version 1.1
 Author	Soyon Lee
 Revision History
 -----------------------------------------------------------
 Date      Reason
 2023/3/7  MS1 submission
+2023/4/1  MS51 submission
 -----------------------------------------------------------
-Provided by the professor:
-void swap( type* a, type* b );
-void sort( T* array, int size )
+Provided by the lecture material:
+void swap(Item** array, int size);
 -----------------------------------------------------------*/
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -35,33 +35,21 @@ namespace sdds {
 	//}
 	PosApp& PosApp::addItem()
 	{
-		cout.setf(ios::left);
-		cout.width(77);
-		cout.fill('.');
-		cout << ">>>> Adding Item to the store";
-		cout << endl;
+		actionTitle("Adding Item to the store");
 		cout.unsetf(ios::left);
 		cout << "Running addItem()" << endl;
 		return *this;
 	}
 	PosApp& PosApp::removeItem()
 	{
-		cout.setf(ios::left);
-		cout.width(77);
-		cout.fill('.');
-		cout << ">>>> Remove Item";
-		cout << endl;
+		actionTitle("Remove Item");
 		cout.unsetf(ios::left);
 		cout << "Running removeItem()" << endl;
 		return *this;
 	}
 	PosApp& PosApp::stockItem()
 	{
-		cout.setf(ios::left);
-		cout.width(77);
-		cout.fill('.');
-		cout << ">>>> Select an item to stock";
-		cout << endl;
+		actionTitle("Select an item to stock");
 		cout.unsetf(ios::left);
 		cout << "Running stockItem()" << endl;
 		return *this;
@@ -72,15 +60,7 @@ namespace sdds {
 		double totalAsset{};
 		actionTitle("Listing Items");
 		cout.unsetf(ios::left);
-
-		/*implementation*/
-		//Sort all the Items in Iptr array based on their name in ascending order.
-		//Print the Title/Header of the list:
-		//Loop through the items up to nptr and display the row and \
-		the Items in POS_LIST format, calculating the total asset value of the Items.
-		//Print the footer and the total asset as follows:
-		
-		sort(m_iptr, m_nptr);	//[ERROR]cannot instantiate abstract class
+		sort(m_iptr, m_nptr);	
 
 		cout << " Row | SKU    | Item Name          | Price |TX |Qty |   Total | Expiry Date |" << endl;
 		cout << "-----|--------|--------------------|-------|---|----|---------|-------------|" << endl;
@@ -104,11 +84,7 @@ namespace sdds {
 	}
 	PosApp& PosApp::POS()
 	{
-		cout.setf(ios::left);
-		cout.width(77);
-		cout.fill('.');
-		cout << ">>>> Starting Point of Sale";
-		cout << endl;
+		actionTitle("Starting Point of Sale");
 		cout.unsetf(ios::left);
 		cout << "Running POS()" << endl;
 		return *this;
