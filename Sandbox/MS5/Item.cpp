@@ -70,22 +70,7 @@ namespace sdds {
 	bool Item::operator>(const Item& Ro) const
 	{
 		bool result = false;
-		unsigned int i{};
-
-		if (strlen(m_name) < strlen(Ro.m_name)) {
-			for (i = 0; i < strlen(m_name); i++) {
-				if (m_name[i] != Ro.m_name[i]) {
-					if (m_name[i] > Ro.m_name[i]) result = true;
-				}
-			}
-		}
-		else {
-			for (i = 0; i < strlen(Ro.m_name); i++) {
-				if (m_name[i] != Ro.m_name[i]) {
-					if (m_name[i] > Ro.m_name[i]) result = true;
-				}
-			}
-		}
+		if (strcmp(m_name, Ro.m_name) > 0) result = true;
 		return result;
 	}
 	int Item::operator+=(const int quantity)
