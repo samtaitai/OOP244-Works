@@ -32,9 +32,9 @@ namespace sdds {
 		PosApp& addItem();
 		PosApp& removeItem();
 		PosApp& stockItem();
-		PosApp& listItems();					//ms51
-		PosApp& saveRecs();						//ms51
-		bool loadRecs(const char* filename);	//ms51
+		PosApp& listItems();					
+		void saveRecs();						
+		void loadRecs(const char* filename);	
 		PosApp& POS();
 		std::ostream& menu(std::ostream& ostr = std::cout);
 		void actionTitle(const char* title);

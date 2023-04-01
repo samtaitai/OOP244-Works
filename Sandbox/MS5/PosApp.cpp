@@ -112,7 +112,7 @@ namespace sdds {
 		cout << "Running POS()" << endl;
 		return *this;
 	}
-	PosApp& PosApp::saveRecs()
+	void PosApp::saveRecs()
 	{
 		unsigned int i{};
 
@@ -126,13 +126,10 @@ namespace sdds {
 		for (i = 0; i < m_nptr; i++) {
 			output << m_iptr[i];
 		}
-
-		return *this;
 	}
-	bool PosApp::loadRecs(const char* filename)
+	void PosApp::loadRecs(const char* filename)
 	{
 		char ch{};
-		bool success = false;
 
 		//like this?
 		actionTitle("Loading Items");
@@ -164,17 +161,14 @@ namespace sdds {
 				np.load(input);
 				m_iptr[m_nptr] = np;
 				m_nptr++;
-				success = true;
 			}
 			else if (ch == 'P') {
 				Perishable ps;
 				ps.load(input);
 				m_iptr[m_nptr] = ps;
 				m_nptr++;
-				success = true;
 			}
 		}
-		return success;
 	}
 	ostream& PosApp::menu(ostream& ostr)  
 	{
@@ -236,7 +230,7 @@ namespace sdds {
 	PosApp& PosApp::run () 
 	{
 		loadRecs(m_filename);
-		if(loadRecs(m_filename)) menu();
+		menu();
 		saveRecs();
 		cout << "Goodbye!" << endl;
 		return *this;
