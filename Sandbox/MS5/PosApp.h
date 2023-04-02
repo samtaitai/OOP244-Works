@@ -24,12 +24,11 @@ void swap(Item** array, int size);
 namespace sdds {
 	class PosApp {
 
-		char m_filename[128 + 1]{};
-		Item* m_iptr[MAX_NO_ITEMS]; //how to initialize? 
-		int m_nptr{};
-		//action title?
+		char m_filename[128 + 1];
+		Item* m_iptr[MAX_NO_ITEMS]; 
+		int m_nptr;
 
-		//void setEmpty();
+		void setEmpty();
 		PosApp& addItem();
 		PosApp& removeItem();
 		PosApp& stockItem();

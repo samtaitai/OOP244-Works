@@ -27,12 +27,16 @@ void swap(Item** array, int size);
 using namespace std;
 
 namespace sdds {
-	//void PosApp::setEmpty()
-	//{
-	//	strcpy(m_filename, "\0");
-	//	//how to initialize array of Item?
-	//	m_nptr = 0;
-	//}
+	void PosApp::setEmpty()
+	{
+		unsigned int i{};
+
+		strcpy(m_filename, "\0");
+		for (i = 0; i < MAX_NO_ITEMS; i++) {
+			m_iptr[i] = nullptr;
+		}
+		m_nptr = 0;
+	}
 	PosApp& PosApp::addItem()
 	{
 		actionTitle("Adding Item to the store");
@@ -130,7 +134,7 @@ namespace sdds {
 				else if (ch == 'P') {
 					Item* itemPtr = new Perishable;
 					input >> *itemPtr;
-					m_iptr[m_nptr] = itemPtr;
+					m_iptr[m_nptr] = itemPtr; //not a copy assignment?
 				}
 				m_nptr++;
 				input.ignore(); //remove \n
@@ -188,11 +192,15 @@ namespace sdds {
 	}
 	PosApp::PosApp(const char* filename)
 	{
+		setEmpty();
 		if (filename) strcpy(m_filename, filename);
 	}
 	PosApp::~PosApp()
 	{
-		//delete[] m_iptr;
+		unsigned int i{};
+		for (i = 0; i < m_nptr; i++) {
+			delete[] m_iptr[i];		//call item destructor
+		}
 	}
 	PosApp& PosApp::run () 
 	{
