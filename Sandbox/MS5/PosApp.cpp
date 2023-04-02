@@ -127,14 +127,16 @@ namespace sdds {
 				input.get(ch);
 				input.ignore();
 				if (ch == 'N') {
-					Item* itemPtr = new NonPerishable; //leak
+					Item* itemPtr = new NonPerishable; //single dma
 					input >> *itemPtr;
 					m_iptr[m_nptr] = itemPtr;
+					delete itemPtr;
 				}
 				else if (ch == 'P') {
 					Item* itemPtr = new Perishable;
 					input >> *itemPtr;
-					m_iptr[m_nptr] = itemPtr; //not a copy assignment?
+					m_iptr[m_nptr] = itemPtr;
+					delete itemPtr;
 				}
 				m_nptr++;
 				input.ignore(); //remove \n
