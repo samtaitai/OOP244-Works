@@ -197,9 +197,11 @@ namespace sdds {
 	}
 	PosApp::~PosApp()
 	{
-		unsigned int i{};
+		int i{};
 		for (i = 0; i < m_nptr; i++) {
-			delete[] m_iptr[i];		//call item destructor
+			delete[] m_iptr[i]->name();	//instead of calling item destructor
+
+			//cause Item not inherit PosApp but PosIO
 		}
 	}
 	PosApp& PosApp::run () 
