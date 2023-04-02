@@ -33,7 +33,7 @@ namespace sdds {
 
 	protected:
 		int m_displayType;
-		Error m_errState;
+		Error m_errState;	//it calls default constructor & initailization(setEmpty)
 
 	public:
 		//construct & rule of three

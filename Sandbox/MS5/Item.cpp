@@ -30,7 +30,7 @@ namespace sdds {
 		m_taxed = false;
 		m_quantity = 0;
 		m_displayType = 0;
-		m_errState = Error();
+		//m_errState = Error();
 	}
 	Item::Item()
 	{

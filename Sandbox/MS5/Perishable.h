@@ -20,7 +20,7 @@ that my professor provided to complete my project milestones.
 namespace sdds {
 	class Perishable :public Item
 	{
-		Date m_expiryDate;
+		Date m_expiryDate;	//it will call Date default constructor & initialize it
 	public:
 		virtual ~Perishable() = default;
 		char itemType() const;

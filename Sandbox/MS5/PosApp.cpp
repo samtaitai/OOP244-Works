@@ -127,7 +127,7 @@ namespace sdds {
 				input.get(ch);
 				input.ignore();
 				if (ch == 'N') {
-					Item* itemPtr = new NonPerishable;
+					Item* itemPtr = new NonPerishable; //leak
 					input >> *itemPtr;
 					m_iptr[m_nptr] = itemPtr;
 				}
