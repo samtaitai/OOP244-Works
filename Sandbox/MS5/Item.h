@@ -54,7 +54,7 @@ namespace sdds {
 		virtual Item& displayType(int form);
 		virtual double cost() const;
 		virtual int quantity() const;
-		virtual char* name() const;
+		virtual char* name();			//in order to delete[].. not const?
 		virtual Item& clear();
 
 		//io

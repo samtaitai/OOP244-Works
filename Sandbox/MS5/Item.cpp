@@ -132,7 +132,7 @@ namespace sdds {
 	{
 		return m_quantity;
 	}
-	char* Item::name() const
+	char* Item::name()
 	{
 		return m_name;
 	}
@@ -338,7 +338,7 @@ namespace sdds {
 							if (!istr || quantity < 0 || quantity > MAX_STOCK_NUMBER) m_errState = ERROR_POS_QTY;
 							else {
 								strcpy(m_SKU, sku);
-								delete[] m_name;	//in case of update
+								if(m_name != nullptr) delete[] m_name;	//in case of update
 								m_name = new char[strlen(name) + 1];
 								strcpy(m_name, name);
 								m_price = price;
