@@ -127,16 +127,16 @@ namespace sdds {
 				input.get(ch);
 				input.ignore();
 				if (ch == 'N') {
-					Item* itemPtr = new NonPerishable; //single dma
-					input >> *itemPtr;
-					m_iptr[m_nptr] = itemPtr;
-					//delete itemPtr; I need this but not here
+					m_iptr[m_nptr] = new NonPerishable; //where should I delete this?
+					input >> *(m_iptr[m_nptr]);
 				}
 				else if (ch == 'P') {
-					Item* itemPtr = new Perishable;
-					input >> *itemPtr;
-					m_iptr[m_nptr] = itemPtr;
-					//delete itemPtr;
+					/*Perishable temp;
+					input >> temp;
+					m_iptr[m_nptr] = &temp;
+					in this case, temp will die immediately*/
+					m_iptr[m_nptr] = new Perishable;
+					input >> *(m_iptr[m_nptr]);
 				}
 				m_nptr++;
 				input.ignore(); //remove \n
@@ -204,8 +204,9 @@ namespace sdds {
 		for (i = 0; i < m_nptr; i++) {
 			//do not delete what was deleted
 			if(m_iptr[i] != nullptr) delete[] m_iptr[i]->name();
-			delete m_iptr[i];	//cause it was itemPtr
+			//delete m_iptr[i];	
 		}
+		//delete[] m_iptr;
 	}
 	PosApp& PosApp::run () 
 	{
