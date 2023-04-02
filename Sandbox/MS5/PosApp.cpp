@@ -132,9 +132,6 @@ namespace sdds {
 					//m_iptr[m_nptr] = temp; //where should I delete this?
 					//delete temp; you just delete m_iptr[m_nptr]
 					
-					//create a dynamic Item (either Perishable, or NonPershable) \
-					based on the character being P or N and keep the address \
-					in the next available Iptr pointer
 					m_iptr[m_nptr] = new NonPerishable;
 					input >> *(m_iptr[m_nptr]);
 				}
@@ -208,7 +205,7 @@ namespace sdds {
 		for (i = 0; i < m_nptr; i++) {
 			//do not delete what was deleted
 			//if(m_iptr[i]->name() != nullptr) delete[] m_iptr[i]->name();
-			if (m_iptr[i] != nullptr) delete m_iptr[i];
+			if (m_iptr[i] != nullptr) delete m_iptr[i]; //this is it!
 		}
 	}
 	PosApp& PosApp::run () 
