@@ -57,6 +57,22 @@ namespace sdds {
 		}
 		return *this;
 	}
+	Item* Item::operator=(const Item* Ro)
+	{
+		if (Ro->m_name && this != Ro) {
+			delete[] m_name;
+			m_name = new char[strlen(Ro->m_name) + 1];	//assume string length validation was checked?  
+			strcpy(m_name, Ro->m_name);
+			strcpy(m_SKU, Ro->m_SKU);
+			m_price = Ro->m_price;
+			m_taxed = Ro->m_taxed;
+			m_quantity = Ro->m_quantity;
+			m_displayType = Ro->m_displayType;
+			m_errState = Ro->m_errState;
+
+		}
+		return nullptr;
+	}
 	Item::~Item()
 	{
 		delete[] m_name;

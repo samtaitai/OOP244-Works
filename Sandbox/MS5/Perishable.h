@@ -22,6 +22,7 @@ namespace sdds {
 	{
 		Date m_expiryDate;
 	public:
+		virtual ~Perishable() = default;
 		char itemType() const;
 		std::ostream& write(std::ostream&) const;
 		std::istream& read(std::istream&);

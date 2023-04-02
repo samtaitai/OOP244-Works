@@ -20,6 +20,7 @@ namespace sdds {
 	class NonPerishable:public Item
 	{
 	public:
+		virtual ~NonPerishable() = default;
 		char itemType() const;
 		std::ostream& write(std::ostream&) const;
 

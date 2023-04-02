@@ -40,6 +40,7 @@ namespace sdds {
 		Item();
 		Item(Item& Ro);
 		virtual Item& operator=(const Item& Ro);
+		virtual Item* operator=(const Item* Ro);
 		virtual ~Item();
 
 		//operator
