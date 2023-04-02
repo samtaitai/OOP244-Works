@@ -127,14 +127,18 @@ namespace sdds {
 				input.get(ch);
 				input.ignore();
 				if (ch == 'N') {
-					m_iptr[m_nptr] = new NonPerishable; //where should I delete this?
+					//Item* temp = new NonPerishable;
+					//input >> *temp;
+					//m_iptr[m_nptr] = temp; //where should I delete this?
+					//delete temp; you just delete m_iptr[m_nptr]
+					
+					//create a dynamic Item (either Perishable, or NonPershable) \
+					based on the character being P or N and keep the address \
+					in the next available Iptr pointer
+					m_iptr[m_nptr] = new NonPerishable;
 					input >> *(m_iptr[m_nptr]);
 				}
 				else if (ch == 'P') {
-					/*Perishable temp;
-					input >> temp;
-					m_iptr[m_nptr] = &temp;
-					in this case, temp will die immediately*/
 					m_iptr[m_nptr] = new Perishable;
 					input >> *(m_iptr[m_nptr]);
 				}
@@ -203,10 +207,9 @@ namespace sdds {
 		//cause Item not inherit PosApp but PosIO
 		for (i = 0; i < m_nptr; i++) {
 			//do not delete what was deleted
-			if(m_iptr[i] != nullptr) delete[] m_iptr[i]->name();
-			//delete m_iptr[i];	
+			//if(m_iptr[i]->name() != nullptr) delete[] m_iptr[i]->name();
+			if (m_iptr[i] != nullptr) delete m_iptr[i];
 		}
-		//delete[] m_iptr;
 	}
 	PosApp& PosApp::run () 
 	{
