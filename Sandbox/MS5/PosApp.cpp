@@ -130,13 +130,13 @@ namespace sdds {
 					Item* itemPtr = new NonPerishable; //single dma
 					input >> *itemPtr;
 					m_iptr[m_nptr] = itemPtr;
-					delete itemPtr;
+					//delete itemPtr; I need this but not here
 				}
 				else if (ch == 'P') {
 					Item* itemPtr = new Perishable;
 					input >> *itemPtr;
 					m_iptr[m_nptr] = itemPtr;
-					delete itemPtr;
+					//delete itemPtr;
 				}
 				m_nptr++;
 				input.ignore(); //remove \n
@@ -204,6 +204,7 @@ namespace sdds {
 		for (i = 0; i < m_nptr; i++) {
 			//do not delete what was deleted
 			if(m_iptr[i] != nullptr) delete[] m_iptr[i]->name();
+			delete m_iptr[i];	//cause it was itemPtr
 		}
 	}
 	PosApp& PosApp::run () 

@@ -71,7 +71,7 @@ namespace sdds {
 			m_errState = Ro->m_errState;
 
 		}
-		return nullptr;
+		return this;
 	}
 	Item::~Item()
 	{
