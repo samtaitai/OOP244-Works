@@ -125,10 +125,39 @@ namespace sdds {
 	}
 	PosApp& PosApp::removeItem(bool showAssets)
 	{
-		selectItems(showAssets);
+		int i{};
+		int rownum{};
+		Item* temp[MAX_NO_ITEMS];
+		for (i = 0; i < MAX_NO_ITEMS; i++) {
+			temp[i] = nullptr;
+		}
+
 		actionTitle("Remove Item");
 		cout.unsetf(ios::left);
-		cout << "Running removeItem()" << endl;
+
+		//select row
+		rownum = selectItems(showAssets);
+		
+		//just showing
+		cout << "Removing...." << endl;
+		m_iptr[rownum - 1]->displayType(POS_FORM);
+		cout << *(m_iptr[rownum - 1]);
+
+		//actual removing 
+		for (i = 0; i < (rownum - 1) && i < MAX_NO_ITEMS; i++) {	//first half
+			temp[i] = m_iptr[i];
+		}
+		for (i = rownum; i < m_nptr && i < MAX_NO_ITEMS; i++) {		//second half
+			temp[i - 1] = m_iptr[i];
+		}
+		for (i = 0; i < m_nptr - 1 && i < MAX_NO_ITEMS; i++) {		//copy back
+			m_iptr[i] = temp[i];
+		}
+		delete m_iptr[rownum - 1];
+		m_nptr--;
+
+		actionTitle("DONE!");
+
 		return *this;
 	}
 	PosApp& PosApp::stockItem()
@@ -175,7 +204,6 @@ namespace sdds {
 		do {
 			cout << "Press <ENTER> to start....";
 		} while (cin.get() != '\n');
-		
 		actionTitle("Listing Items");
 		listItems(showAssets);
 		return U.getInt(1, m_nptr, "Enter the row number: ");
