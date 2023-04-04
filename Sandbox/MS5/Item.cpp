@@ -132,9 +132,17 @@ namespace sdds {
 	{
 		return m_quantity;
 	}
-	char* Item::name()
+	char* Item::name() const
 	{
 		return m_name;
+	}
+	const char* Item::sku() const
+	{
+		return m_SKU;
+	}
+	Error Item::error() const
+	{
+		return m_errState;
 	}
 	Item& Item::clear()
 	{

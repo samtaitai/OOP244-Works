@@ -34,6 +34,7 @@ namespace sdds {
 		PosApp& stockItem(bool showAssets);
 		PosApp& listItems(bool showAssets);	
 		int selectItems(bool showAssets);
+		Item* search(const char* sku);
 		void saveRecs();						
 		void loadRecs(const char* filename);	
 		PosApp& POS();

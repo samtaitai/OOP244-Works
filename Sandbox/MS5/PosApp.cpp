@@ -25,6 +25,7 @@ Provided by the source outside the lecture material:
 #include "POS.h"
 #include "NonPerishable.h"
 #include "Perishable.h"
+#include "Bill.h"
 
 using namespace std;
 
@@ -224,9 +225,48 @@ namespace sdds {
 	}
 	PosApp& PosApp::POS()
 	{
+		Item* getItem = nullptr;
+		char sku[MAX_SKU_LEN + 1]{};
+		Bill bill;
+		bool done = false;
+
 		actionTitle("Starting Point of Sale");
 		cout.unsetf(ios::left);
-		cout << "Running POS()" << endl;
+
+		do {
+			cout << "Enter SKU or <ENTER> only to end sale..." << endl;
+			cout << "> ";
+			cin.getline(sku, MAX_SKU_LEN, '\n');
+			if (cin && sku[0] != '\0') {
+				getItem = search(sku);
+				if (getItem != nullptr) {			//found it!
+					getItem->displayType(POS_FORM);	//print the item
+					cout << *getItem;
+					*getItem -= 1;					//try to reduce 
+					if (!(getItem->error())) {		//if not error
+						bill.add(getItem);
+						cout << ">>>>> Added to bill" << endl;
+						cout << ">>>>> Total: " << bill.total() << endl;
+						done = true;
+					}
+					else {							//if error
+						getItem->clear();
+					}
+				}
+				else {
+					cout << "!!!!! Item Not Found !!!!!" << endl;
+				}
+			}
+			else {
+				cout << "SKU too long" << endl;
+				cin.clear();
+				cin.ignore(9999, '\n');
+			}
+
+		} while (!done || sku != "\n");
+
+		bill.print(cout);
+
 		return *this;
 	}
 	void PosApp::saveRecs()
@@ -239,6 +279,19 @@ namespace sdds {
 		for (i = 0; i < m_nptr; i++) {
 			output << *(m_iptr[i]) << endl;
 		}
+	}
+	Item* PosApp::search(const char* sku)
+	{
+		Item* result = nullptr;
+		int i{};
+
+		for (i = 0; i < m_nptr; i++) {
+			if (strcmp(m_iptr[i]->sku(), sku) == 0) {
+				result = m_iptr[i];
+			}
+		}
+
+		return result;
 	}
 	void PosApp::loadRecs(const char* filename)
 	{
@@ -322,7 +375,6 @@ namespace sdds {
 	}
 	void PosApp::actionTitle(const char* title)
 	{
-		
 		cout << ">>>> ";
 		cout.width(72);
 		cout.fill('.');
