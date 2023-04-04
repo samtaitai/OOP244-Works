@@ -1,0 +1,2 @@
+In the ms52, nothing really special should be mentioned so far. 
+I added an extra validation when a user answers whether a new item is perishable or non-perishable item with yes or no. 

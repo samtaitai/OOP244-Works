@@ -150,11 +150,11 @@ namespace sdds {
 		for (i = rownum; i < m_nptr && i < MAX_NO_ITEMS; i++) {		//second half
 			temp[i - 1] = m_iptr[i];
 		}
+		delete m_iptr[rownum - 1];
 		for (i = 0; i < m_nptr - 1 && i < MAX_NO_ITEMS; i++) {		//copy back
 			m_iptr[i] = temp[i];
 		}
-		delete m_iptr[rownum - 1];
-		m_nptr--;
+		m_nptr = m_nptr - 1;
 
 		actionTitle("DONE!");
 

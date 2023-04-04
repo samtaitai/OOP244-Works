@@ -1,0 +1,2 @@
+In the ms53, I outsourced the logic of 'pause until <ENTER>' from the stackoverflow. 
+Reminder: the array of Item pointer 'm_iptr' itself is not a dynamic sizable array. 
