@@ -240,16 +240,17 @@ namespace sdds {
 			if (cin && sku[0] != '\0') {
 				getItem = search(sku);
 				if (getItem != nullptr) {			//found it!
+					*getItem -= 1;					//try to reduce 
 					getItem->displayType(POS_FORM);	//print the item
 					cout << *getItem;
-					*getItem -= 1;					//try to reduce 
-					if (!(getItem->error())) {		//if not error
+					if (!(getItem->error()) && getItem->quantity() >= 0) {		//if not error
 						bill.add(getItem);
 						cout << endl;
 						cout << ">>>>> Added to bill" << endl;
 						cout << ">>>>> Total: " << bill.total() << endl;
 					}
 					else {							//if error
+						cout << "Item out of stock" << endl;
 						getItem->clear();
 					}
 				}
