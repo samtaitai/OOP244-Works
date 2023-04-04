@@ -270,13 +270,21 @@ namespace sdds {
 				cout << "Only 'y' and 'n' are acceptable: ";
 				istr >> ch;
 				if (istr && ch == 'y') {
+					m_taxed = true;
 					done = true;
-						m_taxed = true;
 				}
 				else if (istr && ch == 'n') {
 					done = true;
-						m_taxed = false;
 				}
+			}
+		}
+		else {
+			if (istr && ch == 'y') {
+				m_taxed = true;
+				done = true;
+			}
+			else if (istr && ch == 'n') {
+				done = true;
 			}
 		}
 		done = false;

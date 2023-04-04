@@ -41,7 +41,84 @@ namespace sdds {
 	{
 		actionTitle("Adding Item to the store");
 		cout.unsetf(ios::left);
-		cout << "Running addItem()" << endl;
+
+		if (m_nptr < MAX_NO_ITEMS) {
+			//do it
+			Item* newItem{};
+			char ch{};
+			bool done = false;
+
+			cout << "Is the Item perishable? (Y)es/(N)o: ";
+			cin >> ch;
+			cin.ignore(9999, '\n');
+			if (cin && ch == 'y') { //go perishable
+				newItem = new Perishable;
+				cin >> *newItem;
+				while (!cin) {
+					cin.clear();
+					cin.ignore(9999, '\n');
+					cout << *newItem << ", try again..." << endl;
+					cin >> *newItem;
+				}
+				m_iptr[m_nptr] = newItem;
+				m_nptr++;
+				actionTitle("DONE!");
+				done = true;
+			}
+			else if (cin && ch == 'n') { //go non perishable
+				newItem = new NonPerishable;
+				cin >> *newItem;
+				while (!cin) {
+					cin.clear();
+					cin.ignore(9999, '\n');
+					cout << *newItem << ", try again..." << endl;
+					cin >> *newItem;
+				}
+				m_iptr[m_nptr] = newItem;
+				m_nptr++;
+				actionTitle("DONE!");
+				done = true;
+			}
+			else {
+				while (!done) {
+					cin.clear();
+					cout << "Only 'y' and 'n' are acceptable: ";
+					cin >> ch;
+					cin.ignore(9999, '\n');
+					if (cin && ch == 'y') {
+						newItem = new Perishable;
+						cin >> *newItem;
+						while (!cin) {
+							cin.clear();
+							cin.ignore(9999, '\n');
+							cout << *newItem << ", try again..." << endl;
+							cin >> *newItem;
+						}
+						m_iptr[m_nptr] = newItem;
+						m_nptr++;
+						actionTitle("DONE!");
+						done = true;
+					}
+					else if (cin && ch == 'n') {
+						newItem = new NonPerishable;
+						cin >> *newItem;
+						while (!cin) {
+							cin.clear();
+							cin.ignore(9999, '\n');
+							cout << *newItem << ", try again..." << endl;
+							cin >> *newItem;
+						}
+						m_iptr[m_nptr] = newItem;
+						m_nptr++;
+						actionTitle("DONE!");
+						done = true;
+					}
+				}
+			}
+		}
+		else {
+			cout << "Inventory Full!" << endl;
+		}
 		return *this;
 	}
 	PosApp& PosApp::removeItem()
