@@ -30,9 +30,10 @@ namespace sdds {
 
 		void setEmpty();
 		PosApp& addItem();
-		PosApp& removeItem();
+		PosApp& removeItem(bool showAssets);
 		PosApp& stockItem();
-		PosApp& listItems();					
+		PosApp& listItems(bool showAssets);	
+		int selectItems(bool showAssets);
 		void saveRecs();						
 		void loadRecs(const char* filename);	
 		PosApp& POS();

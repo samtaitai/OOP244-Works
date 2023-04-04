@@ -12,6 +12,8 @@ Date      Reason
 -----------------------------------------------------------
 Provided by the lecture material:
 void swap(Item** array, int size);
+Provided by the source outside the lecture material:
+(source: https://stackoverflow.com/questions/21257544/c-wait-for-user-input)
 -----------------------------------------------------------*/
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -121,8 +123,9 @@ namespace sdds {
 		}
 		return *this;
 	}
-	PosApp& PosApp::removeItem()
+	PosApp& PosApp::removeItem(bool showAssets)
 	{
+		selectItems(showAssets);
 		actionTitle("Remove Item");
 		cout.unsetf(ios::left);
 		cout << "Running removeItem()" << endl;
@@ -135,7 +138,7 @@ namespace sdds {
 		cout << "Running stockItem()" << endl;
 		return *this;
 	}
-	PosApp& PosApp::listItems() 
+	PosApp& PosApp::listItems(bool showAssets)
 	{
 		int i{};
 		double totalAsset{};
@@ -153,16 +156,29 @@ namespace sdds {
 			//cost() already takes care of taxed
 			totalAsset += m_iptr[i]->cost() * m_iptr[i]->quantity();
 		}
-		//later, if(sth == true), print totalAsset; otherwise not
 		cout << "-----^--------^--------------------^-------^---^----^---------^-------------^" << endl;
-		cout << "                               Total Asset: $  |       ";
-		cout.setf(ios::fixed);
-		cout.precision(2);
-		cout << totalAsset << "|" << endl;
-		cout << "-----------------------------------------------^--------------^" << endl;
-		cout << endl;
 
+		if (showAssets) {
+			cout << "                               Total Asset: $  |       ";
+			cout.setf(ios::fixed);
+			cout.precision(2);
+			cout << totalAsset << "|" << endl;
+			cout << "-----------------------------------------------^--------------^" << endl;
+			cout << endl;
+		}
 		return *this;
+	}
+	int PosApp::selectItems(bool showAssets) {
+		
+		actionTitle("Item Selection by row number");
+		//see the citation
+		do {
+			cout << "Press <ENTER> to start....";
+		} while (cin.get() != '\n');
+		
+		actionTitle("Listing Items");
+		listItems(showAssets);
+		return U.getInt(1, m_nptr, "Enter the row number: ");
 	}
 	PosApp& PosApp::POS()
 	{
@@ -225,6 +241,7 @@ namespace sdds {
 	{
 		bool done = false;
 		int select{};
+		bool showAssets = false;
 		
 		while (!done) {
 			ostr << "The Sene-Store" << endl;
@@ -239,13 +256,14 @@ namespace sdds {
 
 			switch (select) {
 			case 1:
-				listItems();
+				showAssets = true;
+				listItems(showAssets);
 				break;
 			case 2:
 				addItem();
 				break;
 			case 3:
-				removeItem();
+				removeItem(showAssets);
 				break;
 			case 4:
 				stockItem();
