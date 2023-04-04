@@ -204,7 +204,6 @@ namespace sdds {
 		do {
 			cout << "Press <ENTER> to start....";
 		} while (cin.get() != '\n');
-		actionTitle("Listing Items");
 		listItems(showAssets);
 		return U.getInt(1, m_nptr, "Enter the row number: ");
 	}
