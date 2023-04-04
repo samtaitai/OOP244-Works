@@ -1,2 +1,4 @@
-In the ms53, I outsourced the logic of 'pause until <ENTER>' from the stackoverflow. 
-Reminder: the array of Item pointer 'm_iptr' itself is not a dynamic sizable array. 
+In ms54, reminder:
+It's obvious that when the signature of extraction(or insertion) is like below:
+istream& operator>>(istream&, Item&);
+Item pointer should be dereferenced to call it. 
