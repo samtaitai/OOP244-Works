@@ -27,6 +27,8 @@ namespace sdds {
 		virtual std::ifstream& load(std::ifstream&) = 0;
 		virtual ~PosIO() = default;
 	};
+	//in the same namespace, these helpers one and only
+	//as long as PosIO&, doesn't matter where it sits 
 	std::ostream& operator <<(std::ostream&, const PosIO& Ro);
 	std::ofstream& operator <<(std::ofstream&, const PosIO& Ro);
 	std::istream& operator >>(std::istream&, PosIO& Ro);
