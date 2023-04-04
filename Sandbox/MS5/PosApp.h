@@ -31,7 +31,7 @@ namespace sdds {
 		void setEmpty();
 		PosApp& addItem();
 		PosApp& removeItem(bool showAssets);
-		PosApp& stockItem();
+		PosApp& stockItem(bool showAssets);
 		PosApp& listItems(bool showAssets);	
 		int selectItems(bool showAssets);
 		void saveRecs();						

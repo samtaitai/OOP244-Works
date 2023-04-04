@@ -160,11 +160,26 @@ namespace sdds {
 
 		return *this;
 	}
-	PosApp& PosApp::stockItem()
+	PosApp& PosApp::stockItem(bool showAssets)
 	{
+		int rownum{};
+		int maxAddnum{};
+		int addnum{};
+
 		actionTitle("Select an item to stock");
 		cout.unsetf(ios::left);
-		cout << "Running stockItem()" << endl;
+
+		rownum = selectItems(showAssets);
+
+		cout << "Selected Item:" << endl;
+		m_iptr[rownum - 1]->displayType(POS_FORM);
+		cout << *(m_iptr[rownum - 1]);
+
+		maxAddnum = MAX_STOCK_NUMBER - (m_iptr[rownum - 1]->quantity());
+		addnum = U.getInt(1, maxAddnum, "Enter quantity to add: ");
+		*(m_iptr[rownum - 1]) += addnum;
+		
+		actionTitle("DONE!");
 		return *this;
 	}
 	PosApp& PosApp::listItems(bool showAssets)
@@ -293,7 +308,7 @@ namespace sdds {
 				removeItem(showAssets);
 				break;
 			case 4:
-				stockItem();
+				stockItem(showAssets);
 				break;
 			case 5:
 				POS();
