@@ -245,9 +245,9 @@ namespace sdds {
 					*getItem -= 1;					//try to reduce 
 					if (!(getItem->error())) {		//if not error
 						bill.add(getItem);
+						cout << endl;
 						cout << ">>>>> Added to bill" << endl;
 						cout << ">>>>> Total: " << bill.total() << endl;
-						done = true;
 					}
 					else {							//if error
 						getItem->clear();
@@ -257,14 +257,19 @@ namespace sdds {
 					cout << "!!!!! Item Not Found !!!!!" << endl;
 				}
 			}
-			else {
+			else if (sku[0] == '\0') {
+				done = true;
+			}
+			else
+			{
 				cout << "SKU too long" << endl;
 				cin.clear();
-				cin.ignore(9999, '\n');
+				//cin.ignore(9999, '\n');
 			}
 
-		} while (!done || sku != "\n");
+		} while (!done);
 
+		cout.fill(' ');
 		bill.print(cout);
 
 		return *this;
