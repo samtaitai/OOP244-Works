@@ -272,6 +272,7 @@ namespace sdds {
 		} while (!done);
 
 		bill.print(cout);
+		cout.unsetf(ios::right);	//this!
 
 		return *this;
 	}
