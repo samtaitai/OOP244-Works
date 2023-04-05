@@ -272,6 +272,7 @@ namespace sdds {
 		} while (!done);
 
 		bill.print(cout);
+		cout.unsetf(ios::right);	//this!
 
 		return *this;
 	}
@@ -352,8 +353,7 @@ namespace sdds {
 			ostr << "4- Stock item" << endl;
 			ostr << "5- POS" << endl;
 			ostr << "0- exit program" << endl;
-			select = 
-				U.getInt(0, 5, "> ");
+			select = U.getInt(0, 5, "> ");
 
 			switch (select) {
 			case 1:
