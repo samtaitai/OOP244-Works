@@ -1,0 +1,4 @@
+In ms54, reminder:
+It's obvious that when the signature of extraction(or insertion) is like below:
+istream& operator>>(istream&, Item&);
+Item pointer should be dereferenced to call it. 

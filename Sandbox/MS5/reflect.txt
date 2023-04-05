@@ -1,4 +1,20 @@
-In ms54, reminder:
-It's obvious that when the signature of extraction(or insertion) is like below:
-istream& operator>>(istream&, Item&);
-Item pointer should be dereferenced to call it. 
+I'm about to finish this. It feels so good.
+This milestone has given me tough times for sure but I've enjoyed it pretty much anyway.   
+
+1. Inheritance and polymorphic objects 
+MS51 was the biggest challenge and the most of it was to wrap my head around how polymorphic objects work. 
+When I created the mockup in MS1, I was in the dark about how the PosApp class would work, the key was to understand why we have an array of Item pointers.  
+PosIO(interface) has its derived 'Item'(abstract base) and Item would never be instantiated but has two concreate classes: Perishable and Nonperiable. 
+PosIO hands over every i/o methods, Item hands over pretty much everything to manipulate either Perishable or Nonperishable. Those overloaded operators made my life easier when it comes to MS51 to 55. It was fun to figure out which method is waiting for being used to tackle each tasks listed in the instructions. 
+
+2. Dynamic memory allocation
+I think Error class is mostly about DMA. When I first was exposed by the concept of DMA, I was so puzzled by everything but things get better. At least I know whenever I use 'new' keyword, there must be deallocation should follow. When and where would be tricky part though. In my case, whenever I update something, that probably would be the most suspicious location where memory leaks happen. 
+
+3. Constructor and Destruction 
+I had a lot of chance to appreciate the concept of constructing and destructuring objects in Date class. I was mesmerized by the idea of validating data inside the constructor at the creation of the object.
+
+4.
+Overall challenging part was those details about how iostream object work, which is a quite basic concept but I needed to revisit my note for cin.get or cin.getline everytime. 
+
+Even though some ideas are still not solid inside me, for now I'm happy about what I've learned and looking forward to OOP344. 
+
