@@ -270,7 +270,6 @@ namespace sdds {
 
 		} while (!done);
 
-		cout.fill(' ');
 		bill.print(cout);
 
 		return *this;

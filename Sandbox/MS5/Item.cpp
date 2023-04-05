@@ -374,6 +374,7 @@ namespace sdds {
 	std::ostream& Item::bprint(std::ostream& ostr) const
 	{
 		ostr << "| ";
+		ostr.fill(' ');
 		ostr.width(20);
 		ostr.setf(ios::left);
 		if (strlen(m_name) <= 20) ostr << m_name;
