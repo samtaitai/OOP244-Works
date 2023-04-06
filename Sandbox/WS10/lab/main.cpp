@@ -41,7 +41,7 @@ int main(){
   else{
     cout << "All students have valid students ids" << endl;
   }
-  if (!validate(Employee(111111), E, 6, v)){
+  /*if (!validate(Employee(111111), E, 6, v)){
     cout << "These employees have invalid employee ids:" << endl;
     for (i = 0; i < 5; i++){
       if (!v[i]) cout << E[i] << endl;
@@ -49,7 +49,7 @@ int main(){
   }
   else{
     cout << "All employees have valid employee ids" << endl;
-  }
+  }*/
   if (!validate(3, vals, 10, v)){
     cout << "These integer values are invalid: " << endl;
     for (i = 0; i < 10; i++){

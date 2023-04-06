@@ -22,6 +22,18 @@ namespace sict{
   Student::Student(int stno, const char* name){
     set(stno, name);
   }
+  Student::Student(const Student& S)
+  {
+      operator=(S);
+  }
+  Student& Student::operator=(const Student& S)
+  {
+      if(this != &S){
+          strcpy(_name, S._name);
+          _stno = S._stno;
+      }
+      return *this;
+  }
   std::ostream& Student::display(std::ostream& os)const{
     return os << _stno << " " << _name;
   }
