@@ -32,6 +32,8 @@ int main(){
   
   char cvals[10] = { 'A', 'e', 'B', 'd', 'e', 'G', 'H', 'l', 'p', 'x' };
 
+  //cout << S[0].operator const char*() << endl; 
+
   if (!validate(Student(11111), S, 6, v)){
     cout << "These students have invalid student ids:" << endl;
     for (i = 0; i < 5; i++){

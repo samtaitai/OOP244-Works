@@ -22,7 +22,7 @@ namespace sict{
   Student::Student(int stno, const char* name){
     set(stno, name);
   }
-  Student::Student(const Student& S)
+  /*Student::Student(const Student& S)
   {
       operator=(S);
   }
@@ -33,7 +33,7 @@ namespace sict{
           _stno = S._stno;
       }
       return *this;
-  }
+  }*/
   std::ostream& Student::display(std::ostream& os)const{
     return os << _stno << " " << _name;
   }

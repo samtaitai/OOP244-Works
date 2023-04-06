@@ -4,7 +4,7 @@
 namespace sict {
 
 	template <typename T>
-	bool validate(T minVal, T* array, int arrSize, bool* resArr) {
+	bool validate(const T& minVal, T* array, int arrSize, bool* resArr) {
 		bool result = true;
 		int i{};
 

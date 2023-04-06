@@ -22,11 +22,11 @@ namespace sict{
     void set(int stno, const char* name);
   public:
     Student(int stno, const char* name = "no name");
-    /*Student(const Student& S) = delete;
-    Student& operator=(const Student& S) = delete;*/
+    Student(const Student& S) = delete;
+    Student& operator=(const Student& S) = delete;
     //how to? without these two?
-    Student(const Student& S);
-    Student& operator=(const Student& S);
+    /*Student(const Student& S);
+    Student& operator=(const Student& S);*/
     std::ostream& display(std::ostream& os)const;
     bool operator<=(const Student& S)const;
     bool operator>=(const Student& S)const;

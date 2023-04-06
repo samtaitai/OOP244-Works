@@ -27,8 +27,5 @@ namespace sict{
     bool operator>=(const Employee& E)const;
     operator const char*()const;
   };
-
-
-
 }
 #endif 
