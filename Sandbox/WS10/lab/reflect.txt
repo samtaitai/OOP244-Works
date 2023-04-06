@@ -1,0 +1,8 @@
+At first, I created the validate function by assuming I worked on int type only. Then I changed type that should be changed. For Student and Employee type, there are already >= <= operators for us, it gave me a hint about how it's going to work. 
+The tricky part is that copy constructor and copy assignment were prohibited or never provided and we had to work with them. 
+In line 35: 
+
+if (!validate(Student(11111), S, 6, v)){
+
+I thought I need copy constructor for the 1st argument cause I'll pass the argument by value, that's the first thing I had in my mind. But I wasn't allowed so I tried to pass the argument as a reference. 
+It didn't work out at first but 'const' keyword made it work. To be honest it was pure luck that I found it so I would be very happy to get some explanation about it later. 
