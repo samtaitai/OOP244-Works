@@ -21,10 +21,10 @@ namespace sdds {
       char* m_middleName{};
       char* m_lastName{};
    public:
-      Person();
+      Person() = default;
       Person(const Person& copyFrom);
-      Person& operator=(const Person& RightOperand);
       virtual ~Person();
+      virtual Person& operator=(const Person& RightOperand);
       virtual std::istream& read(std::istream& istr);
       virtual std::ostream& write(std::ostream& ostr)const;
       // returns true if the name is valid; 

@@ -12,8 +12,8 @@ and only copied the code that my professor provided to complete my workshops and
 
 namespace sdds {
 	class Contact :public Person {
-		char* m_addr = nullptr;
-		char* m_city = nullptr;
+		char* m_addr{};
+		char* m_city{};
 		char m_province[3]{};	//srsly???? 2 + 1!!
 		char m_postalCode[7]{};
 	public:

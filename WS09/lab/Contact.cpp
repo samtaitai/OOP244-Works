@@ -71,7 +71,9 @@ namespace sdds {
 	}
 	Contact::operator bool() const
 	{
-		return m_addr && m_addr[0] && m_city && m_city[0] && m_province[0] && m_postalCode[0];
+		//return m_addr && m_addr[0] && m_city && m_city[0] && m_province[0] && m_postalCode[0];
+		return m_addr && m_addr[0] != '\0' && m_city && m_city[0] != '\0' 
+			&& m_province[0] != '\0' && m_postalCode[0] != '\0';
 	}
 	void Contact::operator~()	 
 	{

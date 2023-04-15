@@ -16,7 +16,6 @@
 #include "Person.h"
 
 namespace sdds {
-   Person::Person() {}
    Person::Person(const Person& copyFrom) {
       operator=(copyFrom);
    }
@@ -44,7 +43,7 @@ namespace sdds {
    std::ostream& Person::write(std::ostream& ostr) const {
       if (*this) {
          ostr << m_name;
-         if (m_middleName && m_middleName[0]) {
+         if (m_middleName) { // && m_middleName[0]
             ostr << " " << m_middleName;
          }
          ostr << " " << m_lastName;
@@ -52,7 +51,8 @@ namespace sdds {
       return ostr;
    }
    Person::operator bool() const {
-      return m_name && m_name[0] && m_lastName && m_lastName[0];
+      //return m_name && m_name[0] && m_lastName && m_lastName[0];
+       return m_name && m_lastName;
    }
 
    void Person::operator~() {
