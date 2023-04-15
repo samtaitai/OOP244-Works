@@ -11,7 +11,7 @@ and only copied the code that my professor provided to complete my workshops and
 using namespace std;
 
 namespace sdds {
-	Animation::Animation() :Video{} {
+	Animation::Animation() {
 		m_dimension = 0;
 	}
 	Animation::Animation(int length, int dimension) :Video{ length } {

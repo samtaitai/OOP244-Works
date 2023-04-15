@@ -13,7 +13,7 @@ and only copied the code that my professor provided to complete my workshops and
 using namespace std;
 
 namespace sdds {
-	VRVideo::VRVideo() :Video{} {
+	VRVideo::VRVideo() {
 		m_equipment = nullptr;
 	}
 	VRVideo::VRVideo(int length, const char* name) :Video{length} {
