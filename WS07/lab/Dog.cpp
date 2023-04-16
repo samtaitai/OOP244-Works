@@ -17,7 +17,7 @@ namespace sdds {
 	}
 	Dog& Dog::operator++(int)
 	{
-		if (this->isAlive()) {
+		if (isAlive()) {
 			//provided by the professor start
 			double healthDelta = 0.0;
 			healthDelta += 0.15 * (getHugs() - 1);
@@ -26,7 +26,7 @@ namespace sdds {
 			healthDelta += 0.20 * (m_numWalks - 2);
 			//end
 			applyHealthDelta(healthDelta);
-			Pet::operator++(1);			//why unary takes arg?
+			Pet::operator++(1);			
 			m_numWalks = 0;
 		}
 		
@@ -42,13 +42,13 @@ namespace sdds {
 	void Dog::feed()
 	{
 		Pet::feed();
-		if (this->isAlive()) {
+		if (isAlive()) {
 			addCharge(COST_FEED);
 		}
 	}
 	void Dog::walk()
 	{
-		if (this->isAlive()) {
+		if (isAlive()) {
 			m_numWalks += 1;
 		} 
 	}

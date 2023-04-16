@@ -113,7 +113,7 @@ namespace sdds
 		m_totalCharges = 0;
 	}
 
-	void Pet::operator++ (int num) 
+	void Pet::operator++ (int) //postfix?
 	{
 		// Can only age if your alive
 		if (isAlive())

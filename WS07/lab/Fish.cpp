@@ -19,7 +19,7 @@ namespace sdds {
 	void Fish::feed()
 	{
 		Pet::feed();
-		if (this->isAlive()) {
+		if (isAlive()) {
 			addCharge(COST_FEED);
 		}
 	}
@@ -30,13 +30,13 @@ namespace sdds {
 	}
 	Fish& Fish::operator++(int)
 	{
-		if (this->isAlive()) {
+		if (isAlive()) {
 			//provided by the professor start
 			double healthDelta = 0.0;
 			healthDelta += 0.20 * (getFeeds() - 1);
 			//end
 			applyHealthDelta(healthDelta);
-			Pet::operator++(1);			//why unary takes arg?
+			Pet::operator++(1);			
 		}
 		return *this;
 	}

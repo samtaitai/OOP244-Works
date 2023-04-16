@@ -58,7 +58,7 @@ namespace sdds
 
 		void payBalance(std::ostream& os);
 
-		void operator++ (int num);			// Increment 1 Day
+		void operator++ (int);			// Increment 1 Day
 		Pet& operator=(const Pet& rhs);		// Clone the Pet
 		std::ostream& outputData(std::ostream& os);
 	};
